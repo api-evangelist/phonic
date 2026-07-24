@@ -1,0 +1,298 @@
+openapi: 3.1.0
+info:
+  title: API Reference agents apiKeys API
+  version: 1.0.0
+servers:
+- url: https://api.phonic.ai/v1
+  description: https://api.phonic.ai/v1
+tags:
+- name: apiKeys
+paths:
+  /api_keys:
+    post:
+      operationId: create
+      summary: Create
+      description: Creates a new API key in the workspace.
+      tags:
+      - apiKeys
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: API key created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyWithSecret'
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApiKeyRequest'
+  /api_keys/{id}:
+    delete:
+      operationId: delete
+      summary: Delete
+      description: Deletes an API key.
+      tags:
+      - apiKeys
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the API key to delete.
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_keys_delete_Response_200'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: API key not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+    patch:
+      operationId: update
+      summary: Update
+      description: Updates an API key.
+      tags:
+      - apiKeys
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the API key to update.
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_keys_update_Response_200'
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: API key not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateApiKeyRequest'
+  /api_keys/{id}/rotate:
+    post:
+      operationId: rotate
+      summary: Rotate
+      description: Rotates an API key, generating a new secret and invalidating the old one.
+      tags:
+      - apiKeys
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the API key to rotate.
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: API key rotated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyWithSecret'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: API key not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+components:
+  schemas:
+    ApiKeyWithSecret:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The API key ID.
+        name:
+          type: string
+          description: The name of the API key.
+        api_key:
+          type: string
+          description: The API key secret. Only returned once, when the key is created or rotated.
+      required:
+      - id
+      - name
+      - api_key
+      title: ApiKeyWithSecret
+    api_keys_update_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      required:
+      - success
+      title: api_keys_update_Response_200
+    api_keys_delete_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      required:
+      - success
+      title: api_keys_delete_Response_200
+    UpdateApiKeyRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The new name for the API key.
+      required:
+      - name
+      title: UpdateApiKeyRequest
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
+    CreateApiKeyRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: A name to identify the API key.
+      required:
+      - name
+      title: CreateApiKeyRequest
+    BasicError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
+    BasicErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - message
+      title: BasicErrorError
+    ValidationErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+      required:
+      - message
+      title: ValidationErrorError
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).

@@ -1,0 +1,2226 @@
+openapi: 3.1.0
+info:
+  title: API Reference agents conversations API
+  version: 1.0.0
+servers:
+- url: https://api.phonic.ai/v1
+  description: https://api.phonic.ai/v1
+tags:
+- name: conversations
+paths:
+  /conversations:
+    get:
+      operationId: list
+      summary: List
+      description: Returns conversations with optional filtering.
+      tags:
+      - conversations
+      parameters:
+      - name: project
+        in: query
+        description: The name of the project to list conversations for.
+        required: false
+        schema:
+          type: string
+          default: main
+      - name: external_id
+        in: query
+        description: Filter by external ID to get a specific conversation.
+        required: false
+        schema:
+          type: string
+      - name: duration_min
+        in: query
+        description: Minimum duration in seconds.
+        required: false
+        schema:
+          type: integer
+      - name: duration_max
+        in: query
+        description: Maximum duration in seconds.
+        required: false
+        schema:
+          type: integer
+      - name: started_at_min
+        in: query
+        description: 'Minimum start date/time. Valid examples: `2025-04-17`, `2025-04-17T02:48:52.708Z`'
+        required: false
+        schema:
+          type: string
+      - name: started_at_max
+        in: query
+        description: 'Maximum start date/time. Valid examples: `2025-04-17`, `2025-04-17T02:48:52.708Z`'
+        required: false
+        schema:
+          type: string
+      - name: before
+        in: query
+        description: Cursor for backward pagination. Use a conversation ID from `pagination.prev_cursor` to fetch the previous page of conversations. Cannot be used with `after`.
+        required: false
+        schema:
+          type: string
+      - name: after
+        in: query
+        description: Cursor for forward pagination. Use a conversation ID from `pagination.next_cursor` to fetch the next page of conversations. Cannot be used with `before`.
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Maximum number of conversations to return per page.
+        required: false
+        schema:
+          type: integer
+          default: 20
+      - name: audio_container
+        in: query
+        description: Format of the presigned `audio_url` in each conversation in the response.
+        required: false
+        schema:
+          $ref: '#/components/schemas/ConversationsGetParametersAudioContainer'
+          default: wav.gz
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'Paginated list (`conversations`, `pagination`) when listing, or a single `conversation` when the `external_id` query parameter matches exactly one conversation.
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/conversations_list_Response_200'
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: Project or conversation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+  /conversations/{id}:
+    get:
+      operationId: get
+      summary: Get
+      description: Returns a conversation by ID.
+      tags:
+      - conversations
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the conversation to get.
+        required: true
+        schema:
+          type: string
+      - name: audio_container
+        in: query
+        description: Format of the presigned `audio_url` in the response.
+        required: false
+        schema:
+          $ref: '#/components/schemas/ConversationsIdGetParametersAudioContainer'
+          default: wav.gz
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/conversations_get_Response_200'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: Conversation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+    delete:
+      operationId: delete
+      summary: Delete
+      description: Deletes a conversation, scheduling its transcripts and audio recordings for deletion. The conversation must have ended.
+      tags:
+      - conversations
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the conversation to delete.
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/conversations_delete_Response_200'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: Conversation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '409':
+          description: Cannot delete an active conversation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+  /conversations/{id}/cancel:
+    post:
+      operationId: cancel
+      summary: Cancel
+      description: Cancels an active conversation.
+      tags:
+      - conversations
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the conversation to cancel.
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/conversations_cancel_Response_200'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: Conversation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '409':
+          description: Conversation already ended
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '504':
+          description: Cancellation timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /conversations/{id}/analysis:
+    get:
+      operationId: get-analysis
+      summary: Get Analysis
+      description: Returns an analysis of the specified conversation.
+      tags:
+      - conversations
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the conversation to analyze.
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/conversations_get_analysis_Response_200'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: Conversation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+  /conversations/{id}/extractions:
+    get:
+      operationId: list-extractions
+      summary: List Extractions
+      description: Returns all extractions for a conversation.
+      tags:
+      - conversations
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the conversation to get extractions for.
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/conversations_list_extractions_Response_200'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: Conversation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+    post:
+      operationId: extract-data
+      summary: Extract Data
+      description: Extracts data from a conversation using a schema.
+      tags:
+      - conversations
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the conversation to extract data from.
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/conversations_extract_data_Response_201'
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: Conversation or schema not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtractDataRequest'
+  /conversations/{id}/evals:
+    get:
+      operationId: list-evaluations
+      summary: List Evaluations
+      description: Returns all evaluations for a conversation.
+      tags:
+      - conversations
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the conversation to get evaluations for.
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/conversations_list_evaluations_Response_200'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Conversation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+    post:
+      operationId: evaluate
+      summary: Evaluate
+      description: Evaluates a conversation using an evaluation prompt.
+      tags:
+      - conversations
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the conversation to evaluate.
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/conversations_evaluate_Response_201'
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Conversation or evaluation prompt not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EvaluateConversationRequest'
+  /conversations/outbound_call:
+    post:
+      operationId: outbound-call
+      summary: Outbound Call
+      description: Initiates a call to a given phone number using Phonic's Twilio account.
+      tags:
+      - conversations
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/conversations_outbound_call_Response_200'
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: Agent not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OutboundCallRequest'
+  /conversations/sip/outbound_call:
+    post:
+      operationId: sip-outbound-call
+      summary: Sip Outbound Call
+      description: Initiates a SIP outbound call using user-supplied SIP credentials in headers.
+      tags:
+      - conversations
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      - name: X-Sip-Address
+        in: header
+        description: SIP address of the user's SIP trunk. Required.
+        required: true
+        schema:
+          type: string
+      - name: X-Sip-Auth-Username
+        in: header
+        description: SIP auth username, if your provider requires it.
+        required: false
+        schema:
+          type: string
+      - name: X-Sip-Auth-Password
+        in: header
+        description: SIP auth password, if your provider requires it.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/conversations_sip_outbound_call_Response_200'
+        '400':
+          description: Invalid query parameters or body, or missing required headers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostConversationsSipOutboundCallRequestBadRequestError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '409':
+          description: The SIP call could not be completed. The `sip_status_code` and `sip_status` fields contain the carrier's SIP response details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SipCallError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                from_phone_number:
+                  type: string
+                  description: Caller ID phone number in E.164 format.
+                to_phone_number:
+                  type: string
+                  description: Destination phone number in E.164 format.
+                config:
+                  $ref: '#/components/schemas/OutboundCallConfig'
+                dry_run:
+                  type: boolean
+                  default: false
+                  description: If true, validates the outbound call setup without placing a call. Returns HTTP 200 with `conversation_id` and `twilio_call_sid` set to null.
+              required:
+              - from_phone_number
+              - to_phone_number
+  /conversations/{id}/replay:
+    post:
+      operationId: replay
+      summary: Replay
+      description: 'Replays an ended conversation by re-running its recorded audio through an
+
+        agent. Requires API key or access token authentication. The conversation must
+
+        have audio recordings available and an associated agent (or one specified in
+
+        the request body).
+
+        '
+      tags:
+      - conversations
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the conversation to replay.
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Replay started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/conversations_replay_Response_200'
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: Conversation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '409':
+          description: Cannot replay an active conversation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '422':
+          description: Conversation cannot be replayed (no audio, deleted recordings, or no agent)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '429':
+          description: Concurrency limit reached
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '503':
+          description: Insufficient capacity available to start the replay.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplayConversationRequest'
+components:
+  schemas:
+    ConversationItem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The conversation item ID.
+        item_idx:
+          type: integer
+          description: Index of the item in the conversation.
+        role:
+          $ref: '#/components/schemas/ConversationItemRole'
+          description: Who spoke in this turn.
+        live_transcript:
+          type:
+          - string
+          - 'null'
+          description: Live transcript of this turn. `null` when the turn has been redacted.
+        post_call_transcript:
+          type:
+          - string
+          - 'null'
+          description: Post-call processed transcript.
+        redacted_transcript:
+          type:
+          - string
+          - 'null'
+          description: The redacted transcript of this turn. `null` when the turn is not redacted.
+        duration_ms:
+          type: number
+          format: double
+          description: Duration of this turn in milliseconds.
+        started_at:
+          type: string
+          format: date-time
+          description: When this turn started.
+        voice_id:
+          type: string
+          description: Voice ID used (assistant only).
+        audio_speed:
+          type: number
+          format: double
+          description: Audio speed used (assistant only).
+        system_prompt:
+          type: string
+          description: System prompt used for this assistant turn.
+        tool_calls:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationItemToolCallsItems'
+          description: Tool calls made by the assistant.
+      required:
+      - id
+      - item_idx
+      - role
+      - live_transcript
+      - post_call_transcript
+      - duration_ms
+      - started_at
+      title: ConversationItem
+    DataRetentionPolicy0:
+      type: object
+      properties:
+        zero_data_retention:
+          type: boolean
+          description: When `true`, no transcripts or audio recordings are retained.
+      required:
+      - zero_data_retention
+      description: Zero data retention mode. No transcripts or audio recordings are retained.
+      title: DataRetentionPolicy0
+    OutboundCallConfig:
+      type: object
+      properties:
+        agent:
+          type: string
+          description: The name of the agent to use for the call.
+        project:
+          type: string
+          default: main
+          description: The name of the project to use for the call.
+        generate_welcome_message:
+          type: boolean
+          default: false
+          description: When `true`, the welcome message will be automatically generated and the `welcome_message` field will be ignored.
+        is_welcome_message_interruptible:
+          type: boolean
+          default: true
+          description: When `false`, the welcome message will not be interruptible by the user.
+        welcome_message:
+          type:
+          - string
+          - 'null'
+          description: Message to play when the conversation starts. Can contain template variables like `{{customer_name}}`. Ignored when `generate_welcome_message` is `true`.
+        system_prompt:
+          type: string
+          default: Respond in 1-2 sentences.
+          description: Instructions for the conversation. Can contain template variables like `{{subject}}`.
+        template_variables:
+          type: object
+          additionalProperties:
+            type: string
+          description: Variables that can be used in the welcome message and the system prompt.
+        voice_id:
+          type: string
+          default: sabrina
+          description: The voice ID to use for the agent.
+        generate_no_input_poke_text:
+          type: boolean
+          default: false
+          description: Whether to have the no-input poke text be generated by AI.
+        no_input_poke_sec:
+          type:
+          - integer
+          - 'null'
+          description: Number of seconds of silence before sending a poke message. `null` disables the poke message.
+        no_input_poke_text:
+          type: string
+          default: Are you still there?
+          description: The message to send after the specified silence. Ignored when generate_no_input_poke_text is true.
+        no_input_end_conversation_sec:
+          type: integer
+          default: 180
+          description: Seconds of silence before ending the conversation.
+        default_language:
+          $ref: '#/components/schemas/LanguageCode'
+          description: ISO 639-1 language code that sets the agent's default language to recognize and speak. Welcome message and no input poke text should be in this language.
+        additional_languages:
+          type: array
+          items:
+            $ref: '#/components/schemas/LanguageCode'
+          default: []
+          description: Array of additional ISO 639-1 language codes that the agent should be able to recognize and speak. Should not include `default_language`. When `multilingual_mode` is `"auto"`, a maximum of 2 additional languages is allowed.
+        languages:
+          type: array
+          items:
+            $ref: '#/components/schemas/LanguageCode'
+          default:
+          - en
+          description: Array of ISO 639-1 language codes that the agent should be able to recognize. This field is deprecated. Use `default_language` and `additional_languages` instead.
+        multilingual_mode:
+          $ref: '#/components/schemas/OutboundCallConfigMultilingualMode'
+          default: request
+          description: If `"auto"`, each user audio is automatically identified for the language to respond in. If `"request"`, user must request to change language (recommended). If `"initial"` the first turn user audio determines the language for the rest of the conversation.
+        push_to_talk:
+          type: boolean
+          default: false
+          description: Push to talk mode. User must send mute/unmute messages to turn on/off listening to audio. Defaults to false.
+        intelligence_level:
+          $ref: '#/components/schemas/OutboundCallConfigIntelligenceLevel'
+          default: standard
+          description: The intelligence level of the agent. `high` uses a more capable model for more complex reasoning, while `standard` is optimized for lower latency.
+        boosted_keywords:
+          type: array
+          items:
+            type: string
+          description: These words, or short phrases, will be more accurately recognized by the agent.
+        pronunciation_dictionary:
+          type: array
+          items:
+            $ref: '#/components/schemas/OutboundCallConfigPronunciationDictionaryItems'
+          description: Array of `{ word, pronunciation }` entries. Words must be unique.
+        min_words_to_interrupt:
+          type: integer
+          default: 1
+          description: Minimum number of words required to interrupt the assistant.
+        tools:
+          type: array
+          items:
+            $ref: '#/components/schemas/OutboundCallConfigToolsItems'
+          description: Array of built-in or custom tool names to use.
+        enable_redaction:
+          type: boolean
+          default: false
+          description: When `true`, PII and PHI are redacted from text transcripts (e.g. replaced with tags like `[PHONE NUMBER]`) and bleeped from audio recordings after the conversation ends.
+        model:
+          $ref: '#/components/schemas/OutboundCallConfigModel'
+          default: merritt
+          description: The speech-to-speech model to use.
+        audio_speed:
+          type: number
+          format: double
+          default: 1
+          description: The audio speed of the agent.
+        background_noise:
+          $ref: '#/components/schemas/OutboundCallConfigBackgroundNoise'
+          description: The background noise type. Can be "office", "call-center", "coffee-shop", or null.
+        background_noise_level:
+          type: number
+          format: double
+          default: 0
+          description: The background noise level of the agent.
+        mcp_servers:
+          type: array
+          items:
+            type: string
+          description: Array of MCP server names to use.
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+          description: Array of task objects with `name` and `description` fields.
+        outbound_number_pool:
+          oneOf:
+          - $ref: '#/components/schemas/OutboundNumberPool'
+          - type: 'null'
+          description: Pool of phone numbers used for outbound calls.
+        enable_assistant_backchannel:
+          type: boolean
+          default: false
+          description: When `true`, the assistant will produce backchannel responses (e.g. "mm-hmm") while the user is speaking.
+        assistant_backchannel_aggressiveness:
+          type: number
+          format: double
+          default: 0.1
+          description: How aggressively the assistant produces backchannel responses. Only relevant when `enable_assistant_backchannel` is `true`.
+        configuration_endpoint:
+          oneOf:
+          - $ref: '#/components/schemas/OutboundCallConfigConfigurationEndpoint'
+          - type: 'null'
+          description: When not `null`, at the beginning of the conversation the agent will make a POST request to this endpoint to get configuration options.
+        additional_params:
+          type: object
+          additionalProperties:
+            description: Any type
+          description: Additional runtime parameters.
+        data_retention_policy:
+          $ref: '#/components/schemas/DataRetentionPolicy'
+          description: Controls how long transcripts and audio recordings are retained before deletion.
+      description: When an `agent` is provided, these `config` options override the agent settings.
+      title: OutboundCallConfig
+    ConversationsGetParametersAudioContainer:
+      type: string
+      enum:
+      - wav.gz
+      - wav
+      default: wav.gz
+      title: ConversationsGetParametersAudioContainer
+    Task:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the task.
+        description:
+          type: string
+          description: The description of the task.
+      required:
+      - name
+      - description
+      title: Task
+    ConversationEvaluationResultPrompt:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      - name
+      description: The evaluation prompt information.
+      title: ConversationEvaluationResultPrompt
+    ConversationBackgroundNoise:
+      type: string
+      enum:
+      - office
+      - call-center
+      - coffee-shop
+      description: The background noise type used in the conversation.
+      title: ConversationBackgroundNoise
+    DataRetentionPolicy1:
+      type: object
+      properties:
+        zero_data_retention:
+          type: boolean
+          description: Must be `false` for standard data retention.
+        transcripts:
+          $ref: '#/components/schemas/DataRetentionPolicyOneOf1Transcripts'
+        audio_recordings:
+          $ref: '#/components/schemas/DataRetentionPolicyOneOf1AudioRecordings'
+      required:
+      - zero_data_retention
+      - transcripts
+      - audio_recordings
+      description: Standard data retention with configurable deletion windows.
+      title: DataRetentionPolicy1
+    DataRetentionPolicyOneOf1AudioRecordings:
+      type: object
+      properties:
+        delete_after_hours:
+          type:
+          - integer
+          - 'null'
+          description: Number of hours after which audio recordings are deleted. Null means audio recordings are retained indefinitely.
+      required:
+      - delete_after_hours
+      title: DataRetentionPolicyOneOf1AudioRecordings
+    SipOutboundDryRunResponse:
+      type: object
+      properties:
+        conversation_id:
+          description: Always null when `dry_run` is true.
+        twilio_call_sid:
+          description: Always null when `dry_run` is true.
+        dry_run:
+          type: boolean
+          description: Always true for this response.
+      required:
+      - conversation_id
+      - twilio_call_sid
+      - dry_run
+      title: SipOutboundDryRunResponse
+    Conversation:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The conversation ID.
+        agent:
+          oneOf:
+          - $ref: '#/components/schemas/ConversationAgent'
+          - type: 'null'
+          description: The agent associated with the conversation.
+        workspace:
+          type: string
+          description: The organization/workspace name.
+        project:
+          $ref: '#/components/schemas/ConversationProject'
+          description: The project associated with the conversation.
+        external_id:
+          type:
+          - string
+          - 'null'
+          description: External ID for conversation tracking.
+        origin:
+          $ref: '#/components/schemas/ConversationOrigin'
+          description: The origin of the conversation.
+        model:
+          type: string
+          description: The STS model used.
+        generate_welcome_message:
+          type: boolean
+          description: Will be `true` if welcome message was automatically generated.
+        is_welcome_message_interruptible:
+          type: boolean
+          description: When `false`, the welcome message will not be interruptible by the user.
+        welcome_message:
+          type:
+          - string
+          - 'null'
+          description: Welcome message played at start. Will be `null` when `generate_welcome_message` is `true`.
+        template_variables:
+          type: object
+          additionalProperties:
+            type: string
+          description: Template variables used in the conversation.
+        system_prompt:
+          type:
+          - string
+          - 'null'
+          description: System prompt used in the conversation.
+        input_format:
+          type: string
+          description: Audio input format.
+        output_format:
+          type: string
+          description: Audio output format.
+        background_noise_level:
+          type: number
+          format: double
+          description: Background noise level used in the conversation.
+        background_noise:
+          $ref: '#/components/schemas/ConversationBackgroundNoise'
+          description: The background noise type used in the conversation.
+        live_transcript:
+          type:
+          - string
+          - 'null'
+          description: Live transcript of the conversation.
+        post_call_transcript:
+          type:
+          - string
+          - 'null'
+          description: Post-call processed transcript.
+        duration_ms:
+          type: number
+          format: double
+          description: Duration of the conversation in milliseconds.
+        audio_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: Presigned URL to the conversation audio file. Expires in 1 day.
+        started_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the conversation started.
+        ended_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the conversation ended.
+        ended_by:
+          $ref: '#/components/schemas/ConversationEndedBy'
+          description: Who or what ended the conversation.
+        boosted_keywords:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: These words, or short phrases, are more accurately recognized by the model.
+        pronunciation_dictionary:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationPronunciationDictionaryItems'
+          description: Array of `{ word, pronunciation }` entries. Words must be unique.
+        min_words_to_interrupt:
+          type: integer
+          default: 1
+          description: Minimum number of words required to interrupt the assistant.
+        default_language:
+          $ref: '#/components/schemas/LanguageCode'
+          description: ISO 639-1 language code that sets the agent's default language to recognize and speak. Welcome message and no input poke text should be in this language.
+        additional_languages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/LanguageCode'
+          description: Array of additional ISO 639-1 language codes that the agent should be able to recognize and speak. Should not include `default_language`. When `multilingual_mode` is `"auto"`, a maximum of 2 additional languages is allowed.
+        multilingual_mode:
+          $ref: '#/components/schemas/ConversationMultilingualMode'
+          description: If `"auto"`, each user audio is automatically identified for the language to respond in. If `"request"`, user must request to change language (recommended). If `"initial"` the first turn user audio determines the language for the rest of the conversation.
+        push_to_talk:
+          type: boolean
+          default: false
+          description: Push to talk mode. User must send mute/unmute messages to turn on/off listening to audio. Defaults to false.
+        languages:
+          type: array
+          items:
+            type: string
+          description: Array of ISO 639-1 language codes recognized by the model. This field is deprecated. Use `default_language` and `additional_languages` instead.
+        generate_no_input_poke_text:
+          type:
+          - boolean
+          - 'null'
+          description: Whether the no-input poke text was generated by AI.
+        no_input_poke_sec:
+          type:
+          - integer
+          - 'null'
+          description: Number of seconds of silence before a poke message is sent. `null` means the poke message is disabled.
+        no_input_poke_text:
+          type:
+          - string
+          - 'null'
+          description: The message to send after the specified silence. Relevant only if `no_input_poke_sec` is not `null`. Ignored when generate_no_input_poke_text is true.
+        no_input_end_conversation_sec:
+          type:
+          - integer
+          - 'null'
+          description: Seconds of silence before the conversation is ended.
+        websocket_timeout_sec:
+          type: number
+          format: double
+          description: The WebSocket idle timeout in seconds.
+        vad_prebuffer_duration_ms:
+          type:
+          - integer
+          - 'null'
+          description: Voice activity detection prebuffer duration in milliseconds. `null` when not applicable or unknown (e.g. push-to-talk, or legacy stored conversations).
+        vad_min_speech_duration_ms:
+          type:
+          - integer
+          - 'null'
+          description: Minimum speech duration for voice activity detection in milliseconds. `null` when not applicable or unknown.
+        vad_min_silence_duration_ms:
+          type:
+          - integer
+          - 'null'
+          description: Minimum silence duration for voice activity detection in milliseconds. `null` when not applicable or unknown.
+        vad_threshold:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: Voice activity detection threshold. `null` when not applicable or unknown.
+        task_results:
+          type: object
+          additionalProperties:
+            description: Any type
+          description: Results from conversation evaluations and extractions.
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationItem'
+          description: Array of conversation items (turns).
+        call_info:
+          oneOf:
+          - $ref: '#/components/schemas/ConversationCallInfo'
+          - type: 'null'
+          description: Phone call metadata. `null` for non-phone call conversations.
+        analysis:
+          $ref: '#/components/schemas/ConversationAnalysis'
+          description: Analysis of the conversation including latencies and interruptions.
+        is_redacted:
+          type: boolean
+          description: Whether PII and PHI have been redacted from the conversation.
+        redacted_transcript:
+          type:
+          - string
+          - 'null'
+          description: The redacted transcript of the conversation. `null` when the conversation is not redacted.
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            description: Any type
+          description: Arbitrary metadata associated with the conversation.
+        data_retention_policy:
+          $ref: '#/components/schemas/DataRetentionPolicy'
+          description: Controls how long transcripts and audio recordings are retained before deletion.
+        deletion_info:
+          $ref: '#/components/schemas/ConversationDeletionInfo'
+          description: Information about when transcripts and audio recordings are or were scheduled to be deleted.
+        enable_assistant_backchannel:
+          type: boolean
+          description: Whether the assistant produced backchannel responses during the conversation.
+        assistant_backchannel_aggressiveness:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: How aggressively the assistant produced backchannel responses during the conversation.
+      required:
+      - id
+      - agent
+      - workspace
+      - project
+      - external_id
+      - origin
+      - model
+      - generate_welcome_message
+      - is_welcome_message_interruptible
+      - welcome_message
+      - template_variables
+      - input_format
+      - output_format
+      - background_noise_level
+      - background_noise
+      - live_transcript
+      - post_call_transcript
+      - duration_ms
+      - audio_url
+      - started_at
+      - ended_at
+      - ended_by
+      - boosted_keywords
+      - pronunciation_dictionary
+      - min_words_to_interrupt
+      - default_language
+      - additional_languages
+      - multilingual_mode
+      - push_to_talk
+      - no_input_poke_sec
+      - no_input_poke_text
+      - no_input_end_conversation_sec
+      - task_results
+      - items
+      - call_info
+      - analysis
+      title: Conversation
+    OutboundCallConfigBackgroundNoise:
+      type: string
+      enum:
+      - office
+      - call-center
+      - coffee-shop
+      description: The background noise type. Can be "office", "call-center", "coffee-shop", or null.
+      title: OutboundCallConfigBackgroundNoise
+    ConversationAnalysis:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the conversation analysis.
+        latencies_ms:
+          type: array
+          items:
+            type: number
+            format: double
+          description: Latencies between turns in milliseconds.
+        interruptions_count:
+          type: integer
+          description: Number of interruptions in the conversation.
+      required:
+      - id
+      - latencies_ms
+      - interruptions_count
+      title: ConversationAnalysis
+    DataRetentionPolicyOneOf1Transcripts:
+      type: object
+      properties:
+        delete_after_hours:
+          type:
+          - integer
+          - 'null'
+          description: Number of hours after which transcripts are deleted. Null means transcripts are retained indefinitely.
+      required:
+      - delete_after_hours
+      title: DataRetentionPolicyOneOf1Transcripts
+    ConversationEndedBy:
+      type: string
+      enum:
+      - user
+      - user_canceled
+      - user_validation_failed
+      - assistant
+      - assistant_silence_limit_reached
+      - configuration_endpoint_timed_out
+      - configuration_endpoint_error
+      - configuration_endpoint_invalid_response
+      - error
+      description: Who or what ended the conversation.
+      title: ConversationEndedBy
+    conversations_list_Response_200:
+      oneOf:
+      - $ref: '#/components/schemas/ListConversationsResponse'
+      - $ref: '#/components/schemas/GetConversationByExternalIdResponse'
+      title: conversations_list_Response_200
+    GetConversationByExternalIdResponse:
+      type: object
+      properties:
+        conversation:
+          $ref: '#/components/schemas/Conversation'
+      required:
+      - conversation
+      title: GetConversationByExternalIdResponse
+    BasicErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - message
+      title: BasicErrorError
+    OutboundCallInitiatedResponse:
+      type: object
+      properties:
+        conversation_id:
+          type: string
+          description: The ID of the created conversation.
+        dry_run:
+          type: boolean
+          description: Always false when a call was placed.
+      required:
+      - conversation_id
+      - dry_run
+      title: OutboundCallInitiatedResponse
+    ConversationCallInfo:
+      type: object
+      properties:
+        from_phone_number:
+          type: string
+          description: Caller phone number in E.164 format.
+        to_phone_number:
+          type: string
+          description: Callee phone number in E.164 format.
+        twilio_call_sid:
+          type: string
+          description: Twilio Call SID. Only present for user SIP trunking calls.
+      required:
+      - from_phone_number
+      - to_phone_number
+      description: Phone call metadata. `null` for non-phone call conversations.
+      title: ConversationCallInfo
+    OutboundCallRequest:
+      type: object
+      properties:
+        to_phone_number:
+          type: string
+          description: The phone number to call in E.164 format.
+        config:
+          $ref: '#/components/schemas/OutboundCallConfig'
+        dry_run:
+          type: boolean
+          default: false
+          description: If true, validates the outbound call setup without placing a call. Returns HTTP 200 with `conversation_id` set to null.
+      required:
+      - to_phone_number
+      title: OutboundCallRequest
+    ConversationItemToolCallsItemsRequestBody:
+      oneOf:
+      - type: object
+        additionalProperties:
+          description: Any type
+      - type: array
+        items:
+          description: Any type
+      - type: string
+      - type: number
+        format: double
+      - type: boolean
+      description: The request body sent to the tool. Can be any JSON-serializable value.
+      title: ConversationItemToolCallsItemsRequestBody
+    ConversationsIdGetParametersAudioContainer:
+      type: string
+      enum:
+      - wav.gz
+      - wav
+      default: wav.gz
+      title: ConversationsIdGetParametersAudioContainer
+    ListConversationsResponse:
+      type: object
+      properties:
+        conversations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Conversation'
+        pagination:
+          $ref: '#/components/schemas/ConversationsListResponseConversationsPagination'
+      required:
+      - conversations
+      - pagination
+      title: ListConversationsResponse
+    SipCallError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/SipCallErrorError'
+      required:
+      - error
+      title: SipCallError
+    ConversationEvaluationResultResult:
+      type: string
+      enum:
+      - successful
+      - unsuccessful
+      - undecided
+      - error
+      description: The evaluation result.
+      title: ConversationEvaluationResultResult
+    conversations_sip_outbound_call_Response_200:
+      oneOf:
+      - $ref: '#/components/schemas/SipOutboundDryRunResponse'
+      - $ref: '#/components/schemas/SipOutboundCallInitiatedResponse'
+      title: conversations_sip_outbound_call_Response_200
+    LanguageCode:
+      type: string
+      enum:
+      - ar
+      - az
+      - bg
+      - bn
+      - cs
+      - da
+      - de
+      - el
+      - en
+      - es
+      - fa
+      - fi
+      - fil
+      - fr
+      - gu
+      - he
+      - hi
+      - hu
+      - id
+      - it
+      - ja
+      - ka
+      - km
+      - kn
+      - ko
+      - lt
+      - lv
+      - ml
+      - mr
+      - ms
+      - ne
+      - nl
+      - 'no'
+      - pa
+      - pl
+      - pt
+      - ro
+      - ru
+      - si
+      - sk
+      - sq
+      - sv
+      - sw
+      - ta
+      - te
+      - th
+      - tr
+      - uk
+      - ur
+      - vi
+      - yue
+      - zh
+      description: ISO 639-1 language codes supported by the agent
+      title: LanguageCode
+    EvaluateConversationRequest:
+      type: object
+      properties:
+        prompt_id:
+          type: string
+          description: ID of the evaluation prompt to use.
+      required:
+      - prompt_id
+      title: EvaluateConversationRequest
+    OutboundDryRunResponse:
+      type: object
+      properties:
+        conversation_id:
+          description: Always null when `dry_run` is true.
+        dry_run:
+          type: boolean
+          description: Always true for this response.
+      required:
+      - conversation_id
+      - dry_run
+      title: OutboundDryRunResponse
+    SipCallErrorErrorCode:
+      type: string
+      enum:
+      - sip_call_failed
+      - sip_auth_failed
+      - invalid_phone_number
+      description: Machine-readable error code.
+      title: SipCallErrorErrorCode
+    conversations_evaluate_Response_201:
+      type: object
+      properties:
+        evaluation:
+          $ref: '#/components/schemas/ConversationsIdEvalsPostResponsesContentApplicationJsonSchemaEvaluation'
+      required:
+      - evaluation
+      title: conversations_evaluate_Response_201
+    conversations_outbound_call_Response_200:
+      oneOf:
+      - $ref: '#/components/schemas/OutboundDryRunResponse'
+      - $ref: '#/components/schemas/OutboundCallInitiatedResponse'
+      title: conversations_outbound_call_Response_200
+    conversations_cancel_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the conversation was cancelled successfully.
+      required:
+      - success
+      title: conversations_cancel_Response_200
+    ConversationPronunciationDictionaryItems:
+      type: object
+      properties:
+        word:
+          type: string
+        pronunciation:
+          type: string
+      required:
+      - word
+      - pronunciation
+      title: ConversationPronunciationDictionaryItems
+    SipOutboundCallInitiatedResponse:
+      type: object
+      properties:
+        conversation_id:
+          type: string
+          description: The ID of the created conversation.
+        twilio_call_sid:
+          type: string
+          description: The Twilio Call SID.
+        dry_run:
+          type: boolean
+          description: Always false when a call was placed.
+      required:
+      - conversation_id
+      - twilio_call_sid
+      - dry_run
+      title: SipOutboundCallInitiatedResponse
+    BasicError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
+    conversations_get_analysis_Response_200:
+      type: object
+      properties:
+        analysis:
+          $ref: '#/components/schemas/ConversationAnalysis'
+      required:
+      - analysis
+      title: conversations_get_analysis_Response_200
+    ConversationExtractionSchema:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        isDeleted:
+          type: boolean
+          description: Whether the extraction schema has been deleted.
+      required:
+      - id
+      - name
+      - isDeleted
+      title: ConversationExtractionSchema
+    conversations_extract_data_Response_201:
+      type: object
+      properties:
+        result:
+          type: object
+          additionalProperties:
+            description: Any type
+          description: The extracted data according to the schema.
+      required:
+      - result
+      title: conversations_extract_data_Response_201
+    Error:
+      oneOf:
+      - $ref: '#/components/schemas/BasicError'
+      - $ref: '#/components/schemas/ValidationError'
+      title: Error
+    OutboundCallConfigConfigurationEndpoint:
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL to call
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: Object of key-value pairs.
+        timeout_ms:
+          type: integer
+          default: 3000
+          description: Timeout in milliseconds for the endpoint call.
+      required:
+      - url
+      description: When not `null`, at the beginning of the conversation the agent will make a POST request to this endpoint to get configuration options.
+      title: OutboundCallConfigConfigurationEndpoint
+    OutboundCallConfigMultilingualMode:
+      type: string
+      enum:
+      - auto
+      - request
+      - initial
+      default: request
+      description: If `"auto"`, each user audio is automatically identified for the language to respond in. If `"request"`, user must request to change language (recommended). If `"initial"` the first turn user audio determines the language for the rest of the conversation.
+      title: OutboundCallConfigMultilingualMode
+    ConversationsIdEvalsPostResponsesContentApplicationJsonSchemaEvaluationResult:
+      type: string
+      enum:
+      - successful
+      - unsuccessful
+      - undecided
+      - error
+      description: The evaluation result.
+      title: ConversationsIdEvalsPostResponsesContentApplicationJsonSchemaEvaluationResult
+    SipCallErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          $ref: '#/components/schemas/SipCallErrorErrorCode'
+          description: Machine-readable error code.
+        sip_status_code:
+          type: integer
+          description: The SIP response status code from the carrier (e.g. 403, 486, 603).
+        sip_status:
+          type: string
+          description: The SIP response reason phrase from the carrier (e.g. "Network Blocked", "Trunk CPS limit exceeded").
+      required:
+      - message
+      - code
+      - sip_status_code
+      - sip_status
+      title: SipCallErrorError
+    conversations_list_evaluations_Response_200:
+      type: object
+      properties:
+        evals:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationEvaluationResult'
+      required:
+      - evals
+      title: conversations_list_evaluations_Response_200
+    OutboundCallConfigIntelligenceLevel:
+      type: string
+      enum:
+      - standard
+      - high
+      default: standard
+      description: The intelligence level of the agent. `high` uses a more capable model for more complex reasoning, while `standard` is optimized for lower latency.
+      title: OutboundCallConfigIntelligenceLevel
+    conversations_replay_Response_200:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Confirmation that the replay has started.
+      required:
+      - message
+      title: conversations_replay_Response_200
+    conversations_delete_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the conversation was deleted successfully.
+      required:
+      - success
+      title: conversations_delete_Response_200
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
+    ReplayConversationRequest:
+      type: object
+      properties:
+        agent:
+          type: string
+          description: Name of the agent to replay the conversation with. Defaults to the agent originally associated with the conversation.
+      title: ReplayConversationRequest
+    ConversationDeletionInfo:
+      type: object
+      properties:
+        transcripts_deleted_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the transcripts were deleted. `null` if not deleted.
+        audio_recordings_deleted_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the audio recordings were deleted. `null` if not deleted.
+      required:
+      - transcripts_deleted_at
+      - audio_recordings_deleted_at
+      description: Information about when transcripts and audio recordings are or were scheduled to be deleted.
+      title: ConversationDeletionInfo
+    ConversationAgent:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the agent.
+        name:
+          type: string
+          description: The name of the agent.
+        is_deleted:
+          type: boolean
+          description: Whether the agent has been deleted.
+      required:
+      - id
+      - name
+      - is_deleted
+      description: The agent associated with the conversation.
+      title: ConversationAgent
+    ConversationProject:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the project.
+        name:
+          type: string
+          description: The name of the project.
+      required:
+      - id
+      - name
+      description: The project associated with the conversation.
+      title: ConversationProject
+    ConversationItemRole:
+      type: string
+      enum:
+      - user
+      - assistant
+      description: Who spoke in this turn.
+      title: ConversationItemRole
+    ValidationErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+      required:
+      - message
+      title: ValidationErrorError
+    ConversationOrigin:
+      type: string
+      enum:
+      - web
+      - web-playground
+      - web-demo
+      - direct
+      - livekit-agents-py
+      - livekit-agents-js
+      - sdk-py
+      - sdk-js
+      - inbound
+      - telephony-inbound
+      - outbound
+      - telephony-outbound
+      - replay
+      description: The origin of the conversation.
+      title: ConversationOrigin
+    conversations_get_Response_200:
+      type: object
+      properties:
+        conversation:
+          $ref: '#/components/schemas/Conversation'
+      required:
+      - conversation
+      title: conversations_get_Response_200
+    ConversationItemToolCallsItemsTool:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The tool ID.
+        name:
+          type: string
+          description: The tool name.
+      required:
+      - id
+      - name
+      title: ConversationItemToolCallsItemsTool
+    OutboundNumberPool:
+      type: object
+      properties:
+        active:
+          type: array
+          items:
+            type: string
+          description: E.164 formatted phone numbers available for outbound calls.
+        blocked:
+          type: array
+          items:
+            type: string
+          description: E.164 formatted phone numbers that are blocked from being used.
+      required:
+      - active
+      - blocked
+      description: Pool of phone numbers used for outbound calls.
+      title: OutboundNumberPool
+    ConversationItemToolCallsItems:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The tool call ID.
+        tool:
+          $ref: '#/components/schemas/ConversationItemToolCallsItemsTool'
+        integration:
+          type:
+          - string
+          - 'null'
+          description: The integration associated with the tool, if any.
+        endpoint_method:
+          type:
+          - string
+          - 'null'
+          description: HTTP method for webhook tool calls.
+        endpoint_url:
+          type:
+          - string
+          - 'null'
+          description: URL for webhook tool calls.
+        endpoint_headers:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: Headers for webhook tool calls.
+        endpoint_timeout_ms:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: Timeout in milliseconds for webhook tool calls.
+        endpoint_called_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the webhook endpoint was called (null on error).
+        query_params:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            description: Any type
+          description: Query parameters for webhook tool calls (null on error or when no params).
+        response_status_code:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: HTTP response status code for webhook tool calls (null on error).
+        tool_call_output_timeout_ms:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: Timeout in milliseconds for websocket tool calls.
+        request_body:
+          oneOf:
+          - $ref: '#/components/schemas/ConversationItemToolCallsItemsRequestBody'
+          - type: 'null'
+          description: The request body sent to the tool. Can be any JSON-serializable value.
+        response_body:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            description: Any type
+          description: The response body received from the tool.
+        timed_out:
+          type:
+          - boolean
+          - 'null'
+          description: Whether the tool call timed out.
+        error_message:
+          type:
+          - string
+          - 'null'
+          description: Error message if the tool call failed.
+      required:
+      - id
+      - tool
+      - request_body
+      - response_body
+      - timed_out
+      - error_message
+      title: ConversationItemToolCallsItems
+    conversations_list_extractions_Response_200:
+      type: object
+      properties:
+        extractions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationExtraction'
+      required:
+      - extractions
+      title: conversations_list_extractions_Response_200
+    OutboundCallConfigToolsItems:
+      oneOf:
+      - $ref: '#/components/schemas/OutboundCallConfigToolsItems0'
+      - type: string
+      title: OutboundCallConfigToolsItems
+    ConversationMultilingualMode:
+      type: string
+      enum:
+      - auto
+      - request
+      - initial
+      default: request
+      description: If `"auto"`, each user audio is automatically identified for the language to respond in. If `"request"`, user must request to change language (recommended). If `"initial"` the first turn user audio determines the language for the rest of the conversation.
+      title: ConversationMultilingualMode
+    OutboundCallConfigPronunciationDictionaryItems:
+      type: object
+      properties:
+        word:
+          type: string
+        pronunciation:
+          type: string
+      required:
+      - word
+      - pronunciation
+      title: OutboundCallConfigPronunciationDictionaryItems
+    ConversationExtraction:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The extraction ID.
+        schema:
+          $ref: '#/components/schemas/ConversationExtractionSchema'
+        result:
+          type: object
+          additionalProperties:
+            description: Any type
+          description: The extracted data.
+        created_at:
+          type: string
+          format: date-time
+          description: When the extraction was created.
+      required:
+      - id
+      - schema
+      - result
+      - created_at
+      title: ConversationExtraction
+    ConversationEvaluationResult:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The evaluation ID.
+        result:
+          $ref: '#/components/schemas/ConversationEvaluationResultResult'
+          description: The evaluation result.
+        prompt:
+          $ref: '#/components/schemas/ConversationEvaluationResultPrompt'
+          description: The evaluation prompt information.
+        created_at:
+          type: string
+          format: date-time
+          description: When the evaluation was created.
+      required:
+      - id
+      - result
+      - prompt
+      - created_at
+      title: ConversationEvaluationResult
+    ConversationsIdEvalsPostResponsesContentApplicationJsonSchemaEvaluation:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/ConversationsIdEvalsPostResponsesContentApplicationJsonSchemaEvaluationResult'
+          description: The evaluation result.
+      required:
+      - result
+      title: ConversationsIdEvalsPostResponsesContentApplicationJsonSchemaEvaluation
+    OutboundCallConfigToolsItems0:
+      type: string
+      enum:
+      - keypad_input
+      - natural_conversation_ending
+      description: Built-in tool
+      title: OutboundCallConfigToolsItems0
+    ConversationsListResponseConversationsPagination:
+      type: object
+      properties:
+        prev_cursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor to fetch the previous page of conversations (newer). Use this value in the `before` query parameter. `null` if there is no previous page.
+        next_cursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor to fetch the next page of conversations (older). Use this value in the `after` query parameter. `null` if there is no next page.
+      required:
+      - prev_cursor
+      - next_cursor
+      title: ConversationsListResponseConversationsPagination
+    PostConversationsSipOutboundCallRequestBadRequestError:
+      oneOf:
+      - $ref: '#/components/schemas/ValidationError'
+      - $ref: '#/components/schemas/BasicError'
+      - $ref: '#/components/schemas/SipCallError'
+      title: PostConversationsSipOutboundCallRequestBadRequestError
+    ExtractDataRequest:
+      type: object
+      properties:
+        schema_id:
+          type: string
+          description: ID of the extraction schema to use.
+      required:
+      - schema_id
+      title: ExtractDataRequest
+    DataRetentionPolicy:
+      oneOf:
+      - $ref: '#/components/schemas/DataRetentionPolicy0'
+      - $ref: '#/components/schemas/DataRetentionPolicy1'
+      description: 'Controls how long transcripts and audio recordings are retained before deletion.
+
+        When `zero_data_retention` is `true`, nothing is retained and `transcripts`/`audio_recordings` are omitted.
+
+        '
+      title: DataRetentionPolicy
+    OutboundCallConfigModel:
+      type: string
+      enum:
+      - merritt
+      default: merritt
+      description: The speech-to-speech model to use.
+      title: OutboundCallConfigModel
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).

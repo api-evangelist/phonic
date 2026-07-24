@@ -1,0 +1,693 @@
+openapi: 3.1.0
+info:
+  title: API Reference agents projects API
+  version: 1.0.0
+servers:
+- url: https://api.phonic.ai/v1
+  description: https://api.phonic.ai/v1
+tags:
+- name: projects
+paths:
+  /projects:
+    get:
+      operationId: list
+      summary: List
+      description: Returns all projects in a workspace.
+      tags:
+      - projects
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projects_list_Response_200'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+    post:
+      operationId: create
+      summary: Create
+      description: Creates a new project in a workspace.
+      tags:
+      - projects
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projects_create_Response_201'
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectRequest'
+  /projects/{nameOrId}:
+    get:
+      operationId: get
+      summary: Get
+      description: Returns a project by name or ID.
+      tags:
+      - projects
+      parameters:
+      - name: nameOrId
+        in: path
+        description: The name or the ID of the project to get.
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projects_get_Response_200'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: Project not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+    delete:
+      operationId: delete
+      summary: Delete
+      description: Deletes a project by name or ID.
+      tags:
+      - projects
+      parameters:
+      - name: nameOrId
+        in: path
+        description: The name or the ID of the project to delete.
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projects_delete_Response_200'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: Project not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '409':
+          description: Cannot delete the last project in a workspace
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+    patch:
+      operationId: update
+      summary: Update
+      description: Updates a project by name or ID.
+      tags:
+      - projects
+      parameters:
+      - name: nameOrId
+        in: path
+        description: The name or the ID of the project to update.
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projects_update_Response_200'
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: Project not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectRequest'
+  /projects/{id}/conversation_eval_prompts:
+    get:
+      operationId: list-eval-prompts
+      summary: List Eval Prompts
+      description: Returns all conversation evaluation prompts for a project.
+      tags:
+      - projects
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the project.
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projects_list_eval_prompts_Response_200'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: Project not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+    post:
+      operationId: create-eval-prompt
+      summary: Create Eval Prompt
+      description: Creates a new conversation evaluation prompt for a project.
+      tags:
+      - projects
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the project.
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projects_create_eval_prompt_Response_201'
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: Project not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateConversationEvalPromptRequest'
+  /projects/{id}/conversation_evals:
+    get:
+      operationId: list-evals
+      summary: List Evals
+      description: Returns all conversation evaluation results for a project.
+      tags:
+      - projects
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the project.
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projects_list_evals_Response_200'
+        '401':
+          description: Unauthorized (authentication missing or invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: Project not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+components:
+  schemas:
+    ConversationEvalPrompt:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The evaluation prompt ID.
+        name:
+          type: string
+          description: The evaluation prompt name.
+        prompt:
+          type: string
+          description: The evaluation prompt text.
+      required:
+      - id
+      - name
+      - prompt
+      title: ConversationEvalPrompt
+    ProjectDefaultAgent:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the project's default agent.
+        name:
+          type: string
+          description: The name of the project's default agent.
+      required:
+      - id
+      - name
+      description: The project's default agent.
+      title: ProjectDefaultAgent
+    projects_create_Response_201:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the created project.
+        name:
+          type: string
+          description: The name of the created project.
+      required:
+      - id
+      - name
+      title: projects_create_Response_201
+    BasicErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - message
+      title: BasicErrorError
+    projects_get_Response_200:
+      type: object
+      properties:
+        project:
+          $ref: '#/components/schemas/Project'
+      required:
+      - project
+      title: projects_get_Response_200
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the project.
+        name:
+          type: string
+          description: The name of the project.
+        default_agent:
+          oneOf:
+          - $ref: '#/components/schemas/ProjectDefaultAgent'
+          - type: 'null'
+          description: The project's default agent.
+        active_conversations:
+          type: integer
+          description: Number of conversations currently in progress for this project.
+        max_active_conversations:
+          type:
+          - integer
+          - 'null'
+          description: Maximum number of concurrent conversations allowed for this project. When `null`, the workspace `max_active_conversations` limit is used.
+      required:
+      - id
+      - name
+      - default_agent
+      - active_conversations
+      - max_active_conversations
+      title: Project
+    projects_list_Response_200:
+      type: object
+      properties:
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+      required:
+      - projects
+      title: projects_list_Response_200
+    projects_delete_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the project was deleted successfully.
+      required:
+      - success
+      title: projects_delete_Response_200
+    BasicError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
+    Error:
+      oneOf:
+      - $ref: '#/components/schemas/BasicError'
+      - $ref: '#/components/schemas/ValidationError'
+      title: Error
+    UpdateProjectRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the project. Can only contain lowercase letters, numbers and hyphens. Must be unique within the workspace.
+        default_agent:
+          type:
+          - string
+          - 'null'
+          description: The name of the new project's default agent. Set to `null` to remove the default agent.
+        max_active_conversations:
+          type:
+          - integer
+          - 'null'
+          description: Maximum number of concurrent conversations allowed for this project. When `null`, the workspace `max_active_conversations` limit is used.
+      title: UpdateProjectRequest
+    ConversationEvalPromptInfo:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      - name
+      description: The evaluation prompt information.
+      title: ConversationEvalPromptInfo
+    ConversationEvalResult:
+      type: string
+      enum:
+      - successful
+      - unsuccessful
+      - undecided
+      - error
+      description: The evaluation result.
+      title: ConversationEvalResult
+    projects_create_eval_prompt_Response_201:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the created evaluation prompt.
+      required:
+      - id
+      title: projects_create_eval_prompt_Response_201
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
+    projects_list_eval_prompts_Response_200:
+      type: object
+      properties:
+        conversation_eval_prompts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationEvalPrompt'
+      required:
+      - conversation_eval_prompts
+      title: projects_list_eval_prompts_Response_200
+    ValidationErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+      required:
+      - message
+      title: ValidationErrorError
+    ConversationEval:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The evaluation ID.
+        conversation_id:
+          type: string
+          description: The ID of the conversation that was evaluated.
+        prompt:
+          $ref: '#/components/schemas/ConversationEvalPromptInfo'
+        result:
+          $ref: '#/components/schemas/ConversationEvalResult'
+          description: The evaluation result.
+        created_at:
+          type: string
+          format: date-time
+          description: When the evaluation was created.
+      required:
+      - id
+      - conversation_id
+      - prompt
+      - result
+      - created_at
+      title: ConversationEval
+    CreateProjectRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the project. Can only contain lowercase letters, numbers and hyphens. Must be unique within the workspace.
+      required:
+      - name
+      title: CreateProjectRequest
+    projects_list_evals_Response_200:
+      type: object
+      properties:
+        evals:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationEval'
+      required:
+      - evals
+      title: projects_list_evals_Response_200
+    CreateConversationEvalPromptRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: A useful name for referring to this prompt.
+        prompt:
+          type: string
+          description: Actual evaluation prompt text to evaluate conversations with.
+      required:
+      - name
+      - prompt
+      title: CreateConversationEvalPromptRequest
+    projects_update_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the project was updated successfully.
+      required:
+      - success
+      title: projects_update_Response_200
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).

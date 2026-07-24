@@ -1,0 +1,420 @@
+openapi: 3.1.0
+info:
+  title: API Reference agents extractionSchemas API
+  version: 1.0.0
+servers:
+- url: https://api.phonic.ai/v1
+  description: https://api.phonic.ai/v1
+tags:
+- name: extractionSchemas
+paths:
+  /extraction_schemas:
+    get:
+      operationId: list
+      summary: List
+      description: Returns all extraction schemas in a project.
+      tags:
+      - extractionSchemas
+      parameters:
+      - name: project
+        in: query
+        description: The name of the project to list extraction schemas for.
+        required: false
+        schema:
+          type: string
+          default: main
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/extraction_schemas_list_Response_200'
+        '404':
+          description: Project not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: create
+      summary: Create
+      description: Creates a new extraction schema in a project.
+      tags:
+      - extractionSchemas
+      parameters:
+      - name: project
+        in: query
+        description: The name of the project to create the extraction schema in.
+        required: false
+        schema:
+          type: string
+          default: main
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/extraction_schemas_create_Response_201'
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Project not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Extraction schema name already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExtractionSchemaRequest'
+  /extraction_schemas/{nameOrId}:
+    get:
+      operationId: get
+      summary: Get
+      description: Returns an extraction schema by name or ID.
+      tags:
+      - extractionSchemas
+      parameters:
+      - name: nameOrId
+        in: path
+        description: The name or the ID of the extraction schema to get.
+        required: true
+        schema:
+          type: string
+      - name: project
+        in: query
+        description: The name of the project containing the extraction schema. Only used when `nameOrId` is a name.
+        required: false
+        schema:
+          type: string
+          default: main
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/extraction_schemas_get_Response_200'
+        '404':
+          description: Extraction schema not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+    delete:
+      operationId: delete
+      summary: Delete
+      description: Deletes an extraction schema by name or ID.
+      tags:
+      - extractionSchemas
+      parameters:
+      - name: nameOrId
+        in: path
+        description: The name or the ID of the extraction schema to delete.
+        required: true
+        schema:
+          type: string
+      - name: project
+        in: query
+        description: The name of the project containing the extraction schema. Only used when `nameOrId` is a name.
+        required: false
+        schema:
+          type: string
+          default: main
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/extraction_schemas_delete_Response_200'
+        '404':
+          description: Extraction schema not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      operationId: update
+      summary: Update
+      description: Updates an extraction schema by name or ID.
+      tags:
+      - extractionSchemas
+      parameters:
+      - name: nameOrId
+        in: path
+        description: The name or the ID of the extraction schema to update.
+        required: true
+        schema:
+          type: string
+      - name: project
+        in: query
+        description: The name of the project containing the extraction schema. Only used when `nameOrId` is a name.
+        required: false
+        schema:
+          type: string
+          default: main
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/extraction_schemas_update_Response_200'
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Extraction schema not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Extraction schema name already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateExtractionSchemaRequest'
+components:
+  schemas:
+    UpdateExtractionSchemaRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: A name for the extraction schema.
+        prompt:
+          type: string
+          description: Instructions for how to extract data from conversations.
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractionField'
+          description: Array of field definitions.
+      title: UpdateExtractionSchemaRequest
+    extraction_schemas_delete_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the extraction schema was deleted successfully.
+      required:
+      - success
+      title: extraction_schemas_delete_Response_200
+    extraction_schemas_create_Response_201:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the created extraction schema.
+        name:
+          type: string
+          description: The name of the created extraction schema.
+      required:
+      - id
+      - name
+      title: extraction_schemas_create_Response_201
+    extraction_schemas_update_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the extraction schema was updated successfully.
+      required:
+      - success
+      title: extraction_schemas_update_Response_200
+    ExtractionSchema:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the extraction schema.
+        name:
+          type: string
+          description: The name of the extraction schema.
+        prompt:
+          type: string
+          description: Instructions for how to extract data from conversations.
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractionField'
+          description: Array of field definitions specifying what data to extract.
+      required:
+      - id
+      - name
+      - prompt
+      - fields
+      title: ExtractionSchema
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
+    extraction_schemas_list_Response_200:
+      type: object
+      properties:
+        extraction_schemas:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractionSchema'
+      required:
+      - extraction_schemas
+      title: extraction_schemas_list_Response_200
+    ExtractionField:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The field name.
+        type:
+          $ref: '#/components/schemas/ExtractionFieldType'
+          description: The field type.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description of the field. May be null, but the property must be present.
+      required:
+      - name
+      - type
+      - description
+      title: ExtractionField
+    BasicError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
+    BasicErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - message
+      title: BasicErrorError
+    ValidationErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+      required:
+      - message
+      title: ValidationErrorError
+    CreateExtractionSchemaRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: A name for the extraction schema.
+        prompt:
+          type: string
+          description: Instructions for how to extract data from conversations.
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractionField'
+          description: Array of field definitions.
+      required:
+      - name
+      - prompt
+      - fields
+      title: CreateExtractionSchemaRequest
+    extraction_schemas_get_Response_200:
+      type: object
+      properties:
+        extraction_schema:
+          $ref: '#/components/schemas/ExtractionSchema'
+      required:
+      - extraction_schema
+      title: extraction_schemas_get_Response_200
+    ExtractionFieldType:
+      type: string
+      enum:
+      - string
+      - int
+      - float
+      - bool
+      - string[]
+      - int[]
+      - float[]
+      - bool[]
+      description: The field type.
+      title: ExtractionFieldType
+    Error:
+      oneOf:
+      - $ref: '#/components/schemas/BasicError'
+      - $ref: '#/components/schemas/ValidationError'
+      title: Error
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).

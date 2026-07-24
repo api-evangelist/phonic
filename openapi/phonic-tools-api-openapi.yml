@@ -1,0 +1,818 @@
+openapi: 3.1.0
+info:
+  title: API Reference agents tools API
+  version: 1.0.0
+servers:
+- url: https://api.phonic.ai/v1
+  description: https://api.phonic.ai/v1
+tags:
+- name: tools
+paths:
+  /tools:
+    get:
+      operationId: list
+      summary: List
+      description: Returns all custom tools for the organization.
+      tags:
+      - tools
+      parameters:
+      - name: project
+        in: query
+        description: The name of the project to list tools for.
+        required: false
+        schema:
+          type: string
+          default: main
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tools_list_Response_200'
+        '404':
+          description: Project not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: create
+      summary: Create
+      description: Creates a new tool in a project.
+      tags:
+      - tools
+      parameters:
+      - name: project
+        in: query
+        description: The name of the project to create the tool in.
+        required: false
+        schema:
+          type: string
+          default: main
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tools_create_Response_201'
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Agent authentication cannot create tools
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Tool name already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateToolRequest'
+  /tools/{nameOrId}:
+    get:
+      operationId: get
+      summary: Get
+      description: Returns a tool by name or ID.
+      tags:
+      - tools
+      parameters:
+      - name: nameOrId
+        in: path
+        description: The name or the ID of the tool to get.
+        required: true
+        schema:
+          type: string
+      - name: project
+        in: query
+        description: The name of the project containing the tool. Only used when `nameOrId` is a name.
+        required: false
+        schema:
+          type: string
+          default: main
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tools_get_Response_200'
+        '403':
+          description: Forbidden (resource belongs to a different organization)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '404':
+          description: Tool not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+    delete:
+      operationId: delete
+      summary: Delete
+      description: Deletes a tool by name or ID.
+      tags:
+      - tools
+      parameters:
+      - name: nameOrId
+        in: path
+        description: The name or the ID of the tool to delete.
+        required: true
+        schema:
+          type: string
+      - name: project
+        in: query
+        description: The name of the project containing the tool. Only used when `nameOrId` is a name.
+        required: false
+        schema:
+          type: string
+          default: main
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tools_delete_Response_200'
+        '404':
+          description: Tool not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      operationId: update
+      summary: Update
+      description: Updates a tool by name or ID.
+      tags:
+      - tools
+      parameters:
+      - name: nameOrId
+        in: path
+        description: The name or the ID of the tool to update.
+        required: true
+        schema:
+          type: string
+      - name: project
+        in: query
+        description: The name of the project containing the tool. Only used when `nameOrId` is a name.
+        required: false
+        schema:
+          type: string
+          default: main
+      - name: Authorization
+        in: header
+        description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tools_update_Response_200'
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tool not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicError'
+        '409':
+          description: Tool name already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateToolRequest'
+components:
+  schemas:
+    CreateToolRequestEndpointMethod:
+      type: string
+      enum:
+      - GET
+      - POST
+      description: Required for webhook tools. HTTP method for the webhook endpoint.
+      title: CreateToolRequestEndpointMethod
+    tools_list_Response_200:
+      type: object
+      properties:
+        tools:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tool'
+      required:
+      - tools
+      title: tools_list_Response_200
+    ToolParameter:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ToolParameterType'
+          description: The parameter type.
+        item_type:
+          $ref: '#/components/schemas/ToolParameterItemType'
+          description: Required only when type is "array". The type of items in the array.
+        name:
+          type: string
+          description: The parameter name.
+        description:
+          type: string
+          description: Description of the parameter.
+        is_required:
+          type: boolean
+          description: Whether the parameter is required.
+        location:
+          $ref: '#/components/schemas/ToolParameterLocation'
+          description: 'Only applicable for `custom_webhook` tools. Specifies where the parameter should be sent in the webhook request.
+
+            - For GET webhooks: defaults to `"query_string"` and `"request_body"` is not allowed.
+
+            - For POST webhooks: required, can be either `"request_body"` or `"query_string"`.
+
+            - Not allowed for `custom_websocket`, `built_in_transfer_to_phone_number`, or `built_in_transfer_to_agent` tools.
+
+            When updating a tool''s type or endpoint_method, all parameters must include explicit `location` values.
+
+            '
+      required:
+      - type
+      - name
+      - description
+      - is_required
+      title: ToolParameter
+    Tool:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the tool.
+        name:
+          type: string
+          description: The name of the tool.
+        description:
+          type: string
+          description: Description of what the tool does.
+        project:
+          $ref: '#/components/schemas/ToolProject'
+        type:
+          $ref: '#/components/schemas/ToolType'
+          description: The type of tool.
+        execution_mode:
+          $ref: '#/components/schemas/ToolExecutionMode'
+          description: Mode of operation - sync waits for response, async continues without waiting.
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ToolParameter'
+          description: Array of parameter definitions for the tool.
+        endpoint_method:
+          $ref: '#/components/schemas/ToolEndpointMethod'
+          description: HTTP method for webhook tools.
+        endpoint_url:
+          type: string
+          format: uri
+          description: URL for webhook tools.
+        endpoint_headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: Headers for webhook tools.
+        endpoint_timeout_ms:
+          type: integer
+          description: Timeout in milliseconds for webhook tools.
+        tool_call_output_timeout_ms:
+          type: integer
+          description: Timeout in milliseconds for WebSocket tool responses.
+        phone_number:
+          type:
+          - string
+          - 'null'
+          description: The E.164 formatted phone number to transfer calls to. Set to null if the agent should determine the phone number.
+        dtmf:
+          type:
+          - string
+          - 'null'
+          description: DTMF digits to send after the transfer connects (e.g., "1234"). Defaults to null. Ignored when dynamic_dtmf is true.
+        dynamic_dtmf:
+          type: boolean
+          default: false
+          description: When true, the agent determines the DTMF digits at call time (and may choose to send none); the static dtmf is ignored. Only sent when use_agent_phone_number is true (not on a SIP REFER transfer).
+        use_agent_phone_number:
+          type: boolean
+          default: true
+          description: When true, Phonic will transfer the call using the agent's phone number. When false, Phonic will transfer the call using the phone number of the party to whom the agent is connected. This is only available for built_in_transfer_to_phone_number tools.
+        detect_voicemail:
+          type: boolean
+          default: false
+          description: When true, Phonic will listen in and tell the user if the transfer hits voicemail. This is only available for built_in_transfer_to_phone_number tools when use_agent_phone_number is true.
+        agents_to_transfer_to:
+          type: array
+          items:
+            type: string
+          description: Array of agent names that the LLM can choose from when transferring. Required for built_in_transfer_to_agent tools.
+        require_speech_before_tool_call:
+          type: boolean
+          default: false
+          description: When true, forces the agent to speak before executing the tool.
+        speech_before_tool_call:
+          $ref: '#/components/schemas/ToolSpeechBeforeToolCall'
+          description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
+        wait_for_speech_before_tool_call:
+          type: boolean
+          default: false
+          description: If true, the agent will wait to finish speaking before executing the tool. This is only available for custom_webhook and custom_websocket tools.
+        forbid_speech_after_tool_call:
+          type: boolean
+          default: false
+          description: When true, forbids the agent from speaking after executing the tool. Available for custom_context, custom_webhook and custom_websocket tools.
+        allow_tool_chaining:
+          type: boolean
+          default: true
+          description: When true, allows the agent to chain and execute other tools after executing the tool. Available for custom_context, custom_webhook and custom_websocket tools.
+        wait_for_response:
+          type: boolean
+          default: false
+          description: The agent doesn't typically wait for the response of async custom_websocket tools. When true, makes the agent wait for a response, not call other tools and inform the user of the result. Only available for async custom_websocket tools.
+        context:
+          type: string
+          description: The static context returned to the agent. Only present for custom_context tools.
+      required:
+      - id
+      - name
+      - description
+      - project
+      - type
+      - parameters
+      title: Tool
+    CreateToolRequestExecutionMode:
+      type: string
+      enum:
+      - sync
+      - async
+      description: Mode of operation.
+      title: CreateToolRequestExecutionMode
+    ToolType:
+      type: string
+      enum:
+      - custom_context
+      - custom_webhook
+      - custom_websocket
+      - built_in_transfer_to_phone_number
+      - built_in_transfer_to_agent
+      - built_in_natural_conversation_ending
+      - built_in_keypad_input
+      - built_in_choose_not_to_respond
+      description: The type of tool.
+      title: ToolType
+    BasicErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - message
+      title: BasicErrorError
+    CreateToolRequestSpeechBeforeToolCall:
+      type: string
+      enum:
+      - required
+      - optional
+      - suppressed
+      description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
+      title: CreateToolRequestSpeechBeforeToolCall
+    UpdateToolRequestEndpointMethod:
+      type: string
+      enum:
+      - GET
+      - POST
+      description: HTTP method for webhook tools. When changing this value, all parameters must include explicit `location` values.
+      title: UpdateToolRequestEndpointMethod
+    ToolParameterType:
+      type: string
+      enum:
+      - string
+      - integer
+      - number
+      - boolean
+      - array
+      description: The parameter type.
+      title: ToolParameterType
+    tools_get_Response_200:
+      type: object
+      properties:
+        tool:
+          $ref: '#/components/schemas/Tool'
+      required:
+      - tool
+      title: tools_get_Response_200
+    tools_create_Response_201:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the created tool.
+        name:
+          type: string
+          description: The name of the created tool.
+      required:
+      - id
+      - name
+      title: tools_create_Response_201
+    BasicError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
+    tools_delete_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the tool was deleted successfully.
+      required:
+      - success
+      title: tools_delete_Response_200
+    Error:
+      oneOf:
+      - $ref: '#/components/schemas/BasicError'
+      - $ref: '#/components/schemas/ValidationError'
+      title: Error
+    UpdateToolRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the tool. Must be snake_case and unique within the organization.
+        description:
+          type: string
+          description: A description of what the tool does.
+        execution_mode:
+          $ref: '#/components/schemas/UpdateToolRequestExecutionMode'
+          description: Mode of operation.
+        context:
+          type: string
+          description: The static context returned to the agent. Only applicable to custom_context tools.
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ToolParameter'
+          description: 'Array of parameter definitions.
+
+            When updating `endpoint_method`, all parameters must include explicit `location` values.
+
+            For `custom_webhook` tools: `location` is required for POST, defaults to `"query_string"` for GET.
+
+            For `custom_websocket`, `built_in_transfer_to_phone_number`, and `built_in_transfer_to_agent` tools: `location` must not be specified.
+
+            '
+        endpoint_method:
+          $ref: '#/components/schemas/UpdateToolRequestEndpointMethod'
+          description: HTTP method for webhook tools. When changing this value, all parameters must include explicit `location` values.
+        endpoint_url:
+          type: string
+          format: uri
+        endpoint_headers:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: Headers for webhook tools. Set to null to clear existing headers.
+        endpoint_timeout_ms:
+          type: integer
+        tool_call_output_timeout_ms:
+          type: integer
+        phone_number:
+          type:
+          - string
+          - 'null'
+          description: The E.164 formatted phone number to transfer calls to. Set to null if the agent should determine the phone number.
+        dtmf:
+          type:
+          - string
+          - 'null'
+          description: DTMF digits to send after the transfer connects (e.g., "1234"). Can be set to null to remove DTMF. Ignored when dynamic_dtmf is true.
+        dynamic_dtmf:
+          type: boolean
+          description: When true, the agent determines the DTMF digits at call time (and may choose to send none); the static dtmf is ignored. Only sent when use_agent_phone_number is true (not on a SIP REFER transfer).
+        use_agent_phone_number:
+          type: boolean
+          description: When true, Phonic will transfer the call using the agent's phone number. When false, Phonic will transfer the call using the phone number of the party to whom the agent is connected. This is only available for built_in_transfer_to_phone_number tools.
+        detect_voicemail:
+          type: boolean
+          description: When true, Phonic will listen in and tell the user if the transfer hits voicemail. This is only available for built_in_transfer_to_phone_number tools when use_agent_phone_number is true.
+        agents_to_transfer_to:
+          type: array
+          items:
+            type: string
+          description: Array of agent names that the LLM can choose from when transferring. All agents must exist in the same project as the tool.
+        require_speech_before_tool_call:
+          type: boolean
+          description: When true, forces the agent to speak before executing the tool.
+        speech_before_tool_call:
+          $ref: '#/components/schemas/UpdateToolRequestSpeechBeforeToolCall'
+          description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
+        wait_for_speech_before_tool_call:
+          type: boolean
+          description: If true, the agent will wait to finish speaking before executing the tool. This is only available for custom_webhook and custom_websocket tools.
+        forbid_speech_after_tool_call:
+          type: boolean
+          description: When true, forbids the agent from speaking after executing the tool. Available for custom_context, custom_webhook and custom_websocket tools.
+        allow_tool_chaining:
+          type: boolean
+          description: When true, allows the agent to chain and execute other tools after executing the tool. Available for custom_context, custom_webhook and custom_websocket tools.
+        wait_for_response:
+          type: boolean
+          description: The agent doesn't typically wait for the response of async custom_websocket tools. When true, makes the agent wait for a response, not call other tools and inform the user of the result. Only available for async custom_websocket tools.
+      description: 'Fields to update on the tool. All fields are optional; omitted fields are left unchanged.
+
+        A tool''s `type` cannot be changed after creation.
+
+        '
+      title: UpdateToolRequest
+    UpdateToolRequestSpeechBeforeToolCall:
+      type: string
+      enum:
+      - required
+      - optional
+      - suppressed
+      description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
+      title: UpdateToolRequestSpeechBeforeToolCall
+    ToolSpeechBeforeToolCall:
+      type: string
+      enum:
+      - required
+      - optional
+      - suppressed
+      description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
+      title: ToolSpeechBeforeToolCall
+    ToolExecutionMode:
+      type: string
+      enum:
+      - sync
+      - async
+      description: Mode of operation - sync waits for response, async continues without waiting.
+      title: ToolExecutionMode
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
+    ToolParameterItemType:
+      type: string
+      enum:
+      - string
+      - integer
+      - number
+      - boolean
+      description: Required only when type is "array". The type of items in the array.
+      title: ToolParameterItemType
+    ToolEndpointMethod:
+      type: string
+      enum:
+      - GET
+      - POST
+      description: HTTP method for webhook tools.
+      title: ToolEndpointMethod
+    ValidationErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+      required:
+      - message
+      title: ValidationErrorError
+    tools_update_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the tool was updated successfully.
+      required:
+      - success
+      title: tools_update_Response_200
+    ToolProject:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      - name
+      title: ToolProject
+    CreateToolRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the tool. Must be snake_case and unique within the organization.
+        description:
+          type: string
+          description: A description of what the tool does.
+        type:
+          $ref: '#/components/schemas/CreateToolRequestType'
+          description: The type of tool.
+        execution_mode:
+          $ref: '#/components/schemas/CreateToolRequestExecutionMode'
+          description: Mode of operation.
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ToolParameter'
+          default: []
+          description: 'Array of parameter definitions.
+
+            For `custom_webhook` tools with POST method, each parameter must include a `location` field.
+
+            For `custom_webhook` tools with GET method, `location` defaults to `"query_string"` if not specified.
+
+            For `custom_websocket`, `built_in_transfer_to_phone_number`, and `built_in_transfer_to_agent` tools, `location` must not be specified.
+
+            '
+        endpoint_method:
+          $ref: '#/components/schemas/CreateToolRequestEndpointMethod'
+          description: Required for webhook tools. HTTP method for the webhook endpoint.
+        endpoint_url:
+          type: string
+          format: uri
+          description: Required for webhook tools.
+        endpoint_headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: Optional headers for webhook tools.
+        endpoint_timeout_ms:
+          type: integer
+          default: 5000
+          description: Timeout for webhook tools.
+        tool_call_output_timeout_ms:
+          type: integer
+          default: 5000
+          description: Timeout for WebSocket tool responses.
+        phone_number:
+          type:
+          - string
+          - 'null'
+          description: The E.164 formatted phone number to transfer calls to. Set to null if the agent should determine the phone number.
+        dtmf:
+          type:
+          - string
+          - 'null'
+          description: DTMF digits to send after the transfer connects (e.g., "1234"). Defaults to null. Ignored when dynamic_dtmf is true.
+        dynamic_dtmf:
+          type: boolean
+          default: false
+          description: When true, the agent determines the DTMF digits at call time (and may choose to send none); the static dtmf is ignored. Only sent when use_agent_phone_number is true (not on a SIP REFER transfer).
+        use_agent_phone_number:
+          type: boolean
+          default: true
+          description: When true, Phonic will transfer the call using the agent's phone number. When false, Phonic will transfer the call using the phone number of the party to whom the agent is connected. This is only available for built_in_transfer_to_phone_number tools.
+        detect_voicemail:
+          type: boolean
+          default: false
+          description: When true, Phonic will listen in and tell the user if the transfer hits voicemail. This is only available for built_in_transfer_to_phone_number tools when use_agent_phone_number is true.
+        agents_to_transfer_to:
+          type: array
+          items:
+            type: string
+          description: Array of agent names that the LLM can choose from when transferring. Required for built_in_transfer_to_agent tools. All agents must exist in the same project as the tool.
+        require_speech_before_tool_call:
+          type: boolean
+          default: false
+          description: When true, forces the agent to speak before executing the tool.
+        speech_before_tool_call:
+          $ref: '#/components/schemas/CreateToolRequestSpeechBeforeToolCall'
+          description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
+        wait_for_speech_before_tool_call:
+          type: boolean
+          default: false
+          description: If true, the agent will wait to finish speaking before executing the tool. This is only available for custom_webhook and custom_websocket tools.
+        forbid_speech_after_tool_call:
+          type: boolean
+          default: false
+          description: When true, forbids the agent from speaking after executing the tool. Available for custom_context, custom_webhook and custom_websocket tools.
+        allow_tool_chaining:
+          type: boolean
+          default: true
+          description: When true, allows the agent to chain and execute other tools after executing the tool. Available for custom_context, custom_webhook and custom_websocket tools.
+        wait_for_response:
+          type: boolean
+          default: false
+          description: The agent doesn't typically wait for the response of async custom_websocket tools. When true, makes the agent wait for a response, not call other tools and inform the user of the result. Only available for async custom_websocket tools.
+        context:
+          type: string
+          description: The static context returned to the agent. Required for custom_context tools.
+      required:
+      - name
+      - description
+      - type
+      - execution_mode
+      title: CreateToolRequest
+    UpdateToolRequestExecutionMode:
+      type: string
+      enum:
+      - sync
+      - async
+      description: Mode of operation.
+      title: UpdateToolRequestExecutionMode
+    CreateToolRequestType:
+      type: string
+      enum:
+      - custom_context
+      - custom_webhook
+      - custom_websocket
+      - built_in_transfer_to_phone_number
+      - built_in_transfer_to_agent
+      - built_in_natural_conversation_ending
+      - built_in_keypad_input
+      - built_in_choose_not_to_respond
+      description: The type of tool.
+      title: CreateToolRequestType
+    ToolParameterLocation:
+      type: string
+      enum:
+      - request_body
+      - query_string
+      description: 'Only applicable for `custom_webhook` tools. Specifies where the parameter should be sent in the webhook request.
+
+        - For GET webhooks: defaults to `"query_string"` and `"request_body"` is not allowed.
+
+        - For POST webhooks: required, can be either `"request_body"` or `"query_string"`.
+
+        - Not allowed for `custom_websocket`, `built_in_transfer_to_phone_number`, or `built_in_transfer_to_agent` tools.
+
+        When updating a tool''s type or endpoint_method, all parameters must include explicit `location` values.
+
+        '
+      title: ToolParameterLocation
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).
