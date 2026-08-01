@@ -1,0 +1,83 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/phonic-openapi-original.yaml
+note: >-
+  Entity graph derived from OpenAPI tags, path structure, and id-reference fields.
+  Most resources are addressable by human name or id via {nameOrId}.
+entities:
+- name: agent
+  addressable_by: [name, id]
+  endpoints: ['/agents', '/agents/{nameOrId}']
+- name: voice
+  addressable_by: [id]
+  endpoints: ['/voices', '/voices/{id}']
+- name: tool
+  addressable_by: [name, id]
+  endpoints: ['/tools', '/tools/{nameOrId}']
+- name: extraction_schema
+  addressable_by: [name, id]
+  endpoints: ['/extraction_schemas', '/extraction_schemas/{nameOrId}']
+- name: conversation
+  addressable_by: [id]
+  endpoints: ['/conversations', '/conversations/{id}']
+- name: conversation_item
+  addressable_by: [id]
+  endpoints: ['/conversation_items/{id}/replay']
+- name: project
+  addressable_by: [name, id]
+  endpoints: ['/projects', '/projects/{nameOrId}']
+- name: api_key
+  addressable_by: [id]
+  endpoints: ['/api_keys', '/api_keys/{id}']
+- name: workspace
+  addressable_by: [singleton]
+  endpoints: ['/workspace']
+relationships:
+- from: agent
+  type: has_one
+  to: voice
+  via: voice
+- from: agent
+  type: has_many
+  to: tool
+  via: tools
+- from: agent
+  type: has_many
+  to: custom_phone_number
+  via: custom-phone-numbers
+- from: conversation
+  type: belongs_to
+  to: agent
+  via: agent
+- from: conversation
+  type: has_many
+  to: conversation_item
+  via: items
+- from: conversation
+  type: has_many
+  to: extraction
+  via: extractions
+- from: extraction
+  type: belongs_to
+  to: extraction_schema
+  via: extraction_schema
+- from: conversation
+  type: has_many
+  to: evaluation
+  via: evals
+- from: project
+  type: has_many
+  to: conversation_eval
+  via: conversation_evals
+- from: project
+  type: has_many
+  to: conversation_eval_prompt
+  via: conversation_eval_prompts
+- from: workspace
+  type: has_many
+  to: api_key
+  via: api_keys
+- from: workspace
+  type: has_many
+  to: project
+  via: projects

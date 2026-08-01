@@ -1,0 +1,106 @@
+# Phonic
+
+## Instructions for AI Agents
+
+- For clean Markdown of any page, append `.md` to the page URL
+- For section-specific indexes, append `/llms.txt` to any section URL
+- For AI client integration (Claude Code, Cursor, etc.), connect to the MCP server at https://docs.phonic.co/_mcp/server
+
+## Docs
+
+- [Introducing Phonic](https://docs.phonic.co/docs/get-started/overview.md): The most reliable platform to build voice AI agents.
+- [Building your first voice AI agent](https://docs.phonic.co/docs/get-started/quick-start.md): Learn how to make inbound and outbound calls using the Phonic SDK.
+- [MCP Server](https://docs.phonic.co/docs/get-started/mcp_server.md): Connect to the Phonic MCP
+- [Authentication](https://docs.phonic.co/docs/authentication/overview.md): Choose the right authentication mechanism for your use case.
+- [Session tokens](https://docs.phonic.co/docs/authentication/session-tokens.md): Mint short-lived tokens from your API key for use in browser and mobile clients.
+- [Authenticating with JWTs](https://docs.phonic.co/docs/authentication/jw-ts.md): Mint short-lived JWTs in your own auth system and have Phonic verify them, scoped per user and per conversation.
+- [Data retention](https://docs.phonic.co/docs/data-privacy/data-retention.md): Control how long Phonic retains conversation transcripts, audio, and derived artifacts.
+- [Audit logs](https://docs.phonic.co/docs/observability/audit-logs.md): Pull SIEM-ready audit logs covering identity, configuration, and data-handling events for your workspace.
+- [Overview](https://docs.phonic.co/docs/conversations/overview.md)
+- [Via Webhooks](https://docs.phonic.co/docs/conversations/via-webhooks.md)
+- [Via WebSockets](https://docs.phonic.co/docs/conversations/via-web-sockets.md)
+- [Agent configuration endpoint](https://docs.phonic.co/docs/conversations/agent-configuration-endpoint.md)
+- [Push to Talk](https://docs.phonic.co/docs/conversations/push_to_talk.md)
+- [Live Conversation WebSocket (Preview)](https://docs.phonic.co/docs/conversations/live_websocket.md)
+- [Tools Overview](https://docs.phonic.co/docs/using-tools/tools_overview.md): Learn about the tool types available on Phonic, how they run (sync vs async), and how to configure their behavior — both in the Phonic dashboard and through the API.
+- [Webhook Tools](https://docs.phonic.co/docs/using-tools/webhook_tools.md): Call your own HTTP endpoint when the agent invokes a tool.
+- [WebSocket Tools](https://docs.phonic.co/docs/using-tools/websocket_tools.md): Run tools on your own server during a WebSocket conversation.
+- [Context Tools](https://docs.phonic.co/docs/using-tools/context_tools.md): Inject additional context into the conversation on demand.
+- [Transfer Tools](https://docs.phonic.co/docs/using-tools/transfer_tools.md): Transfer a call to a phone number or hand it off to another Phonic Agent.
+- [MCP Tools](https://docs.phonic.co/docs/using-tools/mcp_tools.md): Expose tools from a connected Model Context Protocol server.
+- [Built-in Tools](https://docs.phonic.co/docs/using-tools/built_in_tools.md): Enable Phonic's built-in tools by adding them to an agent's tools list.
+- [Custom Phone Numbers](https://docs.phonic.co/docs/phone-numbers/using_custom_phone_numbers.md): Learn how to use your Phonic Voice Agent to send and receive calls to custom phone number via SIP trunking
+- [Amazon Connect](https://docs.phonic.co/docs/phone-numbers/amazon_connect.md): Learn how to use Phonic with Amazon Connect by bridging an Amazon Chime SDK Voice Connector to Phonic over SIP for inbound and outbound calls
+- [Prompting guide](https://docs.phonic.co/docs/additional-resources/prompting_guide.md)
+- [Rate limits](https://docs.phonic.co/docs/additional-resources/rate_limits.md)
+- [Webhooks](https://docs.phonic.co/webhooks/overview.md): Learn how to use Phonic webhooks
+- [conversation.ended](https://docs.phonic.co/webhooks/conversation-ended.md)
+- [conversation.analysis](https://docs.phonic.co/webhooks/conversation-analysis.md)
+- [conversation.transferred](https://docs.phonic.co/webhooks/conversation-transferred.md)
+
+## API Docs
+
+- API Reference > Agents [List](https://docs.phonic.co/api-reference/agents/list.md)
+- API Reference > Agents [Create](https://docs.phonic.co/api-reference/agents/create.md)
+- API Reference > Agents [Upsert](https://docs.phonic.co/api-reference/agents/upsert.md)
+- API Reference > Agents [Get](https://docs.phonic.co/api-reference/agents/get.md)
+- API Reference > Agents [Delete](https://docs.phonic.co/api-reference/agents/delete.md)
+- API Reference > Agents [Update](https://docs.phonic.co/api-reference/agents/update.md)
+- API Reference > Agents [Add Custom Phone Number](https://docs.phonic.co/api-reference/agents/add-custom-phone-number.md)
+- API Reference > Agents [Delete Custom Phone Number](https://docs.phonic.co/api-reference/agents/delete-custom-phone-number.md)
+- API Reference > Agents [Update Phone Number](https://docs.phonic.co/api-reference/agents/update-phone-number.md)
+- API Reference > Tools [List](https://docs.phonic.co/api-reference/tools/list.md)
+- API Reference > Tools [Create](https://docs.phonic.co/api-reference/tools/create.md)
+- API Reference > Tools [Get](https://docs.phonic.co/api-reference/tools/get.md)
+- API Reference > Tools [Delete](https://docs.phonic.co/api-reference/tools/delete.md)
+- API Reference > Tools [Update](https://docs.phonic.co/api-reference/tools/update.md)
+- API Reference > Extraction Schemas [List](https://docs.phonic.co/api-reference/extraction-schemas/list.md)
+- API Reference > Extraction Schemas [Create](https://docs.phonic.co/api-reference/extraction-schemas/create.md)
+- API Reference > Extraction Schemas [Get](https://docs.phonic.co/api-reference/extraction-schemas/get.md)
+- API Reference > Extraction Schemas [Delete](https://docs.phonic.co/api-reference/extraction-schemas/delete.md)
+- API Reference > Extraction Schemas [Update](https://docs.phonic.co/api-reference/extraction-schemas/update.md)
+- API Reference > Voices [List](https://docs.phonic.co/api-reference/voices/list.md)
+- API Reference > Voices [Get](https://docs.phonic.co/api-reference/voices/get.md)
+- API Reference > Workspace [Get](https://docs.phonic.co/api-reference/workspace/get.md)
+- API Reference > Workspace [Update](https://docs.phonic.co/api-reference/workspace/update.md)
+- API Reference > API Keys [Create](https://docs.phonic.co/api-reference/api-keys/create.md)
+- API Reference > API Keys [Delete](https://docs.phonic.co/api-reference/api-keys/delete.md)
+- API Reference > API Keys [Update](https://docs.phonic.co/api-reference/api-keys/update.md)
+- API Reference > API Keys [Rotate](https://docs.phonic.co/api-reference/api-keys/rotate.md)
+- API Reference > Conversation Items [Replay](https://docs.phonic.co/api-reference/conversation-items/replay.md)
+- API Reference > Conversations [List](https://docs.phonic.co/api-reference/conversations/list.md)
+- API Reference > Conversations [Get](https://docs.phonic.co/api-reference/conversations/get.md)
+- API Reference > Conversations [Delete](https://docs.phonic.co/api-reference/conversations/delete.md)
+- API Reference > Conversations [Cancel](https://docs.phonic.co/api-reference/conversations/cancel.md)
+- API Reference > Conversations [Get Analysis](https://docs.phonic.co/api-reference/conversations/get-analysis.md)
+- API Reference > Conversations [List Extractions](https://docs.phonic.co/api-reference/conversations/list-extractions.md)
+- API Reference > Conversations [Extract Data](https://docs.phonic.co/api-reference/conversations/extract-data.md)
+- API Reference > Conversations [List Evaluations](https://docs.phonic.co/api-reference/conversations/list-evaluations.md)
+- API Reference > Conversations [Evaluate](https://docs.phonic.co/api-reference/conversations/evaluate.md)
+- API Reference > Conversations [Outbound Call](https://docs.phonic.co/api-reference/conversations/outbound-call.md)
+- API Reference > Conversations [Sip Outbound Call](https://docs.phonic.co/api-reference/conversations/sip-outbound-call.md)
+- API Reference > Conversations [Replay](https://docs.phonic.co/api-reference/conversations/replay.md)
+- API Reference > Conversations [conversations](https://docs.phonic.co/api-reference/conversations/conversations.md)
+- API Reference > Auth [Create Session Token](https://docs.phonic.co/api-reference/auth/create-session-token.md)
+- API Reference > Auth [Create Conversation Token](https://docs.phonic.co/api-reference/auth/create-conversation-token.md)
+- API Reference > Projects [List](https://docs.phonic.co/api-reference/projects/list.md)
+- API Reference > Projects [Create](https://docs.phonic.co/api-reference/projects/create.md)
+- API Reference > Projects [Get](https://docs.phonic.co/api-reference/projects/get.md)
+- API Reference > Projects [Delete](https://docs.phonic.co/api-reference/projects/delete.md)
+- API Reference > Projects [Update](https://docs.phonic.co/api-reference/projects/update.md)
+- API Reference > Projects [List Eval Prompts](https://docs.phonic.co/api-reference/projects/list-eval-prompts.md)
+- API Reference > Projects [Create Eval Prompt](https://docs.phonic.co/api-reference/projects/create-eval-prompt.md)
+- API Reference > Projects [List Evals](https://docs.phonic.co/api-reference/projects/list-evals.md)
+
+## OpenAPI Specification
+
+The raw OpenAPI 3.1 specification for this API is available at:
+- [OpenAPI JSON](https://docs.phonic.co/openapi.json)
+- [OpenAPI YAML](https://docs.phonic.co/openapi.yaml)
+
+
+## AsyncAPI Specification
+
+The raw AsyncAPI 2.6.0 specification for the WebSocket channels is available at:
+- [AsyncAPI JSON](https://docs.phonic.co/asyncapi.json)
+- [AsyncAPI YAML](https://docs.phonic.co/asyncapi.yaml)

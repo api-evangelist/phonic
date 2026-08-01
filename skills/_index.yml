@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/phonic-openapi-original.yaml
+skills:
+- file: phonic-create-agent-and-call.md
+  name: Create a Phonic voice agent and place an outbound call
+  api: openapi/phonic-openapi-original.yaml
+  operations: [voices.list, agents.create, agents.get, conversations.outbound-call, conversations.get]
+- file: phonic-analyze-conversations.md
+  name: List, analyze, and extract data from Phonic conversations
+  api: openapi/phonic-openapi-original.yaml
+  operations: [conversations.list, conversations.get, conversations.get-analysis, extractionSchemas.create, conversations.extract-data, conversations.list-extractions]

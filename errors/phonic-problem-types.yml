@@ -1,0 +1,52 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/phonic-openapi-original.yaml
+format: custom-envelope
+envelope:
+  shape: '{ "error": { "message": string, "code": string } }'
+  validation_shape: '{ "error": string, "param_errors": [...] }'
+  schemas:
+  - BasicError
+  - ValidationError
+  - SipCallError
+  note: >-
+    Phonic returns a JSON error envelope with an `error` object carrying `message` and
+    `code`. Validation failures add `param_errors`. SIP call errors add `sip_status_code`
+    and `sip_status`. Not RFC 9457 problem+json.
+problems:
+- status: 400
+  title: Bad Request
+  meaning: Invalid parameters, phone number already assigned/unassigned, or invalid phone number.
+- status: 401
+  title: Unauthorized
+  meaning: Authentication missing, invalid, or an unsupported authentication method.
+- status: 403
+  title: Forbidden
+  meaning: >-
+    Operation not permitted for the credential type (e.g. only API keys can create
+    conversation/session tokens; agent authentication cannot create tools).
+- status: 404
+  title: Not Found
+  meaning: Agent, conversation, conversation item, API key, phone number, project, or evaluation prompt not found.
+- status: 409
+  title: Conflict
+  meaning: >-
+    Resource-state conflict - cannot delete/replay an active conversation, conversation
+    already ended, or cannot delete the last project in a workspace.
+- status: 422
+  title: Unprocessable Entity
+  meaning: >-
+    Conversation or conversation item cannot be replayed (no audio, deleted recordings,
+    or no associated agent).
+- status: 429
+  title: Too Many Requests
+  meaning: Rate limit / concurrency limit reached. See lifecycle and conventions for per-endpoint limits.
+- status: 500
+  title: Internal Server Error
+  meaning: Unexpected server error.
+- status: 503
+  title: Service Unavailable
+  meaning: Insufficient capacity available to start the replay.
+- status: 504
+  title: Gateway Timeout
+  meaning: Cancellation timeout.

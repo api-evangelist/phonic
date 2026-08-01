@@ -1,0 +1,41 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/phonic-openapi-original.yaml
+docs: https://docs.phonic.co/docs/authentication/overview
+summary:
+  types:
+  - http
+  mechanisms:
+  - api-key
+  - session-token
+  - jwt
+  transport:
+    rest: 'Authorization: Bearer <PHONIC_API_KEY or JWT>'
+    websocket: 'wss://api.phonic.ai/v1/sts/ws?session_token=<token> (or ?jwt=<jwt>)'
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your
+    API keys at https://phonic.co/api-keys.
+  sources:
+  - openapi/phonic-openapi-original.yaml
+mechanisms:
+- id: api-key
+  lifetime: permanent
+  minted_by: You, in the Phonic dashboard
+  use_when: Server-to-server calls. Never expose to a browser.
+  passed_as: 'Authorization: Bearer <PHONIC_API_KEY>'
+  manage_url: https://phonic.co/api-keys
+- id: session-token
+  lifetime: 60s to 1h
+  minted_by: Phonic, minted from your API key
+  use_when: Browser or mobile clients where you do not want to ship your API key. Simple to revoke.
+  minted_via: openapi/phonic-openapi-original.yaml#POST /auth/session_token
+  docs: https://docs.phonic.co/docs/authentication/session-tokens
+- id: jwt
+  lifetime: You choose (recommended <= 15 min)
+  minted_by: Your own auth system (signed with your key; Phonic verifies without a round-trip)
+  use_when: Enterprise integrations with an existing identity system needing per-user / per-conversation scoping.
+  minted_via: openapi/phonic-openapi-original.yaml#POST /auth/conversation_token
+  docs: https://docs.phonic.co/docs/authentication/jw-ts

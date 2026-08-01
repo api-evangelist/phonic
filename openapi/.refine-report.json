@@ -1,0 +1,32 @@
+{
+  "provider": "phonic",
+  "sources": [
+    "phonic-agents-api-openapi.yml",
+    "phonic-apikeys-api-openapi.yml",
+    "phonic-auth-api-openapi.yml",
+    "phonic-conversationitems-api-openapi.yml",
+    "phonic-conversations-api-openapi.yml",
+    "phonic-extractionschemas-api-openapi.yml",
+    "phonic-projects-api-openapi.yml",
+    "phonic-tools-api-openapi.yml",
+    "phonic-voices-api-openapi.yml",
+    "phonic-workspace-api-openapi.yml"
+  ],
+  "outputs": [
+    "phonic-agents-api-openapi.yml",
+    "phonic-apikeys-api-openapi.yml",
+    "phonic-auth-api-openapi.yml",
+    "phonic-conversationitems-api-openapi.yml",
+    "phonic-conversations-api-openapi.yml",
+    "phonic-extractionschemas-api-openapi.yml",
+    "phonic-projects-api-openapi.yml",
+    "phonic-tools-api-openapi.yml",
+    "phonic-voices-api-openapi.yml",
+    "phonic-workspace-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

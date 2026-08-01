@@ -1,0 +1,50 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.phonic.co/
+base_url: https://api.phonic.ai/v1
+authentication:
+  style: bearer
+  detail: See authentication/phonic-authentication.yml (API key, session token, JWT).
+  ref: authentication/phonic-authentication.yml
+idempotency:
+  supported: false
+  note: >-
+    No Idempotency-Key header or idempotent-retry contract is documented. `PUT /agents/upsert`
+    provides upsert-by-name semantics but is not a request-idempotency mechanism.
+pagination:
+  style: cursor
+  params:
+    forward_cursor: after
+    backward_cursor: before
+    page_size: limit
+  page_size_default: 20
+  response_fields:
+  - pagination.next_cursor
+  - pagination.prev_cursor
+  note: Cursor is a resource ID (e.g. a conversation ID). `before` and `after` are mutually exclusive.
+  ref: openapi/phonic-openapi-original.yaml#GET /conversations
+identifiers:
+  style: named-or-id
+  note: >-
+    Many resources (agents, extraction schemas, tools, projects) are addressable by
+    human-readable name or by ID via the `{nameOrId}` path parameter.
+error_envelope:
+  shape: '{ "error": { "message": string, "code": string } }'
+  ref: errors/phonic-problem-types.yml
+rate_limits:
+  signal: HTTP 429 on limit; per-organization limits.
+  ref: rate-limits/phonic-rate-limits.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  ref: lifecycle/phonic-lifecycle.yml
+realtime:
+  websocket: wss://api.phonic.ai/v1/sts/ws
+  spec: asyncapi/phonic-sts-asyncapi-original.yaml
+  note: Speech-to-speech conversation transport; credentials passed as query parameter.
+webhooks:
+  events:
+  - conversation.ended
+  - conversation.analysis
+  - conversation.transferred
+  configure_at: https://phonic.co/webhooks

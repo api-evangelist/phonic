@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: searched
+status: published
+source: https://docs.phonic.co/docs/get-started/mcp_server
+server:
+  name: phonic
+  transport: http
+  url: https://mcp.phonic.ai/mcp
+  auth:
+  - oauth
+  - api-key
+  description: >-
+    Phonic's inbound MCP server exposes the Phonic API as MCP tools so a client such as
+    Claude Code, Codex, or Cursor can manage agents, conversations, voices, and projects.
+    It stays up to date with the Phonic API - every REST endpoint is exposed as an MCP tool.
+install:
+  claude_code: claude mcp add --transport http phonic https://mcp.phonic.ai/mcp
+  claude_connector: https://claude.ai/new#settings/customize-connectors (Add custom connector -> https://mcp.phonic.ai/mcp)
+  codex: |
+    [mcp_servers.phonic]
+    url = "https://mcp.phonic.ai/mcp"
+  cursor: |
+    { "mcpServers": { "phonic": { "url": "https://mcp.phonic.ai/mcp" } } }
+notes: >-
+  Distinct from Phonic's outbound MCP Tools feature (docs/using-tools/mcp_tools), where a
+  Phonic agent connects to your external MCP servers to call their tools during a conversation.

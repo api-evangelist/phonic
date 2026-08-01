@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.phonic.co/docs/additional-resources/rate_limits
+scope: per-organization
+exceeded_status: 429
+limits:
+- endpoints:
+  - /conversations/sip/outbound_call
+  - /sts/ws
+  limit_count: 500
+  window: second
+  note: 500 requests per second total, shared across both endpoints.
+- endpoints:
+  - /conversations/outbound_call
+  limit_count: 5
+  window: second
+- endpoints:
+  - all other authenticated endpoints
+  limit_count: 500
+  window: second
+  note: 500 requests per second, shared across all endpoints.

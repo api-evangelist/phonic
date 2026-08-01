@@ -1,0 +1,29 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Phonic
+  version: 1.0.0
+extends: openapi/phonic-openapi-original.yaml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: phonic
+    x-apievangelist-review-date: '2026-07-20'
+    x-api-base-url: https://api.phonic.ai/v1
+    x-authentication: authentication/phonic-authentication.yml
+    x-conventions: conventions/phonic-conventions.yml
+    x-error-catalog: errors/phonic-problem-types.yml
+    x-rate-limits: rate-limits/phonic-rate-limits.yml
+    x-mcp-server: https://mcp.phonic.ai/mcp
+    x-asyncapi: asyncapi/phonic-sts-asyncapi-original.yaml
+    x-webhooks:
+    - conversation.ended
+    - conversation.analysis
+    - conversation.transferred
+- target: $.info
+  update:
+    x-pagination:
+      style: cursor
+      forward: after
+      backward: before
+      page_size: limit
+      response: [pagination.next_cursor, pagination.prev_cursor]

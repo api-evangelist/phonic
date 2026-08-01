@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.phonic.co/docs/get-started/quick-start
+packages:
+- language: typescript
+  registry: npm
+  name: phonic
+  url: https://www.npmjs.com/package/phonic
+  install: npm install phonic
+  repository: https://github.com/Phonic-Co/phonic-node
+  version: 0.32.10
+  generator: fern
+  official: true
+- language: python
+  registry: pypi
+  name: phonic
+  url: https://pypi.org/project/phonic/
+  install: pip install phonic
+  repository: https://github.com/Phonic-Co/phonic-python
+  version: 0.32.14
+  official: true

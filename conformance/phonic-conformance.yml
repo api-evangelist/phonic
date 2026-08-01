@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/phonic-openapi-original.yaml
+standards:
+- id: oauth2
+  conforms: false
+  evidence: >-
+    The REST API uses http bearer auth, not an OpenAPI oauth2 securityScheme. (The separate
+    hosted MCP server supports OAuth for client sign-in.)
+- id: oidc
+  conforms: false
+- id: jwt-bearer
+  conforms: true
+  evidence: Docs document JWT authentication verified by Phonic (docs/authentication/jw-ts).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: 'Errors use a custom { error: { message, code } } envelope, not application/problem+json.'
+- id: cursor-pagination
+  conforms: true
+  evidence: List endpoints use before/after cursor params with pagination.next_cursor/prev_cursor.
+- id: rfc6750-bearer-token
+  conforms: true
+  evidence: Authorization Bearer token on all REST endpoints.
+- id: asyncapi
+  conforms: true
+  evidence: Publishes AsyncAPI 2.6.0 for the /v1/sts/ws WebSocket (asyncapi/phonic-sts-asyncapi-original.yaml).
+- id: webhooks
+  conforms: true
+  evidence: Documents conversation.ended / conversation.analysis / conversation.transferred webhooks.
+- id: sip-trunking
+  conforms: true
+  evidence: SIP inbound/outbound calling and Amazon Connect bridging documented.

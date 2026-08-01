@@ -1,24 +1,281 @@
 aid: phonic
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/phonic.png
 name: Phonic
-description: 'Phonic is a company surfaced as a portfolio company of lux-capital and added to the API
-  Evangelist network as a stub for enrichment. Sector: ai. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  Phonic is a San Francisco voice AI company (founded 2024, seed-backed by Lux Capital) building
+  the first end-to-end speech-to-speech platform for reliable conversational voice agents. The
+  Phonic API lets developers create and configure voice agents, attach voices, place and receive
+  inbound/outbound phone calls (including via SIP trunking and Amazon Connect), run real-time
+  speech-to-speech conversations over a WebSocket, wire up webhook/WebSocket/context/transfer/MCP
+  tools, and analyze, evaluate, and extract structured data from conversations. It ships an OpenAPI
+  3.1 REST spec, an AsyncAPI 2.6.0 WebSocket spec, official Node and Python SDKs, a hosted MCP
+  server, and llms.txt docs for AI clients.
 url: https://raw.githubusercontent.com/api-evangelist/phonic/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - lux-capital
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-- Ai
-apis: []
+- Artificial Intelligence
+- Voice AI
+- Conversational AI
+- Speech
+- Voice Agents
+- Telephony
+- Speech To Speech
+apis:
+- aid: phonic:phonic-agents-api
+  name: Phonic agents API
+  description: The agents API from Phonic — 5 operation(s) for agents.
+  humanURL: https://docs.phonic.co/
+  baseURL: https://api.phonic.ai/v1
+  tags:
+  - agents
+  properties:
+  - type: OpenAPI
+    url: openapi/phonic-agents-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/phonic-sts-asyncapi-original.yaml
+  - type: Documentation
+    url: https://docs.phonic.co/
+  - type: APIReference
+    url: https://docs.phonic.co/api-reference
+  - type: GettingStarted
+    url: https://docs.phonic.co/docs/get-started/quick-start
+- aid: phonic:phonic-apikeys-api
+  name: Phonic apiKeys API
+  description: The apiKeys API from Phonic — 3 operation(s) for apikeys.
+  humanURL: https://docs.phonic.co/
+  baseURL: https://api.phonic.ai/v1
+  tags:
+  - apiKeys
+  properties:
+  - type: OpenAPI
+    url: openapi/phonic-apikeys-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/phonic-sts-asyncapi-original.yaml
+  - type: Documentation
+    url: https://docs.phonic.co/
+  - type: APIReference
+    url: https://docs.phonic.co/api-reference
+  - type: GettingStarted
+    url: https://docs.phonic.co/docs/get-started/quick-start
+- aid: phonic:phonic-auth-api
+  name: Phonic auth API
+  description: The auth API from Phonic — 2 operation(s) for auth.
+  humanURL: https://docs.phonic.co/
+  baseURL: https://api.phonic.ai/v1
+  tags:
+  - auth
+  properties:
+  - type: OpenAPI
+    url: openapi/phonic-auth-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/phonic-sts-asyncapi-original.yaml
+  - type: Documentation
+    url: https://docs.phonic.co/
+  - type: APIReference
+    url: https://docs.phonic.co/api-reference
+  - type: GettingStarted
+    url: https://docs.phonic.co/docs/get-started/quick-start
+- aid: phonic:phonic-conversationitems-api
+  name: Phonic conversationItems API
+  description: The conversationItems API from Phonic — 1 operation(s) for conversationitems.
+  humanURL: https://docs.phonic.co/
+  baseURL: https://api.phonic.ai/v1
+  tags:
+  - conversationItems
+  properties:
+  - type: OpenAPI
+    url: openapi/phonic-conversationitems-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/phonic-sts-asyncapi-original.yaml
+  - type: Documentation
+    url: https://docs.phonic.co/
+  - type: APIReference
+    url: https://docs.phonic.co/api-reference
+  - type: GettingStarted
+    url: https://docs.phonic.co/docs/get-started/quick-start
+- aid: phonic:phonic-conversations-api
+  name: Phonic conversations API
+  description: The conversations API from Phonic — 9 operation(s) for conversations.
+  humanURL: https://docs.phonic.co/
+  baseURL: https://api.phonic.ai/v1
+  tags:
+  - conversations
+  properties:
+  - type: OpenAPI
+    url: openapi/phonic-conversations-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/phonic-sts-asyncapi-original.yaml
+  - type: Documentation
+    url: https://docs.phonic.co/
+  - type: APIReference
+    url: https://docs.phonic.co/api-reference
+  - type: GettingStarted
+    url: https://docs.phonic.co/docs/get-started/quick-start
+- aid: phonic:phonic-extractionschemas-api
+  name: Phonic extractionSchemas API
+  description: The extractionSchemas API from Phonic — 2 operation(s) for extractionschemas.
+  humanURL: https://docs.phonic.co/
+  baseURL: https://api.phonic.ai/v1
+  tags:
+  - extractionSchemas
+  properties:
+  - type: OpenAPI
+    url: openapi/phonic-extractionschemas-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/phonic-sts-asyncapi-original.yaml
+  - type: Documentation
+    url: https://docs.phonic.co/
+  - type: APIReference
+    url: https://docs.phonic.co/api-reference
+  - type: GettingStarted
+    url: https://docs.phonic.co/docs/get-started/quick-start
+- aid: phonic:phonic-projects-api
+  name: Phonic projects API
+  description: The projects API from Phonic — 4 operation(s) for projects.
+  humanURL: https://docs.phonic.co/
+  baseURL: https://api.phonic.ai/v1
+  tags:
+  - projects
+  properties:
+  - type: OpenAPI
+    url: openapi/phonic-projects-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/phonic-sts-asyncapi-original.yaml
+  - type: Documentation
+    url: https://docs.phonic.co/
+  - type: APIReference
+    url: https://docs.phonic.co/api-reference
+  - type: GettingStarted
+    url: https://docs.phonic.co/docs/get-started/quick-start
+- aid: phonic:phonic-tools-api
+  name: Phonic tools API
+  description: The tools API from Phonic — 2 operation(s) for tools.
+  humanURL: https://docs.phonic.co/
+  baseURL: https://api.phonic.ai/v1
+  tags:
+  - tools
+  properties:
+  - type: OpenAPI
+    url: openapi/phonic-tools-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/phonic-sts-asyncapi-original.yaml
+  - type: Documentation
+    url: https://docs.phonic.co/
+  - type: APIReference
+    url: https://docs.phonic.co/api-reference
+  - type: GettingStarted
+    url: https://docs.phonic.co/docs/get-started/quick-start
+- aid: phonic:phonic-voices-api
+  name: Phonic voices API
+  description: The voices API from Phonic — 2 operation(s) for voices.
+  humanURL: https://docs.phonic.co/
+  baseURL: https://api.phonic.ai/v1
+  tags:
+  - voices
+  properties:
+  - type: OpenAPI
+    url: openapi/phonic-voices-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/phonic-sts-asyncapi-original.yaml
+  - type: Documentation
+    url: https://docs.phonic.co/
+  - type: APIReference
+    url: https://docs.phonic.co/api-reference
+  - type: GettingStarted
+    url: https://docs.phonic.co/docs/get-started/quick-start
+- aid: phonic:phonic-workspace-api
+  name: Phonic workspace API
+  description: The workspace API from Phonic — 1 operation(s) for workspace.
+  humanURL: https://docs.phonic.co/
+  baseURL: https://api.phonic.ai/v1
+  tags:
+  - workspace
+  properties:
+  - type: OpenAPI
+    url: openapi/phonic-workspace-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/phonic-sts-asyncapi-original.yaml
+  - type: Documentation
+    url: https://docs.phonic.co/
+  - type: APIReference
+    url: https://docs.phonic.co/api-reference
+  - type: GettingStarted
+    url: https://docs.phonic.co/docs/get-started/quick-start
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+common:
+- type: AgenticAccess
+  url: agentic-access/phonic-agentic-access.yml
+- type: DomainSecurity
+  url: security/phonic-domain-security.yml
+- type: Authentication
+  url: authentication/phonic-authentication.yml
+- type: Packages
+  url: packages/phonic-packages.yml
+- type: SDKs
+  url: packages/phonic-packages.yml
+- type: MCPServer
+  url: mcp/phonic-mcp.yml
+- type: LLMsTxt
+  url: llms/phonic-llms.txt
+- type: Conformance
+  url: conformance/phonic-conformance.yml
+- type: ErrorCatalog
+  url: errors/phonic-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/phonic-lifecycle.yml
+- type: StatusPage
+  url: https://status.phonic.ai/
+- type: Conventions
+  url: conventions/phonic-conventions.yml
+- type: RateLimits
+  url: rate-limits/phonic-rate-limits.yml
+- type: DataModel
+  url: data-model/phonic-data-model.yml
+- type: Webhooks
+  url: https://docs.phonic.co/webhooks/overview
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DeveloperPortal
+  url: https://docs.phonic.co/
+- type: Blog
+  url: https://phonic.co/blog
+- type: GitHubOrganization
+  url: https://github.com/Phonic-Co
+- type: Pricing
+  url: https://phonic.co/pricing
+- type: TermsOfService
+  url: https://phonic.co/terms-of-service
+- type: PrivacyPolicy
+  url: https://phonic.co/privacy-policy
+- type: Website
+  url: https://phonic.ai/
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1

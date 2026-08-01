@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: searched
+note: >-
+  Probed the API host (api.phonic.ai) and the marketing/app host (phonic.co ->
+  redirects to phonic.ai). No /.well-known discovery documents are published; all probes
+  returned 404 (or 308 redirect to phonic.ai which then 404s). Recorded as valid absence.
+hosts:
+- host: https://api.phonic.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://phonic.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404

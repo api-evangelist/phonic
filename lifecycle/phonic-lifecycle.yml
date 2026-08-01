@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.phonic.co/
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.phonic.ai/v1
+  note: API is versioned in the URL path (/v1). No dated or header-based versioning documented.
+status_page: https://status.phonic.ai/
+sla:
+  note: No public SLA/uptime-target document found beyond the status page.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No published deprecation policy or RFC 8594 Sunset/Deprecation header support found.
+preview_features:
+- Live Conversation WebSocket (Preview) - docs/conversations/live_websocket
+deprecated_operations: []
