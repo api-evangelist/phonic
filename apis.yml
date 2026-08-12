@@ -228,6 +228,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/phonic-openapi-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/phonic-agentic-access.yml
 - type: DomainSecurity
