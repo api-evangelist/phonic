@@ -1,0 +1,2979 @@
+{
+  "item": [
+    {
+      "id": "7da6fa03-356f-4072-a149-0e9f6590c042",
+      "name": "agents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cbb6fac2-25f0-41c9-84f5-01f9511fcedc",
+          "name": "List",
+          "request": {
+            "name": "List",
+            "description": {
+              "content": "Returns all agents in a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "main",
+                  "description": "The name of the project to list agents for."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2b4c6d0f-4812-400e-bae4-8c69c67b818c",
+              "name": "Success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agents\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"phone_number\": \"string\",\n      \"phone_numbers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"project\": {\n        \"id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"timezone\": \"string\",\n      \"voice_id\": \"string\",\n      \"audio_format\": \"mulaw_8000\",\n      \"audio_speed\": 9465.084652909389,\n      \"background_noise_level\": 9646.855569727211,\n      \"background_noise\": \"call-center\",\n      \"generate_welcome_message\": true,\n      \"is_welcome_message_interruptible\": false,\n      \"welcome_message\": \"string\",\n      \"system_prompt\": \"string\",\n      \"template_variables\": {\n        \"key_0\": {\n          \"default_value\": \"string\"\n        }\n      },\n      \"tools\": [\n        \"natural_conversation_ending\",\n        \"natural_conversation_ending\"\n      ],\n      \"built_in_tool_configs\": {\n        \"key_0\": {\n          \"speech_before_tool_call\": \"required\"\n        }\n      },\n      \"tasks\": [\n        {\n          \"name\": \"string\",\n          \"description\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"description\": \"string\"\n        }\n      ],\n      \"generate_no_input_poke_text\": false,\n      \"no_input_poke_sec\": 1657,\n      \"no_input_poke_text\": \"string\",\n      \"no_input_end_conversation_sec\": 1686,\n      \"default_language\": \"he\",\n      \"additional_languages\": [\n        \"te\",\n        \"bn\"\n      ],\n      \"multilingual_mode\": \"request\",\n      \"push_to_talk\": false,\n      \"intelligence_level\": \"standard\",\n      \"boosted_keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"pronunciation_dictionary\": [\n        {\n          \"word\": \"string\",\n          \"pronunciation\": \"string\"\n        },\n        {\n          \"word\": \"string\",\n          \"pronunciation\": \"string\"\n        }\n      ],\n      \"min_words_to_interrupt\": 1,\n      \"configuration_endpoint\": {\n        \"url\": \"string\",\n        \"headers\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"timeout_ms\": 5017\n      },\n      \"websocket_timeout_sec\": 60,\n      \"languages\": [\n        \"en\"\n      ],\n      \"observability_integrations\": [\n        \"braintrust\",\n        \"braintrust\"\n      ],\n      \"inbound_rollout\": 4724.999407844015,\n      \"inbound_rollout_forward_phone_number\": \"string\",\n      \"vad_prebuffer_duration_ms\": 500,\n      \"vad_min_speech_duration_ms\": 50,\n      \"vad_min_silence_duration_ms\": 800,\n      \"vad_threshold\": 0.38,\n      \"enable_redaction\": false,\n      \"slug\": \"string\",\n      \"enable_assistant_backchannel\": false,\n      \"assistant_backchannel_aggressiveness\": 0.1,\n      \"integrations\": [\n        {\n          \"account_id\": \"string\",\n          \"account_name\": \"string\",\n          \"action_names\": [\n            \"string\",\n            \"string\"\n          ],\n          \"app_slug\": \"string\"\n        },\n        {\n          \"account_id\": \"string\",\n          \"account_name\": \"string\",\n          \"action_names\": [\n            \"string\",\n            \"string\"\n          ],\n          \"app_slug\": \"string\"\n        }\n      ],\n      \"data_retention_policy\": {\n        \"zero_data_retention\": true\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"phone_number\": \"string\",\n      \"phone_numbers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"project\": {\n        \"id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"timezone\": \"string\",\n      \"voice_id\": \"string\",\n      \"audio_format\": \"pcm_8000\",\n      \"audio_speed\": 2408.3539316329507,\n      \"background_noise_level\": 5913.468438922772,\n      \"background_noise\": \"call-center\",\n      \"generate_welcome_message\": true,\n      \"is_welcome_message_interruptible\": false,\n      \"welcome_message\": \"string\",\n      \"system_prompt\": \"string\",\n      \"template_variables\": {\n        \"key_0\": {\n          \"default_value\": \"string\"\n        }\n      },\n      \"tools\": [\n        \"keypad_input\",\n        \"natural_conversation_ending\"\n      ],\n      \"built_in_tool_configs\": {\n        \"key_0\": {\n          \"speech_before_tool_call\": \"suppressed\"\n        },\n        \"key_1\": {\n          \"speech_before_tool_call\": \"required\"\n        },\n        \"key_2\": {\n          \"speech_before_tool_call\": \"required\"\n        },\n        \"key_3\": {\n          \"speech_before_tool_call\": \"optional\"\n        }\n      },\n      \"tasks\": [\n        {\n          \"name\": \"string\",\n          \"description\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"description\": \"string\"\n        }\n      ],\n      \"generate_no_input_poke_text\": false,\n      \"no_input_poke_sec\": 7576,\n      \"no_input_poke_text\": \"string\",\n      \"no_input_end_conversation_sec\": 8771,\n      \"default_language\": \"id\",\n      \"additional_languages\": [\n        \"hu\",\n        \"pa\"\n      ],\n      \"multilingual_mode\": \"request\",\n      \"push_to_talk\": false,\n      \"intelligence_level\": \"standard\",\n      \"boosted_keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"pronunciation_dictionary\": [\n        {\n          \"word\": \"string\",\n          \"pronunciation\": \"string\"\n        },\n        {\n          \"word\": \"string\",\n          \"pronunciation\": \"string\"\n        }\n      ],\n      \"min_words_to_interrupt\": 1,\n      \"configuration_endpoint\": {\n        \"url\": \"string\",\n        \"headers\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"timeout_ms\": 5049\n      },\n      \"websocket_timeout_sec\": 60,\n      \"languages\": [\n        \"en\"\n      ],\n      \"observability_integrations\": [\n        \"braintrust\",\n        \"braintrust\"\n      ],\n      \"inbound_rollout\": 6707.1585261813825,\n      \"inbound_rollout_forward_phone_number\": \"string\",\n      \"vad_prebuffer_duration_ms\": 500,\n      \"vad_min_speech_duration_ms\": 50,\n      \"vad_min_silence_duration_ms\": 800,\n      \"vad_threshold\": 0.38,\n      \"enable_redaction\": false,\n      \"slug\": \"string\",\n      \"enable_assistant_backchannel\": false,\n      \"assistant_backchannel_aggressiveness\": 0.1,\n      \"integrations\": [\n        {\n          \"account_id\": \"string\",\n          \"account_name\": \"string\",\n          \"action_names\": [\n            \"string\",\n            \"string\"\n          ],\n          \"app_slug\": \"string\"\n        },\n        {\n          \"account_id\": \"string\",\n          \"account_name\": \"string\",\n          \"action_names\": [\n            \"string\",\n            \"string\"\n          ],\n          \"app_slug\": \"string\"\n        }\n      ],\n      \"data_retention_policy\": {\n        \"zero_data_retention\": false\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ccd7a5c-89d3-4ba4-9f79-cecf64769e6f",
+              "name": "Project not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "586945e6-544c-4867-90b4-dd5c9f5af622",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39a7bcb7-9182-4c36-8bd7-64d359d6419a",
+          "name": "Create",
+          "request": {
+            "name": "Create",
+            "description": {
+              "content": "Creates a new agent in a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "main",
+                  "description": "The name of the project to create the agent in."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"custom_phone_number\": \"<string,null>\",\n  \"timezone\": \"<string>\",\n  \"voice_id\": \"grant\",\n  \"audio_format\": \"pcm_44100\",\n  \"audio_speed\": 1.2,\n  \"background_noise_level\": 0,\n  \"background_noise\": \"<string>\",\n  \"generate_welcome_message\": false,\n  \"is_welcome_message_interruptible\": true,\n  \"websocket_timeout_sec\": 60,\n  \"welcome_message\": \"<string,null>\",\n  \"system_prompt\": \"Today's date is {{system_date}} {{system_year}}. The day of week is {{system_weekday}}. The current time is {{system_time}}. The timezone for the current conversation is {{system_conversation_timezone}}. Use it only for date/time calculations. Do not infer location from it.\",\n  \"template_variables\": {\n    \"key_0\": {\n      \"default_value\": \"<string>\",\n      \"is_boosted_keyword\": \"<boolean>\"\n    }\n  },\n  \"tools\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"built_in_tool_configs\": {\n    \"key_0\": {\n      \"speech_before_tool_call\": \"<string>\"\n    }\n  },\n  \"tasks\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"generate_no_input_poke_text\": false,\n  \"no_input_poke_sec\": \"<integer,null>\",\n  \"no_input_poke_text\": \"Are you still there?\",\n  \"no_input_end_conversation_sec\": 180,\n  \"enable_assistant_backchannel\": false,\n  \"assistant_backchannel_aggressiveness\": 0.1,\n  \"data_retention_policy\": {\n    \"zero_data_retention\": \"<boolean>\"\n  },\n  \"default_language\": \"<string>\",\n  \"languages\": [\n    \"en\"\n  ],\n  \"multilingual_mode\": \"request\",\n  \"push_to_talk\": false,\n  \"intelligence_level\": \"standard\",\n  \"boosted_keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pronunciation_dictionary\": [\n    {\n      \"word\": \"<string>\",\n      \"pronunciation\": \"<string>\"\n    },\n    {\n      \"word\": \"<string>\",\n      \"pronunciation\": \"<string>\"\n    }\n  ],\n  \"min_words_to_interrupt\": 1,\n  \"configuration_endpoint\": {\n    \"url\": \"<string>\",\n    \"headers\": {\n      \"key_0\": \"<string>\"\n    },\n    \"timeout_ms\": 3000\n  },\n  \"inbound_rollout\": 1,\n  \"inbound_rollout_forward_phone_number\": \"<string,null>\",\n  \"vad_prebuffer_duration_ms\": 500,\n  \"vad_min_speech_duration_ms\": 50,\n  \"vad_min_silence_duration_ms\": 800,\n  \"vad_threshold\": 0.38,\n  \"enable_redaction\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b224b5a8-55a1-4907-858b-1f4cd786c690",
+              "name": "Success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"phone_number\": \"assign-automatically\",\n  \"custom_phone_number\": \"<string,null>\",\n  \"timezone\": \"<string>\",\n  \"voice_id\": \"grant\",\n  \"audio_format\": \"pcm_44100\",\n  \"audio_speed\": 1.2,\n  \"background_noise_level\": 0,\n  \"background_noise\": \"coffee-shop\",\n  \"generate_welcome_message\": false,\n  \"is_welcome_message_interruptible\": true,\n  \"websocket_timeout_sec\": 60,\n  \"welcome_message\": \"<string,null>\",\n  \"system_prompt\": \"Today's date is {{system_date}} {{system_year}}. The day of week is {{system_weekday}}. The current time is {{system_time}}. The timezone for the current conversation is {{system_conversation_timezone}}. Use it only for date/time calculations. Do not infer location from it.\",\n  \"template_variables\": {\n    \"key_0\": {\n      \"default_value\": \"string\",\n      \"is_boosted_keyword\": false\n    }\n  },\n  \"tools\": [\n    \"natural_conversation_ending\",\n    \"natural_conversation_ending\"\n  ],\n  \"built_in_tool_configs\": {\n    \"key_0\": {\n      \"speech_before_tool_call\": \"suppressed\"\n    },\n    \"key_1\": {\n      \"speech_before_tool_call\": \"optional\"\n    },\n    \"key_2\": {\n      \"speech_before_tool_call\": \"required\"\n    }\n  },\n  \"tasks\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"generate_no_input_poke_text\": false,\n  \"no_input_poke_sec\": \"<integer,null>\",\n  \"no_input_poke_text\": \"Are you still there?\",\n  \"no_input_end_conversation_sec\": 180,\n  \"enable_assistant_backchannel\": false,\n  \"assistant_backchannel_aggressiveness\": 0.1,\n  \"data_retention_policy\": {\n    \"zero_data_retention\": true\n  },\n  \"default_language\": \"ta\",\n  \"languages\": [\n    \"en\"\n  ],\n  \"multilingual_mode\": \"request\",\n  \"push_to_talk\": false,\n  \"intelligence_level\": \"standard\",\n  \"boosted_keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pronunciation_dictionary\": [\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    },\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    }\n  ],\n  \"min_words_to_interrupt\": 1,\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  },\n  \"inbound_rollout\": 1,\n  \"inbound_rollout_forward_phone_number\": \"<string,null>\",\n  \"vad_prebuffer_duration_ms\": 500,\n  \"vad_min_speech_duration_ms\": 50,\n  \"vad_min_silence_duration_ms\": 800,\n  \"vad_threshold\": 0.38,\n  \"enable_redaction\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c19e2e9d-6534-44f9-91a9-3d17c328bb6f",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"phone_number\": \"assign-automatically\",\n  \"custom_phone_number\": \"<string,null>\",\n  \"timezone\": \"<string>\",\n  \"voice_id\": \"grant\",\n  \"audio_format\": \"pcm_44100\",\n  \"audio_speed\": 1.2,\n  \"background_noise_level\": 0,\n  \"background_noise\": \"coffee-shop\",\n  \"generate_welcome_message\": false,\n  \"is_welcome_message_interruptible\": true,\n  \"websocket_timeout_sec\": 60,\n  \"welcome_message\": \"<string,null>\",\n  \"system_prompt\": \"Today's date is {{system_date}} {{system_year}}. The day of week is {{system_weekday}}. The current time is {{system_time}}. The timezone for the current conversation is {{system_conversation_timezone}}. Use it only for date/time calculations. Do not infer location from it.\",\n  \"template_variables\": {\n    \"key_0\": {\n      \"default_value\": \"string\",\n      \"is_boosted_keyword\": false\n    }\n  },\n  \"tools\": [\n    \"natural_conversation_ending\",\n    \"natural_conversation_ending\"\n  ],\n  \"built_in_tool_configs\": {\n    \"key_0\": {\n      \"speech_before_tool_call\": \"suppressed\"\n    },\n    \"key_1\": {\n      \"speech_before_tool_call\": \"optional\"\n    },\n    \"key_2\": {\n      \"speech_before_tool_call\": \"required\"\n    }\n  },\n  \"tasks\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"generate_no_input_poke_text\": false,\n  \"no_input_poke_sec\": \"<integer,null>\",\n  \"no_input_poke_text\": \"Are you still there?\",\n  \"no_input_end_conversation_sec\": 180,\n  \"enable_assistant_backchannel\": false,\n  \"assistant_backchannel_aggressiveness\": 0.1,\n  \"data_retention_policy\": {\n    \"zero_data_retention\": true\n  },\n  \"default_language\": \"ta\",\n  \"languages\": [\n    \"en\"\n  ],\n  \"multilingual_mode\": \"request\",\n  \"push_to_talk\": false,\n  \"intelligence_level\": \"standard\",\n  \"boosted_keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pronunciation_dictionary\": [\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    },\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    }\n  ],\n  \"min_words_to_interrupt\": 1,\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  },\n  \"inbound_rollout\": 1,\n  \"inbound_rollout_forward_phone_number\": \"<string,null>\",\n  \"vad_prebuffer_duration_ms\": 500,\n  \"vad_min_speech_duration_ms\": 50,\n  \"vad_min_silence_duration_ms\": 800,\n  \"vad_threshold\": 0.38,\n  \"enable_redaction\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\"\n  },\n  \"param_errors\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad2b98de-0a97-49fb-a2a8-972ed60b426b",
+              "name": "Unauthorized (authentication missing or invalid)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"phone_number\": \"assign-automatically\",\n  \"custom_phone_number\": \"<string,null>\",\n  \"timezone\": \"<string>\",\n  \"voice_id\": \"grant\",\n  \"audio_format\": \"pcm_44100\",\n  \"audio_speed\": 1.2,\n  \"background_noise_level\": 0,\n  \"background_noise\": \"coffee-shop\",\n  \"generate_welcome_message\": false,\n  \"is_welcome_message_interruptible\": true,\n  \"websocket_timeout_sec\": 60,\n  \"welcome_message\": \"<string,null>\",\n  \"system_prompt\": \"Today's date is {{system_date}} {{system_year}}. The day of week is {{system_weekday}}. The current time is {{system_time}}. The timezone for the current conversation is {{system_conversation_timezone}}. Use it only for date/time calculations. Do not infer location from it.\",\n  \"template_variables\": {\n    \"key_0\": {\n      \"default_value\": \"string\",\n      \"is_boosted_keyword\": false\n    }\n  },\n  \"tools\": [\n    \"natural_conversation_ending\",\n    \"natural_conversation_ending\"\n  ],\n  \"built_in_tool_configs\": {\n    \"key_0\": {\n      \"speech_before_tool_call\": \"suppressed\"\n    },\n    \"key_1\": {\n      \"speech_before_tool_call\": \"optional\"\n    },\n    \"key_2\": {\n      \"speech_before_tool_call\": \"required\"\n    }\n  },\n  \"tasks\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"generate_no_input_poke_text\": false,\n  \"no_input_poke_sec\": \"<integer,null>\",\n  \"no_input_poke_text\": \"Are you still there?\",\n  \"no_input_end_conversation_sec\": 180,\n  \"enable_assistant_backchannel\": false,\n  \"assistant_backchannel_aggressiveness\": 0.1,\n  \"data_retention_policy\": {\n    \"zero_data_retention\": true\n  },\n  \"default_language\": \"ta\",\n  \"languages\": [\n    \"en\"\n  ],\n  \"multilingual_mode\": \"request\",\n  \"push_to_talk\": false,\n  \"intelligence_level\": \"standard\",\n  \"boosted_keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pronunciation_dictionary\": [\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    },\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    }\n  ],\n  \"min_words_to_interrupt\": 1,\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  },\n  \"inbound_rollout\": 1,\n  \"inbound_rollout_forward_phone_number\": \"<string,null>\",\n  \"vad_prebuffer_duration_ms\": 500,\n  \"vad_min_speech_duration_ms\": 50,\n  \"vad_min_silence_duration_ms\": 800,\n  \"vad_threshold\": 0.38,\n  \"enable_redaction\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6428f925-e93a-4331-8e4a-2bfaca4512f0",
+              "name": "Project not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"phone_number\": \"assign-automatically\",\n  \"custom_phone_number\": \"<string,null>\",\n  \"timezone\": \"<string>\",\n  \"voice_id\": \"grant\",\n  \"audio_format\": \"pcm_44100\",\n  \"audio_speed\": 1.2,\n  \"background_noise_level\": 0,\n  \"background_noise\": \"coffee-shop\",\n  \"generate_welcome_message\": false,\n  \"is_welcome_message_interruptible\": true,\n  \"websocket_timeout_sec\": 60,\n  \"welcome_message\": \"<string,null>\",\n  \"system_prompt\": \"Today's date is {{system_date}} {{system_year}}. The day of week is {{system_weekday}}. The current time is {{system_time}}. The timezone for the current conversation is {{system_conversation_timezone}}. Use it only for date/time calculations. Do not infer location from it.\",\n  \"template_variables\": {\n    \"key_0\": {\n      \"default_value\": \"string\",\n      \"is_boosted_keyword\": false\n    }\n  },\n  \"tools\": [\n    \"natural_conversation_ending\",\n    \"natural_conversation_ending\"\n  ],\n  \"built_in_tool_configs\": {\n    \"key_0\": {\n      \"speech_before_tool_call\": \"suppressed\"\n    },\n    \"key_1\": {\n      \"speech_before_tool_call\": \"optional\"\n    },\n    \"key_2\": {\n      \"speech_before_tool_call\": \"required\"\n    }\n  },\n  \"tasks\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"generate_no_input_poke_text\": false,\n  \"no_input_poke_sec\": \"<integer,null>\",\n  \"no_input_poke_text\": \"Are you still there?\",\n  \"no_input_end_conversation_sec\": 180,\n  \"enable_assistant_backchannel\": false,\n  \"assistant_backchannel_aggressiveness\": 0.1,\n  \"data_retention_policy\": {\n    \"zero_data_retention\": true\n  },\n  \"default_language\": \"ta\",\n  \"languages\": [\n    \"en\"\n  ],\n  \"multilingual_mode\": \"request\",\n  \"push_to_talk\": false,\n  \"intelligence_level\": \"standard\",\n  \"boosted_keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pronunciation_dictionary\": [\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    },\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    }\n  ],\n  \"min_words_to_interrupt\": 1,\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  },\n  \"inbound_rollout\": 1,\n  \"inbound_rollout_forward_phone_number\": \"<string,null>\",\n  \"vad_prebuffer_duration_ms\": 500,\n  \"vad_min_speech_duration_ms\": 50,\n  \"vad_min_silence_duration_ms\": 800,\n  \"vad_threshold\": 0.38,\n  \"enable_redaction\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9b8048c-3a65-477a-b849-836ce652f8e6",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"phone_number\": \"assign-automatically\",\n  \"custom_phone_number\": \"<string,null>\",\n  \"timezone\": \"<string>\",\n  \"voice_id\": \"grant\",\n  \"audio_format\": \"pcm_44100\",\n  \"audio_speed\": 1.2,\n  \"background_noise_level\": 0,\n  \"background_noise\": \"coffee-shop\",\n  \"generate_welcome_message\": false,\n  \"is_welcome_message_interruptible\": true,\n  \"websocket_timeout_sec\": 60,\n  \"welcome_message\": \"<string,null>\",\n  \"system_prompt\": \"Today's date is {{system_date}} {{system_year}}. The day of week is {{system_weekday}}. The current time is {{system_time}}. The timezone for the current conversation is {{system_conversation_timezone}}. Use it only for date/time calculations. Do not infer location from it.\",\n  \"template_variables\": {\n    \"key_0\": {\n      \"default_value\": \"string\",\n      \"is_boosted_keyword\": false\n    }\n  },\n  \"tools\": [\n    \"natural_conversation_ending\",\n    \"natural_conversation_ending\"\n  ],\n  \"built_in_tool_configs\": {\n    \"key_0\": {\n      \"speech_before_tool_call\": \"suppressed\"\n    },\n    \"key_1\": {\n      \"speech_before_tool_call\": \"optional\"\n    },\n    \"key_2\": {\n      \"speech_before_tool_call\": \"required\"\n    }\n  },\n  \"tasks\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"generate_no_input_poke_text\": false,\n  \"no_input_poke_sec\": \"<integer,null>\",\n  \"no_input_poke_text\": \"Are you still there?\",\n  \"no_input_end_conversation_sec\": 180,\n  \"enable_assistant_backchannel\": false,\n  \"assistant_backchannel_aggressiveness\": 0.1,\n  \"data_retention_policy\": {\n    \"zero_data_retention\": true\n  },\n  \"default_language\": \"ta\",\n  \"languages\": [\n    \"en\"\n  ],\n  \"multilingual_mode\": \"request\",\n  \"push_to_talk\": false,\n  \"intelligence_level\": \"standard\",\n  \"boosted_keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pronunciation_dictionary\": [\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    },\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    }\n  ],\n  \"min_words_to_interrupt\": 1,\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  },\n  \"inbound_rollout\": 1,\n  \"inbound_rollout_forward_phone_number\": \"<string,null>\",\n  \"vad_prebuffer_duration_ms\": 500,\n  \"vad_min_speech_duration_ms\": 50,\n  \"vad_min_silence_duration_ms\": 800,\n  \"vad_threshold\": 0.38,\n  \"enable_redaction\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bad16e7e-586b-4d9a-994b-5f26f74c441c",
+          "name": "Upsert",
+          "request": {
+            "name": "Upsert",
+            "description": {
+              "content": "Upserts an agent by name. If an agent with the same name already exists, it will be updated. Otherwise, it will be created.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agents",
+                "upsert"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "main",
+                  "description": "The name of the project containing the agent."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"custom_phone_number\": \"<string,null>\",\n  \"timezone\": \"<string>\",\n  \"voice_id\": \"grant\",\n  \"audio_format\": \"pcm_44100\",\n  \"audio_speed\": 1.2,\n  \"background_noise_level\": 0,\n  \"background_noise\": \"<string>\",\n  \"generate_welcome_message\": false,\n  \"is_welcome_message_interruptible\": true,\n  \"websocket_timeout_sec\": 60,\n  \"welcome_message\": \"<string,null>\",\n  \"system_prompt\": \"Today's date is {{system_date}} {{system_year}}. The day of week is {{system_weekday}}. The current time is {{system_time}}. The timezone for the current conversation is {{system_conversation_timezone}}. Use it only for date/time calculations. Do not infer location from it.\",\n  \"template_variables\": {\n    \"key_0\": {\n      \"default_value\": \"<string>\",\n      \"is_boosted_keyword\": \"<boolean>\"\n    }\n  },\n  \"tools\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"built_in_tool_configs\": {\n    \"key_0\": {\n      \"speech_before_tool_call\": \"<string>\"\n    }\n  },\n  \"tasks\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"generate_no_input_poke_text\": false,\n  \"no_input_poke_sec\": \"<integer,null>\",\n  \"no_input_poke_text\": \"Are you still there?\",\n  \"no_input_end_conversation_sec\": 180,\n  \"enable_assistant_backchannel\": false,\n  \"assistant_backchannel_aggressiveness\": 0.1,\n  \"data_retention_policy\": {\n    \"zero_data_retention\": \"<boolean>\"\n  },\n  \"default_language\": \"<string>\",\n  \"languages\": [\n    \"en\"\n  ],\n  \"multilingual_mode\": \"request\",\n  \"push_to_talk\": false,\n  \"intelligence_level\": \"standard\",\n  \"boosted_keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pronunciation_dictionary\": [\n    {\n      \"word\": \"<string>\",\n      \"pronunciation\": \"<string>\"\n    },\n    {\n      \"word\": \"<string>\",\n      \"pronunciation\": \"<string>\"\n    }\n  ],\n  \"min_words_to_interrupt\": 1,\n  \"configuration_endpoint\": {\n    \"url\": \"<string>\",\n    \"headers\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"timeout_ms\": 3000\n  },\n  \"inbound_rollout\": 1,\n  \"inbound_rollout_forward_phone_number\": \"<string,null>\",\n  \"vad_prebuffer_duration_ms\": 500,\n  \"vad_min_speech_duration_ms\": 50,\n  \"vad_min_silence_duration_ms\": 800,\n  \"vad_threshold\": 0.38,\n  \"enable_redaction\": false,\n  \"outbound_number_pool\": {\n    \"active\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"blocked\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"procedure_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7faee45a-6955-46b4-9c86-5f1f6653918f",
+              "name": "Success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    "upsert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"phone_number\": \"custom\",\n  \"custom_phone_number\": \"<string,null>\",\n  \"timezone\": \"<string>\",\n  \"voice_id\": \"grant\",\n  \"audio_format\": \"pcm_44100\",\n  \"audio_speed\": 1.2,\n  \"background_noise_level\": 0,\n  \"background_noise\": \"coffee-shop\",\n  \"generate_welcome_message\": false,\n  \"is_welcome_message_interruptible\": true,\n  \"websocket_timeout_sec\": 60,\n  \"welcome_message\": \"<string,null>\",\n  \"system_prompt\": \"Today's date is {{system_date}} {{system_year}}. The day of week is {{system_weekday}}. The current time is {{system_time}}. The timezone for the current conversation is {{system_conversation_timezone}}. Use it only for date/time calculations. Do not infer location from it.\",\n  \"template_variables\": {\n    \"key_0\": {\n      \"default_value\": \"string\",\n      \"is_boosted_keyword\": false\n    },\n    \"key_1\": {\n      \"default_value\": \"string\",\n      \"is_boosted_keyword\": false\n    },\n    \"key_2\": {\n      \"default_value\": \"string\",\n      \"is_boosted_keyword\": false\n    }\n  },\n  \"tools\": [\n    \"natural_conversation_ending\",\n    \"natural_conversation_ending\"\n  ],\n  \"built_in_tool_configs\": {\n    \"key_0\": {\n      \"speech_before_tool_call\": \"optional\"\n    }\n  },\n  \"tasks\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"generate_no_input_poke_text\": false,\n  \"no_input_poke_sec\": \"<integer,null>\",\n  \"no_input_poke_text\": \"Are you still there?\",\n  \"no_input_end_conversation_sec\": 180,\n  \"enable_assistant_backchannel\": false,\n  \"assistant_backchannel_aggressiveness\": 0.1,\n  \"data_retention_policy\": {\n    \"zero_data_retention\": false\n  },\n  \"default_language\": \"th\",\n  \"languages\": [\n    \"en\"\n  ],\n  \"multilingual_mode\": \"request\",\n  \"push_to_talk\": false,\n  \"intelligence_level\": \"standard\",\n  \"boosted_keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pronunciation_dictionary\": [\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    },\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    }\n  ],\n  \"min_words_to_interrupt\": 1,\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  },\n  \"inbound_rollout\": 1,\n  \"inbound_rollout_forward_phone_number\": \"<string,null>\",\n  \"vad_prebuffer_duration_ms\": 500,\n  \"vad_min_speech_duration_ms\": 50,\n  \"vad_min_silence_duration_ms\": 800,\n  \"vad_threshold\": 0.38,\n  \"enable_redaction\": false,\n  \"outbound_number_pool\": {\n    \"active\": [\n      \"string\",\n      \"string\"\n    ],\n    \"blocked\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"procedure_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agent\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"phone_number\": \"string\",\n    \"phone_numbers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"project\": {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    },\n    \"timezone\": \"string\",\n    \"voice_id\": \"string\",\n    \"audio_format\": \"pcm_44100\",\n    \"audio_speed\": 5760.471521175486,\n    \"background_noise_level\": 9063.326156714973,\n    \"background_noise\": \"office\",\n    \"generate_welcome_message\": false,\n    \"is_welcome_message_interruptible\": true,\n    \"welcome_message\": \"string\",\n    \"system_prompt\": \"string\",\n    \"template_variables\": {\n      \"key_0\": {\n        \"default_value\": \"string\"\n      },\n      \"key_1\": {\n        \"default_value\": \"string\"\n      },\n      \"key_2\": {\n        \"default_value\": \"string\"\n      }\n    },\n    \"tools\": [\n      \"natural_conversation_ending\",\n      \"natural_conversation_ending\"\n    ],\n    \"built_in_tool_configs\": {\n      \"key_0\": {\n        \"speech_before_tool_call\": \"required\"\n      },\n      \"key_1\": {\n        \"speech_before_tool_call\": \"required\"\n      },\n      \"key_2\": {\n        \"speech_before_tool_call\": \"optional\"\n      }\n    },\n    \"tasks\": [\n      {\n        \"name\": \"string\",\n        \"description\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"description\": \"string\"\n      }\n    ],\n    \"generate_no_input_poke_text\": false,\n    \"no_input_poke_sec\": 2971,\n    \"no_input_poke_text\": \"string\",\n    \"no_input_end_conversation_sec\": 105,\n    \"default_language\": \"ru\",\n    \"additional_languages\": [\n      \"ur\",\n      \"pt\"\n    ],\n    \"multilingual_mode\": \"request\",\n    \"push_to_talk\": false,\n    \"intelligence_level\": \"standard\",\n    \"boosted_keywords\": [\n      \"string\",\n      \"string\"\n    ],\n    \"pronunciation_dictionary\": [\n      {\n        \"word\": \"string\",\n        \"pronunciation\": \"string\"\n      },\n      {\n        \"word\": \"string\",\n        \"pronunciation\": \"string\"\n      }\n    ],\n    \"min_words_to_interrupt\": 1,\n    \"configuration_endpoint\": {\n      \"url\": \"string\",\n      \"headers\": {\n        \"key_0\": \"string\"\n      },\n      \"timeout_ms\": 6507\n    },\n    \"websocket_timeout_sec\": 60,\n    \"languages\": [\n      \"en\"\n    ],\n    \"observability_integrations\": [\n      \"braintrust\",\n      \"braintrust\"\n    ],\n    \"inbound_rollout\": 3027.3303639741857,\n    \"inbound_rollout_forward_phone_number\": \"string\",\n    \"vad_prebuffer_duration_ms\": 500,\n    \"vad_min_speech_duration_ms\": 50,\n    \"vad_min_silence_duration_ms\": 800,\n    \"vad_threshold\": 0.38,\n    \"enable_redaction\": false,\n    \"slug\": \"string\",\n    \"enable_assistant_backchannel\": false,\n    \"assistant_backchannel_aggressiveness\": 0.1,\n    \"integrations\": [\n      {\n        \"account_id\": \"string\",\n        \"account_name\": \"string\",\n        \"action_names\": [\n          \"string\",\n          \"string\"\n        ],\n        \"app_slug\": \"string\"\n      },\n      {\n        \"account_id\": \"string\",\n        \"account_name\": \"string\",\n        \"action_names\": [\n          \"string\",\n          \"string\"\n        ],\n        \"app_slug\": \"string\"\n      }\n    ],\n    \"data_retention_policy\": {\n      \"zero_data_retention\": true\n    }\n  },\n  \"inserted\": false,\n  \"updated\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf1f9fe6-9dd3-4305-8f02-0b507ca01a6b",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    "upsert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"phone_number\": \"custom\",\n  \"custom_phone_number\": \"<string,null>\",\n  \"timezone\": \"<string>\",\n  \"voice_id\": \"grant\",\n  \"audio_format\": \"pcm_44100\",\n  \"audio_speed\": 1.2,\n  \"background_noise_level\": 0,\n  \"background_noise\": \"coffee-shop\",\n  \"generate_welcome_message\": false,\n  \"is_welcome_message_interruptible\": true,\n  \"websocket_timeout_sec\": 60,\n  \"welcome_message\": \"<string,null>\",\n  \"system_prompt\": \"Today's date is {{system_date}} {{system_year}}. The day of week is {{system_weekday}}. The current time is {{system_time}}. The timezone for the current conversation is {{system_conversation_timezone}}. Use it only for date/time calculations. Do not infer location from it.\",\n  \"template_variables\": {\n    \"key_0\": {\n      \"default_value\": \"string\",\n      \"is_boosted_keyword\": false\n    },\n    \"key_1\": {\n      \"default_value\": \"string\",\n      \"is_boosted_keyword\": false\n    },\n    \"key_2\": {\n      \"default_value\": \"string\",\n      \"is_boosted_keyword\": false\n    }\n  },\n  \"tools\": [\n    \"natural_conversation_ending\",\n    \"natural_conversation_ending\"\n  ],\n  \"built_in_tool_configs\": {\n    \"key_0\": {\n      \"speech_before_tool_call\": \"optional\"\n    }\n  },\n  \"tasks\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"generate_no_input_poke_text\": false,\n  \"no_input_poke_sec\": \"<integer,null>\",\n  \"no_input_poke_text\": \"Are you still there?\",\n  \"no_input_end_conversation_sec\": 180,\n  \"enable_assistant_backchannel\": false,\n  \"assistant_backchannel_aggressiveness\": 0.1,\n  \"data_retention_policy\": {\n    \"zero_data_retention\": false\n  },\n  \"default_language\": \"th\",\n  \"languages\": [\n    \"en\"\n  ],\n  \"multilingual_mode\": \"request\",\n  \"push_to_talk\": false,\n  \"intelligence_level\": \"standard\",\n  \"boosted_keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pronunciation_dictionary\": [\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    },\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    }\n  ],\n  \"min_words_to_interrupt\": 1,\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  },\n  \"inbound_rollout\": 1,\n  \"inbound_rollout_forward_phone_number\": \"<string,null>\",\n  \"vad_prebuffer_duration_ms\": 500,\n  \"vad_min_speech_duration_ms\": 50,\n  \"vad_min_silence_duration_ms\": 800,\n  \"vad_threshold\": 0.38,\n  \"enable_redaction\": false,\n  \"outbound_number_pool\": {\n    \"active\": [\n      \"string\",\n      \"string\"\n    ],\n    \"blocked\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"procedure_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "308576fd-b3f4-45d5-b917-476c549f3572",
+              "name": "Project not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    "upsert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"phone_number\": \"custom\",\n  \"custom_phone_number\": \"<string,null>\",\n  \"timezone\": \"<string>\",\n  \"voice_id\": \"grant\",\n  \"audio_format\": \"pcm_44100\",\n  \"audio_speed\": 1.2,\n  \"background_noise_level\": 0,\n  \"background_noise\": \"coffee-shop\",\n  \"generate_welcome_message\": false,\n  \"is_welcome_message_interruptible\": true,\n  \"websocket_timeout_sec\": 60,\n  \"welcome_message\": \"<string,null>\",\n  \"system_prompt\": \"Today's date is {{system_date}} {{system_year}}. The day of week is {{system_weekday}}. The current time is {{system_time}}. The timezone for the current conversation is {{system_conversation_timezone}}. Use it only for date/time calculations. Do not infer location from it.\",\n  \"template_variables\": {\n    \"key_0\": {\n      \"default_value\": \"string\",\n      \"is_boosted_keyword\": false\n    },\n    \"key_1\": {\n      \"default_value\": \"string\",\n      \"is_boosted_keyword\": false\n    },\n    \"key_2\": {\n      \"default_value\": \"string\",\n      \"is_boosted_keyword\": false\n    }\n  },\n  \"tools\": [\n    \"natural_conversation_ending\",\n    \"natural_conversation_ending\"\n  ],\n  \"built_in_tool_configs\": {\n    \"key_0\": {\n      \"speech_before_tool_call\": \"optional\"\n    }\n  },\n  \"tasks\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"generate_no_input_poke_text\": false,\n  \"no_input_poke_sec\": \"<integer,null>\",\n  \"no_input_poke_text\": \"Are you still there?\",\n  \"no_input_end_conversation_sec\": 180,\n  \"enable_assistant_backchannel\": false,\n  \"assistant_backchannel_aggressiveness\": 0.1,\n  \"data_retention_policy\": {\n    \"zero_data_retention\": false\n  },\n  \"default_language\": \"th\",\n  \"languages\": [\n    \"en\"\n  ],\n  \"multilingual_mode\": \"request\",\n  \"push_to_talk\": false,\n  \"intelligence_level\": \"standard\",\n  \"boosted_keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pronunciation_dictionary\": [\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    },\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    }\n  ],\n  \"min_words_to_interrupt\": 1,\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  },\n  \"inbound_rollout\": 1,\n  \"inbound_rollout_forward_phone_number\": \"<string,null>\",\n  \"vad_prebuffer_duration_ms\": 500,\n  \"vad_min_speech_duration_ms\": 50,\n  \"vad_min_silence_duration_ms\": 800,\n  \"vad_threshold\": 0.38,\n  \"enable_redaction\": false,\n  \"outbound_number_pool\": {\n    \"active\": [\n      \"string\",\n      \"string\"\n    ],\n    \"blocked\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"procedure_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77f316dd-b34e-4ce8-8b96-c087b8086003",
+          "name": "Get",
+          "request": {
+            "name": "Get",
+            "description": {
+              "content": "Returns an agent by name or ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agents",
+                ":nameOrId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "main",
+                  "description": "The name of the project containing the agent. Only used when `nameOrId` is a name."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "nameOrId",
+                  "description": "(Required) The name or the ID of the agent to get."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e3eb2cf-0e28-424e-8725-d9cff9e267a0",
+              "name": "Success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agent\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"phone_number\": \"string\",\n    \"phone_numbers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"project\": {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    },\n    \"timezone\": \"string\",\n    \"voice_id\": \"string\",\n    \"audio_format\": \"mulaw_8000\",\n    \"audio_speed\": 1424.4011909832566,\n    \"background_noise_level\": 8447.381424363952,\n    \"background_noise\": \"office\",\n    \"generate_welcome_message\": true,\n    \"is_welcome_message_interruptible\": false,\n    \"welcome_message\": \"string\",\n    \"system_prompt\": \"string\",\n    \"template_variables\": {\n      \"key_0\": {\n        \"default_value\": \"string\"\n      }\n    },\n    \"tools\": [\n      \"keypad_input\",\n      \"natural_conversation_ending\"\n    ],\n    \"built_in_tool_configs\": {\n      \"key_0\": {\n        \"speech_before_tool_call\": \"required\"\n      }\n    },\n    \"tasks\": [\n      {\n        \"name\": \"string\",\n        \"description\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"description\": \"string\"\n      }\n    ],\n    \"generate_no_input_poke_text\": false,\n    \"no_input_poke_sec\": 1375,\n    \"no_input_poke_text\": \"string\",\n    \"no_input_end_conversation_sec\": 9791,\n    \"default_language\": \"ro\",\n    \"additional_languages\": [\n      \"hu\",\n      \"sk\"\n    ],\n    \"multilingual_mode\": \"request\",\n    \"push_to_talk\": false,\n    \"intelligence_level\": \"standard\",\n    \"boosted_keywords\": [\n      \"string\",\n      \"string\"\n    ],\n    \"pronunciation_dictionary\": [\n      {\n        \"word\": \"string\",\n        \"pronunciation\": \"string\"\n      },\n      {\n        \"word\": \"string\",\n        \"pronunciation\": \"string\"\n      }\n    ],\n    \"min_words_to_interrupt\": 1,\n    \"configuration_endpoint\": {\n      \"url\": \"string\",\n      \"headers\": {\n        \"key_0\": \"string\"\n      },\n      \"timeout_ms\": 1442\n    },\n    \"websocket_timeout_sec\": 60,\n    \"languages\": [\n      \"en\"\n    ],\n    \"observability_integrations\": [\n      \"braintrust\",\n      \"braintrust\"\n    ],\n    \"inbound_rollout\": 9510.74111327953,\n    \"inbound_rollout_forward_phone_number\": \"string\",\n    \"vad_prebuffer_duration_ms\": 500,\n    \"vad_min_speech_duration_ms\": 50,\n    \"vad_min_silence_duration_ms\": 800,\n    \"vad_threshold\": 0.38,\n    \"enable_redaction\": false,\n    \"slug\": \"string\",\n    \"enable_assistant_backchannel\": false,\n    \"assistant_backchannel_aggressiveness\": 0.1,\n    \"integrations\": [\n      {\n        \"account_id\": \"string\",\n        \"account_name\": \"string\",\n        \"action_names\": [\n          \"string\",\n          \"string\"\n        ],\n        \"app_slug\": \"string\"\n      },\n      {\n        \"account_id\": \"string\",\n        \"account_name\": \"string\",\n        \"action_names\": [\n          \"string\",\n          \"string\"\n        ],\n        \"app_slug\": \"string\"\n      }\n    ],\n    \"data_retention_policy\": {\n      \"zero_data_retention\": false\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "108878e3-b8f4-4621-abfa-87cf85f7baba",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1761955a-4a36-4334-aa84-930c6a0a43dd",
+              "name": "Agent not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "157248a0-389d-4ba6-9ce7-f34ea166f5d1",
+          "name": "Delete",
+          "request": {
+            "name": "Delete",
+            "description": {
+              "content": "Deletes an agent by name or ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agents",
+                ":nameOrId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "main",
+                  "description": "The name of the project containing the agent. Only used when `nameOrId` is a name."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "nameOrId",
+                  "description": "(Required) The name or the ID of the agent to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20ff855d-7470-4d11-a2f0-cc1963c0a4ec",
+              "name": "Success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74b7361b-2582-4dcd-bad6-721b1bda23a9",
+              "name": "Forbidden (resource belongs to a different organization)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9af75ddf-9f69-48c9-91f7-80ba628e98ab",
+              "name": "Agent not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c61f2bed-5852-4233-8e29-68b86a80f4b9",
+          "name": "Update",
+          "request": {
+            "name": "Update",
+            "description": {
+              "content": "Updates an agent by name or ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agents",
+                ":nameOrId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "main",
+                  "description": "The name of the project containing the agent. Only used when `nameOrId` is a name."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "nameOrId",
+                  "description": "(Required) The name or the ID of the agent to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"custom_phone_number\": \"<string,null>\",\n  \"custom_phone_numbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timezone\": \"<string>\",\n  \"voice_id\": \"<string>\",\n  \"audio_format\": \"<string>\",\n  \"audio_speed\": \"<double>\",\n  \"background_noise_level\": \"<double>\",\n  \"background_noise\": \"<string>\",\n  \"generate_welcome_message\": \"<boolean>\",\n  \"is_welcome_message_interruptible\": \"<boolean>\",\n  \"websocket_timeout_sec\": \"<integer>\",\n  \"welcome_message\": \"<string>\",\n  \"system_prompt\": \"<string>\",\n  \"template_variables\": {\n    \"key_0\": {\n      \"default_value\": \"<string>\",\n      \"is_boosted_keyword\": \"<boolean>\"\n    }\n  },\n  \"tools\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"built_in_tool_configs\": {\n    \"key_0\": {\n      \"speech_before_tool_call\": \"<string>\"\n    },\n    \"key_1\": {\n      \"speech_before_tool_call\": \"<string>\"\n    },\n    \"key_2\": {\n      \"speech_before_tool_call\": \"<string>\"\n    }\n  },\n  \"tasks\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"generate_no_input_poke_text\": false,\n  \"no_input_poke_sec\": \"<integer,null>\",\n  \"no_input_poke_text\": \"<string>\",\n  \"no_input_end_conversation_sec\": 180,\n  \"enable_assistant_backchannel\": false,\n  \"assistant_backchannel_aggressiveness\": 0.1,\n  \"data_retention_policy\": {\n    \"zero_data_retention\": \"<boolean>\"\n  },\n  \"outbound_number_pool\": {\n    \"active\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"blocked\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"procedure_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"integrations\": [\n    {\n      \"account_id\": \"<string>\",\n      \"account_name\": \"<string,null>\",\n      \"action_names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"app_slug\": \"<string>\"\n    },\n    {\n      \"account_id\": \"<string>\",\n      \"account_name\": \"<string,null>\",\n      \"action_names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"app_slug\": \"<string>\"\n    }\n  ],\n  \"default_language\": \"<string>\",\n  \"languages\": [\n    \"en\"\n  ],\n  \"multilingual_mode\": \"request\",\n  \"push_to_talk\": false,\n  \"intelligence_level\": \"standard\",\n  \"boosted_keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pronunciation_dictionary\": [\n    {\n      \"word\": \"<string>\",\n      \"pronunciation\": \"<string>\"\n    },\n    {\n      \"word\": \"<string>\",\n      \"pronunciation\": \"<string>\"\n    }\n  ],\n  \"min_words_to_interrupt\": 1,\n  \"configuration_endpoint\": {\n    \"url\": \"<string>\",\n    \"headers\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"timeout_ms\": 3000\n  },\n  \"inbound_rollout\": \"<double>\",\n  \"inbound_rollout_forward_phone_number\": \"<string,null>\",\n  \"vad_prebuffer_duration_ms\": \"<integer>\",\n  \"vad_min_speech_duration_ms\": \"<integer>\",\n  \"vad_min_silence_duration_ms\": \"<integer>\",\n  \"vad_threshold\": \"<double>\",\n  \"enable_redaction\": \"<boolean>\",\n  \"mcp_server_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"observability_integrations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a2cda06f-8c20-4cac-a3de-1b7cb6a2cb45",
+              "name": "Success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"phone_number\": \"custom\",\n  \"custom_phone_number\": \"<string,null>\",\n  \"custom_phone_numbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timezone\": \"<string>\",\n  \"voice_id\": \"<string>\",\n  \"audio_format\": \"pcm_8000\",\n  \"audio_speed\": \"<double>\",\n  \"background_noise_level\": \"<double>\",\n  \"background_noise\": \"call-center\",\n  \"generate_welcome_message\": \"<boolean>\",\n  \"is_welcome_message_interruptible\": \"<boolean>\",\n  \"websocket_timeout_sec\": \"<integer>\",\n  \"welcome_message\": \"<string>\",\n  \"system_prompt\": \"<string>\",\n  \"template_variables\": {\n    \"key_0\": {\n      \"default_value\": \"string\",\n      \"is_boosted_keyword\": true\n    }\n  },\n  \"tools\": [\n    \"natural_conversation_ending\",\n    \"natural_conversation_ending\"\n  ],\n  \"built_in_tool_configs\": {\n    \"key_0\": {\n      \"speech_before_tool_call\": \"optional\"\n    }\n  },\n  \"tasks\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"generate_no_input_poke_text\": false,\n  \"no_input_poke_sec\": \"<integer,null>\",\n  \"no_input_poke_text\": \"<string>\",\n  \"no_input_end_conversation_sec\": 180,\n  \"enable_assistant_backchannel\": false,\n  \"assistant_backchannel_aggressiveness\": 0.1,\n  \"data_retention_policy\": {\n    \"zero_data_retention\": true\n  },\n  \"outbound_number_pool\": {\n    \"active\": [\n      \"string\",\n      \"string\"\n    ],\n    \"blocked\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"procedure_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"integrations\": [\n    {\n      \"account_id\": \"string\",\n      \"account_name\": \"string\",\n      \"action_names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"app_slug\": \"string\"\n    },\n    {\n      \"account_id\": \"string\",\n      \"account_name\": \"string\",\n      \"action_names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"app_slug\": \"string\"\n    }\n  ],\n  \"default_language\": \"ur\",\n  \"languages\": [\n    \"en\"\n  ],\n  \"multilingual_mode\": \"request\",\n  \"push_to_talk\": false,\n  \"intelligence_level\": \"standard\",\n  \"boosted_keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pronunciation_dictionary\": [\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    },\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    }\n  ],\n  \"min_words_to_interrupt\": 1,\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  },\n  \"inbound_rollout\": \"<double>\",\n  \"inbound_rollout_forward_phone_number\": \"<string,null>\",\n  \"vad_prebuffer_duration_ms\": \"<integer>\",\n  \"vad_min_speech_duration_ms\": \"<integer>\",\n  \"vad_min_silence_duration_ms\": \"<integer>\",\n  \"vad_threshold\": \"<double>\",\n  \"enable_redaction\": \"<boolean>\",\n  \"mcp_server_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"observability_integrations\": [\n    \"braintrust\",\n    \"braintrust\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"version_number\": 6603,\n  \"agent\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"phone_number\": \"string\",\n    \"phone_numbers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"project\": {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    },\n    \"timezone\": \"string\",\n    \"voice_id\": \"string\",\n    \"audio_format\": \"pcm_44100\",\n    \"audio_speed\": 9348.627168986302,\n    \"background_noise_level\": 6002.571246697808,\n    \"background_noise\": \"coffee-shop\",\n    \"generate_welcome_message\": true,\n    \"is_welcome_message_interruptible\": false,\n    \"welcome_message\": \"string\",\n    \"system_prompt\": \"string\",\n    \"template_variables\": {\n      \"key_0\": {\n        \"default_value\": \"string\"\n      }\n    },\n    \"tools\": [\n      \"natural_conversation_ending\",\n      \"keypad_input\"\n    ],\n    \"built_in_tool_configs\": {\n      \"key_0\": {\n        \"speech_before_tool_call\": \"optional\"\n      }\n    },\n    \"tasks\": [\n      {\n        \"name\": \"string\",\n        \"description\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"description\": \"string\"\n      }\n    ],\n    \"generate_no_input_poke_text\": false,\n    \"no_input_poke_sec\": 9864,\n    \"no_input_poke_text\": \"string\",\n    \"no_input_end_conversation_sec\": 2973,\n    \"default_language\": \"de\",\n    \"additional_languages\": [\n      \"cs\",\n      \"ja\"\n    ],\n    \"multilingual_mode\": \"request\",\n    \"push_to_talk\": false,\n    \"intelligence_level\": \"standard\",\n    \"boosted_keywords\": [\n      \"string\",\n      \"string\"\n    ],\n    \"pronunciation_dictionary\": [\n      {\n        \"word\": \"string\",\n        \"pronunciation\": \"string\"\n      },\n      {\n        \"word\": \"string\",\n        \"pronunciation\": \"string\"\n      }\n    ],\n    \"min_words_to_interrupt\": 1,\n    \"configuration_endpoint\": {\n      \"url\": \"string\",\n      \"headers\": {\n        \"key_0\": \"string\"\n      },\n      \"timeout_ms\": 185\n    },\n    \"websocket_timeout_sec\": 60,\n    \"languages\": [\n      \"en\"\n    ],\n    \"observability_integrations\": [\n      \"braintrust\",\n      \"braintrust\"\n    ],\n    \"inbound_rollout\": 6491.138983795771,\n    \"inbound_rollout_forward_phone_number\": \"string\",\n    \"vad_prebuffer_duration_ms\": 500,\n    \"vad_min_speech_duration_ms\": 50,\n    \"vad_min_silence_duration_ms\": 800,\n    \"vad_threshold\": 0.38,\n    \"enable_redaction\": false,\n    \"slug\": \"string\",\n    \"enable_assistant_backchannel\": false,\n    \"assistant_backchannel_aggressiveness\": 0.1,\n    \"integrations\": [\n      {\n        \"account_id\": \"string\",\n        \"account_name\": \"string\",\n        \"action_names\": [\n          \"string\",\n          \"string\"\n        ],\n        \"app_slug\": \"string\"\n      },\n      {\n        \"account_id\": \"string\",\n        \"account_name\": \"string\",\n        \"action_names\": [\n          \"string\",\n          \"string\"\n        ],\n        \"app_slug\": \"string\"\n      }\n    ],\n    \"data_retention_policy\": {\n      \"zero_data_retention\": false\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e59168b8-4682-4669-975f-e124a43ebc94",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"phone_number\": \"custom\",\n  \"custom_phone_number\": \"<string,null>\",\n  \"custom_phone_numbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timezone\": \"<string>\",\n  \"voice_id\": \"<string>\",\n  \"audio_format\": \"pcm_8000\",\n  \"audio_speed\": \"<double>\",\n  \"background_noise_level\": \"<double>\",\n  \"background_noise\": \"call-center\",\n  \"generate_welcome_message\": \"<boolean>\",\n  \"is_welcome_message_interruptible\": \"<boolean>\",\n  \"websocket_timeout_sec\": \"<integer>\",\n  \"welcome_message\": \"<string>\",\n  \"system_prompt\": \"<string>\",\n  \"template_variables\": {\n    \"key_0\": {\n      \"default_value\": \"string\",\n      \"is_boosted_keyword\": true\n    }\n  },\n  \"tools\": [\n    \"natural_conversation_ending\",\n    \"natural_conversation_ending\"\n  ],\n  \"built_in_tool_configs\": {\n    \"key_0\": {\n      \"speech_before_tool_call\": \"optional\"\n    }\n  },\n  \"tasks\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"generate_no_input_poke_text\": false,\n  \"no_input_poke_sec\": \"<integer,null>\",\n  \"no_input_poke_text\": \"<string>\",\n  \"no_input_end_conversation_sec\": 180,\n  \"enable_assistant_backchannel\": false,\n  \"assistant_backchannel_aggressiveness\": 0.1,\n  \"data_retention_policy\": {\n    \"zero_data_retention\": true\n  },\n  \"outbound_number_pool\": {\n    \"active\": [\n      \"string\",\n      \"string\"\n    ],\n    \"blocked\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"procedure_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"integrations\": [\n    {\n      \"account_id\": \"string\",\n      \"account_name\": \"string\",\n      \"action_names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"app_slug\": \"string\"\n    },\n    {\n      \"account_id\": \"string\",\n      \"account_name\": \"string\",\n      \"action_names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"app_slug\": \"string\"\n    }\n  ],\n  \"default_language\": \"ur\",\n  \"languages\": [\n    \"en\"\n  ],\n  \"multilingual_mode\": \"request\",\n  \"push_to_talk\": false,\n  \"intelligence_level\": \"standard\",\n  \"boosted_keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pronunciation_dictionary\": [\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    },\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    }\n  ],\n  \"min_words_to_interrupt\": 1,\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  },\n  \"inbound_rollout\": \"<double>\",\n  \"inbound_rollout_forward_phone_number\": \"<string,null>\",\n  \"vad_prebuffer_duration_ms\": \"<integer>\",\n  \"vad_min_speech_duration_ms\": \"<integer>\",\n  \"vad_min_silence_duration_ms\": \"<integer>\",\n  \"vad_threshold\": \"<double>\",\n  \"enable_redaction\": \"<boolean>\",\n  \"mcp_server_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"observability_integrations\": [\n    \"braintrust\",\n    \"braintrust\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\"\n  },\n  \"param_errors\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e683738-cbd2-4929-ae9e-3e6d9456cd27",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"phone_number\": \"custom\",\n  \"custom_phone_number\": \"<string,null>\",\n  \"custom_phone_numbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timezone\": \"<string>\",\n  \"voice_id\": \"<string>\",\n  \"audio_format\": \"pcm_8000\",\n  \"audio_speed\": \"<double>\",\n  \"background_noise_level\": \"<double>\",\n  \"background_noise\": \"call-center\",\n  \"generate_welcome_message\": \"<boolean>\",\n  \"is_welcome_message_interruptible\": \"<boolean>\",\n  \"websocket_timeout_sec\": \"<integer>\",\n  \"welcome_message\": \"<string>\",\n  \"system_prompt\": \"<string>\",\n  \"template_variables\": {\n    \"key_0\": {\n      \"default_value\": \"string\",\n      \"is_boosted_keyword\": true\n    }\n  },\n  \"tools\": [\n    \"natural_conversation_ending\",\n    \"natural_conversation_ending\"\n  ],\n  \"built_in_tool_configs\": {\n    \"key_0\": {\n      \"speech_before_tool_call\": \"optional\"\n    }\n  },\n  \"tasks\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"generate_no_input_poke_text\": false,\n  \"no_input_poke_sec\": \"<integer,null>\",\n  \"no_input_poke_text\": \"<string>\",\n  \"no_input_end_conversation_sec\": 180,\n  \"enable_assistant_backchannel\": false,\n  \"assistant_backchannel_aggressiveness\": 0.1,\n  \"data_retention_policy\": {\n    \"zero_data_retention\": true\n  },\n  \"outbound_number_pool\": {\n    \"active\": [\n      \"string\",\n      \"string\"\n    ],\n    \"blocked\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"procedure_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"integrations\": [\n    {\n      \"account_id\": \"string\",\n      \"account_name\": \"string\",\n      \"action_names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"app_slug\": \"string\"\n    },\n    {\n      \"account_id\": \"string\",\n      \"account_name\": \"string\",\n      \"action_names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"app_slug\": \"string\"\n    }\n  ],\n  \"default_language\": \"ur\",\n  \"languages\": [\n    \"en\"\n  ],\n  \"multilingual_mode\": \"request\",\n  \"push_to_talk\": false,\n  \"intelligence_level\": \"standard\",\n  \"boosted_keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pronunciation_dictionary\": [\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    },\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    }\n  ],\n  \"min_words_to_interrupt\": 1,\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  },\n  \"inbound_rollout\": \"<double>\",\n  \"inbound_rollout_forward_phone_number\": \"<string,null>\",\n  \"vad_prebuffer_duration_ms\": \"<integer>\",\n  \"vad_min_speech_duration_ms\": \"<integer>\",\n  \"vad_min_silence_duration_ms\": \"<integer>\",\n  \"vad_threshold\": \"<double>\",\n  \"enable_redaction\": \"<boolean>\",\n  \"mcp_server_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"observability_integrations\": [\n    \"braintrust\",\n    \"braintrust\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1dcc9a35-6cbd-4704-afba-ac8cfae293f9",
+              "name": "Agent not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"phone_number\": \"custom\",\n  \"custom_phone_number\": \"<string,null>\",\n  \"custom_phone_numbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timezone\": \"<string>\",\n  \"voice_id\": \"<string>\",\n  \"audio_format\": \"pcm_8000\",\n  \"audio_speed\": \"<double>\",\n  \"background_noise_level\": \"<double>\",\n  \"background_noise\": \"call-center\",\n  \"generate_welcome_message\": \"<boolean>\",\n  \"is_welcome_message_interruptible\": \"<boolean>\",\n  \"websocket_timeout_sec\": \"<integer>\",\n  \"welcome_message\": \"<string>\",\n  \"system_prompt\": \"<string>\",\n  \"template_variables\": {\n    \"key_0\": {\n      \"default_value\": \"string\",\n      \"is_boosted_keyword\": true\n    }\n  },\n  \"tools\": [\n    \"natural_conversation_ending\",\n    \"natural_conversation_ending\"\n  ],\n  \"built_in_tool_configs\": {\n    \"key_0\": {\n      \"speech_before_tool_call\": \"optional\"\n    }\n  },\n  \"tasks\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"generate_no_input_poke_text\": false,\n  \"no_input_poke_sec\": \"<integer,null>\",\n  \"no_input_poke_text\": \"<string>\",\n  \"no_input_end_conversation_sec\": 180,\n  \"enable_assistant_backchannel\": false,\n  \"assistant_backchannel_aggressiveness\": 0.1,\n  \"data_retention_policy\": {\n    \"zero_data_retention\": true\n  },\n  \"outbound_number_pool\": {\n    \"active\": [\n      \"string\",\n      \"string\"\n    ],\n    \"blocked\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"procedure_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"integrations\": [\n    {\n      \"account_id\": \"string\",\n      \"account_name\": \"string\",\n      \"action_names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"app_slug\": \"string\"\n    },\n    {\n      \"account_id\": \"string\",\n      \"account_name\": \"string\",\n      \"action_names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"app_slug\": \"string\"\n    }\n  ],\n  \"default_language\": \"ur\",\n  \"languages\": [\n    \"en\"\n  ],\n  \"multilingual_mode\": \"request\",\n  \"push_to_talk\": false,\n  \"intelligence_level\": \"standard\",\n  \"boosted_keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pronunciation_dictionary\": [\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    },\n    {\n      \"word\": \"string\",\n      \"pronunciation\": \"string\"\n    }\n  ],\n  \"min_words_to_interrupt\": 1,\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  },\n  \"inbound_rollout\": \"<double>\",\n  \"inbound_rollout_forward_phone_number\": \"<string,null>\",\n  \"vad_prebuffer_duration_ms\": \"<integer>\",\n  \"vad_min_speech_duration_ms\": \"<integer>\",\n  \"vad_min_silence_duration_ms\": \"<integer>\",\n  \"vad_threshold\": \"<double>\",\n  \"enable_redaction\": \"<boolean>\",\n  \"mcp_server_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"observability_integrations\": [\n    \"braintrust\",\n    \"braintrust\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb53383b-2ce5-4789-94c3-2b0b9cc0611e",
+          "name": "Add Custom Phone Number",
+          "request": {
+            "name": "Add Custom Phone Number",
+            "description": {
+              "content": "Adds a custom phone number to an agent. The user must configure their SIP trunk to point to Phonic's SIP server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agents",
+                ":nameOrId",
+                "custom-phone-numbers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "main",
+                  "description": "The name of the project containing the agent. Only used when `nameOrId` is a name."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "nameOrId",
+                  "description": "(Required) The name or the ID of the agent."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "SIP address of the user's SIP trunk. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                "key": "X-Sip-Address",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "SIP auth username. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                "key": "X-Sip-Auth-Username",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "SIP auth password. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                "key": "X-Sip-Auth-Password",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone_number\": \"<string>\",\n  \"configuration_endpoint\": {\n    \"url\": \"<string>\",\n    \"headers\": {\n      \"key_0\": \"<string>\"\n    },\n    \"timeout_ms\": 3000\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d0ec4a3d-dc56-4484-8626-aa9998fcc96f",
+              "name": "Success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId",
+                    "custom-phone-numbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SIP address of the user's SIP trunk. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                    "key": "X-Sip-Address",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SIP auth username. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                    "key": "X-Sip-Auth-Username",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SIP auth password. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                    "key": "X-Sip-Auth-Password",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6475a1bd-92ca-49d1-bc3e-e31d7fd32a61",
+              "name": "Invalid parameters or phone number already assigned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId",
+                    "custom-phone-numbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SIP address of the user's SIP trunk. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                    "key": "X-Sip-Address",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SIP auth username. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                    "key": "X-Sip-Auth-Username",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SIP auth password. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                    "key": "X-Sip-Auth-Password",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8358569-6832-45e3-829b-20bf1117e99d",
+              "name": "Unsupported authentication method",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId",
+                    "custom-phone-numbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SIP address of the user's SIP trunk. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                    "key": "X-Sip-Address",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SIP auth username. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                    "key": "X-Sip-Auth-Username",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SIP auth password. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                    "key": "X-Sip-Auth-Password",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3062e032-ae75-4d47-a923-c88997e013bc",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId",
+                    "custom-phone-numbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SIP address of the user's SIP trunk. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                    "key": "X-Sip-Address",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SIP auth username. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                    "key": "X-Sip-Auth-Username",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SIP auth password. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                    "key": "X-Sip-Auth-Password",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c7e309a-5c6f-4f74-bb73-44c8b368cc5b",
+              "name": "Agent not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId",
+                    "custom-phone-numbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SIP address of the user's SIP trunk. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                    "key": "X-Sip-Address",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SIP auth username. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                    "key": "X-Sip-Auth-Username",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SIP auth password. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                    "key": "X-Sip-Auth-Password",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1174a49-3c89-4e91-80af-2618df32799d",
+              "name": "The agent is currently being updated. Please try again.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId",
+                    "custom-phone-numbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SIP address of the user's SIP trunk. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                    "key": "X-Sip-Address",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SIP auth username. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                    "key": "X-Sip-Auth-Username",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SIP auth password. Optional, but if provided, all three SIP headers (X-Sip-Address, X-Sip-Auth-Username, X-Sip-Auth-Password) must be provided. When these headers are provided, call transfers from the agent will use the provided SIP details.",
+                    "key": "X-Sip-Auth-Password",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f55a8049-4363-4006-9f61-4c7ca29ff7d5",
+          "name": "Delete Custom Phone Number",
+          "request": {
+            "name": "Delete Custom Phone Number",
+            "description": {
+              "content": "Deletes a custom phone number from an agent.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agents",
+                ":nameOrId",
+                "custom-phone-numbers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "main",
+                  "description": "The name of the project containing the agent. Only used when `nameOrId` is a name."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "nameOrId",
+                  "description": "(Required) The name or the ID of the agent."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone_number\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "079de39d-ce4c-48a1-977d-3457a1dbd187",
+              "name": "Success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId",
+                    "custom-phone-numbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c873bc67-b70f-45f4-a395-ab43e2063ada",
+              "name": "Invalid parameters, phone number not assigned to agent, or not a custom phone number",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId",
+                    "custom-phone-numbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "522b4a94-81c7-455e-b918-037f6134d528",
+              "name": "Unsupported authentication method",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId",
+                    "custom-phone-numbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0d43d6f-4aee-48ff-9044-4dc3ef882a96",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId",
+                    "custom-phone-numbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bdce6c5-4910-43d9-8308-cb56e65e1fd1",
+              "name": "Agent or phone number not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId",
+                    "custom-phone-numbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b9fb0aa-6d08-469b-82e0-2ccf2a8af0b7",
+              "name": "The agent is currently being updated. Please try again.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId",
+                    "custom-phone-numbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea9660ad-cc0d-45bd-b3bb-7fec8d68082f",
+          "name": "Update Phone Number",
+          "request": {
+            "name": "Update Phone Number",
+            "description": {
+              "content": "Updates a phone number on an agent.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agents",
+                ":nameOrId",
+                "phone-numbers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "main",
+                  "description": "The name of the project containing the agent. Only used when `nameOrId` is a name."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "nameOrId",
+                  "description": "(Required) The name or the ID of the agent."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone_number\": \"<string>\",\n  \"configuration_endpoint\": {\n    \"url\": \"<string>\",\n    \"headers\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"timeout_ms\": 3000\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "42efa336-b360-4a6c-8425-559fcd1d2d1a",
+              "name": "Success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId",
+                    "phone-numbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc9448cb-815f-4eab-b90a-e7c845e6088e",
+              "name": "Invalid parameters or phone number already assigned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId",
+                    "phone-numbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e16a004-7575-42dd-a852-1e0249ca5581",
+              "name": "Unsupported authentication method",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId",
+                    "phone-numbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb56ef56-11b2-408c-be1f-83a1ff6ab7bd",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId",
+                    "phone-numbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d81084e-9139-483b-911a-bfafe9f2d3ba",
+              "name": "Agent not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId",
+                    "phone-numbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "941c7d52-f7ef-41c2-a2fc-83bd70dd99e7",
+              "name": "The agent is currently being updated. Please try again.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":nameOrId",
+                    "phone-numbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"configuration_endpoint\": {\n    \"url\": \"string\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"timeout_ms\": 3000\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.phonic.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "aef84fd1-65ef-4193-8dab-a555d655406e",
+    "name": "API Reference agents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

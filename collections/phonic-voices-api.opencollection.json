@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference agents voices API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "voices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phonic.ai/v1/voices",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "model",
+                "value": "",
+                "type": "query",
+                "description": "The model to get voices for."
+              }
+            ]
+          },
+          "docs": "Returns all available voices for a model."
+        },
+        {
+          "info": {
+            "name": "Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phonic.ai/v1/voices/:id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the voice to get."
+              }
+            ]
+          },
+          "docs": "Returns a voice by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

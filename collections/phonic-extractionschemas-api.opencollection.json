@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference agents extractionSchemas API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "extractionSchemas",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phonic.ai/v1/extraction_schemas",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project to list extraction schemas for."
+              }
+            ]
+          },
+          "docs": "Returns all extraction schemas in a project."
+        },
+        {
+          "info": {
+            "name": "Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phonic.ai/v1/extraction_schemas",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project to create the extraction schema in."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new extraction schema in a project."
+        },
+        {
+          "info": {
+            "name": "Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phonic.ai/v1/extraction_schemas/:nameOrId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "nameOrId",
+                "value": "",
+                "type": "path",
+                "description": "The name or the ID of the extraction schema to get."
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project containing the extraction schema. Only used when `nameOrId` is a name."
+              }
+            ]
+          },
+          "docs": "Returns an extraction schema by name or ID."
+        },
+        {
+          "info": {
+            "name": "Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.phonic.ai/v1/extraction_schemas/:nameOrId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "nameOrId",
+                "value": "",
+                "type": "path",
+                "description": "The name or the ID of the extraction schema to update."
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project containing the extraction schema. Only used when `nameOrId` is a name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an extraction schema by name or ID."
+        },
+        {
+          "info": {
+            "name": "Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.phonic.ai/v1/extraction_schemas/:nameOrId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "nameOrId",
+                "value": "",
+                "type": "path",
+                "description": "The name or the ID of the extraction schema to delete."
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project containing the extraction schema. Only used when `nameOrId` is a name."
+              }
+            ]
+          },
+          "docs": "Deletes an extraction schema by name or ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,562 @@
+{
+  "item": [
+    {
+      "id": "f7057cda-12e6-4397-86c4-b35227904441",
+      "name": "conversationItems",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d9277ca7-fcc8-4eeb-a3d4-a2d703ab5560",
+          "name": "Replay",
+          "request": {
+            "name": "Replay",
+            "description": {
+              "content": "Returns the alternative response(s) the assistant would have\nproduced for this conversation turn given changes to the agent system prompt.\n\nOnly assistant items from ended conversations can be replayed. The\nconversation must have an associated agent.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversation_items",
+                ":id",
+                "replay"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the conversation item to replay."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"system_prompt\": \"<string>\",\n  \"num_responses\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4a9cb0d4-bc62-4986-90e6-21e222d7939e",
+              "name": "Success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversation_items",
+                    ":id",
+                    "replay"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the conversation item to replay."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"system_prompt\": \"<string>\",\n  \"num_responses\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responses\": [\n    {\n      \"text\": \"string\",\n      \"tool_calls\": [\n        {\n          \"tool\": {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"request_body\": {\n            \"key_0\": {}\n          },\n          \"endpoint_method\": \"GET\",\n          \"endpoint_url\": \"string\",\n          \"endpoint_headers\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"query_params\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          },\n          \"context\": \"string\"\n        },\n        {\n          \"tool\": {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"request_body\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"endpoint_method\": \"POST\",\n          \"endpoint_url\": \"string\",\n          \"endpoint_headers\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"query_params\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          },\n          \"context\": \"string\"\n        }\n      ]\n    },\n    {\n      \"text\": \"string\",\n      \"tool_calls\": [\n        {\n          \"tool\": {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"request_body\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          },\n          \"endpoint_method\": \"POST\",\n          \"endpoint_url\": \"string\",\n          \"endpoint_headers\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"query_params\": {\n            \"key_0\": \"string\"\n          },\n          \"context\": \"string\"\n        },\n        {\n          \"tool\": {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"request_body\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          },\n          \"endpoint_method\": \"GET\",\n          \"endpoint_url\": \"string\",\n          \"endpoint_headers\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"query_params\": {\n            \"key_0\": \"string\"\n          },\n          \"context\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3f93252-b883-4a5c-a030-f8258c31e834",
+              "name": "Invalid request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversation_items",
+                    ":id",
+                    "replay"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the conversation item to replay."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"system_prompt\": \"<string>\",\n  \"num_responses\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89a20004-ccfa-4e7a-b57c-d7b433c49946",
+              "name": "Unauthorized (authentication missing or invalid)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversation_items",
+                    ":id",
+                    "replay"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the conversation item to replay."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"system_prompt\": \"<string>\",\n  \"num_responses\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ebb4d371-8ea4-45e1-9f6a-b53e6b623431",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversation_items",
+                    ":id",
+                    "replay"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the conversation item to replay."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"system_prompt\": \"<string>\",\n  \"num_responses\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5698d34-8f1f-4c7d-944a-4b04eadfc851",
+              "name": "Conversation item not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversation_items",
+                    ":id",
+                    "replay"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the conversation item to replay."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"system_prompt\": \"<string>\",\n  \"num_responses\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c485b1bf-fade-4daa-afdd-4f44c7ef03a5",
+              "name": "Conversation is still live",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversation_items",
+                    ":id",
+                    "replay"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the conversation item to replay."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"system_prompt\": \"<string>\",\n  \"num_responses\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5157c557-5d18-46e3-a182-7eb799d59cd1",
+              "name": "Conversation item cannot be replayed (no associated agent, or not an assistant item)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversation_items",
+                    ":id",
+                    "replay"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the conversation item to replay."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"system_prompt\": \"<string>\",\n  \"num_responses\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a6bca8c-29a1-4138-9a41-a058ec55e88f",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversation_items",
+                    ":id",
+                    "replay"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the conversation item to replay."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"system_prompt\": \"<string>\",\n  \"num_responses\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.phonic.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "32b59e07-6bdd-4cb0-be9f-50608cc04033",
+    "name": "API Reference agents conversationItems API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

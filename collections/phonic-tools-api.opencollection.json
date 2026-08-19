@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference agents tools API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "tools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phonic.ai/v1/tools",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project to list tools for."
+              }
+            ]
+          },
+          "docs": "Returns all custom tools for the organization."
+        },
+        {
+          "info": {
+            "name": "Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phonic.ai/v1/tools",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project to create the tool in."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new tool in a project."
+        },
+        {
+          "info": {
+            "name": "Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phonic.ai/v1/tools/:nameOrId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "nameOrId",
+                "value": "",
+                "type": "path",
+                "description": "The name or the ID of the tool to get."
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project containing the tool. Only used when `nameOrId` is a name."
+              }
+            ]
+          },
+          "docs": "Returns a tool by name or ID."
+        },
+        {
+          "info": {
+            "name": "Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.phonic.ai/v1/tools/:nameOrId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "nameOrId",
+                "value": "",
+                "type": "path",
+                "description": "The name or the ID of the tool to update."
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project containing the tool. Only used when `nameOrId` is a name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a tool by name or ID."
+        },
+        {
+          "info": {
+            "name": "Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.phonic.ai/v1/tools/:nameOrId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "nameOrId",
+                "value": "",
+                "type": "path",
+                "description": "The name or the ID of the tool to delete."
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project containing the tool. Only used when `nameOrId` is a name."
+              }
+            ]
+          },
+          "docs": "Deletes a tool by name or ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

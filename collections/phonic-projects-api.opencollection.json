@@ -1,0 +1,214 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference agents projects API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phonic.ai/v1/projects",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Returns all projects in a workspace."
+        },
+        {
+          "info": {
+            "name": "Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phonic.ai/v1/projects",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new project in a workspace."
+        },
+        {
+          "info": {
+            "name": "Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phonic.ai/v1/projects/:nameOrId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "nameOrId",
+                "value": "",
+                "type": "path",
+                "description": "The name or the ID of the project to get."
+              }
+            ]
+          },
+          "docs": "Returns a project by name or ID."
+        },
+        {
+          "info": {
+            "name": "Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.phonic.ai/v1/projects/:nameOrId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "nameOrId",
+                "value": "",
+                "type": "path",
+                "description": "The name or the ID of the project to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a project by name or ID."
+        },
+        {
+          "info": {
+            "name": "Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.phonic.ai/v1/projects/:nameOrId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "nameOrId",
+                "value": "",
+                "type": "path",
+                "description": "The name or the ID of the project to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a project by name or ID."
+        },
+        {
+          "info": {
+            "name": "List Eval Prompts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phonic.ai/v1/projects/:id/conversation_eval_prompts",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the project."
+              }
+            ]
+          },
+          "docs": "Returns all conversation evaluation prompts for a project."
+        },
+        {
+          "info": {
+            "name": "Create Eval Prompt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phonic.ai/v1/projects/:id/conversation_eval_prompts",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new conversation evaluation prompt for a project."
+        },
+        {
+          "info": {
+            "name": "List Evals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phonic.ai/v1/projects/:id/conversation_evals",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the project."
+              }
+            ]
+          },
+          "docs": "Returns all conversation evaluation results for a project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

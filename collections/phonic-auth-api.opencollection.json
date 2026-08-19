@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference agents auth API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Session Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phonic.ai/v1/auth/session_token",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a short-lived session token that can be used to authenticate WebSocket connections. Session tokens are useful for client-side applications where you don't want to expose your API key."
+        },
+        {
+          "info": {
+            "name": "Create Conversation Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phonic.ai/v1/auth/conversation_token",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a short-lived conversation token scoped to a specific agent. Conversation tokens are useful for client-side applications that start a conversation with a single agent without exposing your API key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

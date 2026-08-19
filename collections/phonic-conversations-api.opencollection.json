@@ -1,0 +1,394 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference agents conversations API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "conversations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phonic.ai/v1/conversations",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project to list conversations for."
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by external ID to get a specific conversation."
+              },
+              {
+                "name": "duration_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum duration in seconds."
+              },
+              {
+                "name": "duration_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum duration in seconds."
+              },
+              {
+                "name": "started_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum start date/time. Valid examples: `2025-04-17`, `2025-04-17T02:48:52.708Z`"
+              },
+              {
+                "name": "started_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum start date/time. Valid examples: `2025-04-17`, `2025-04-17T02:48:52.708Z`"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for backward pagination. Use a conversation ID from `pagination.prev_cursor` to fetch the previous page of conversations. Cannot be used with `after`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for forward pagination. Use a conversation ID from `pagination.next_cursor` to fetch the next page of conversations. Cannot be used with `before`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of conversations to return per page."
+              },
+              {
+                "name": "audio_container",
+                "value": "",
+                "type": "query",
+                "description": "Format of the presigned `audio_url` in each conversation in the response."
+              }
+            ]
+          },
+          "docs": "Returns conversations with optional filtering."
+        },
+        {
+          "info": {
+            "name": "Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phonic.ai/v1/conversations/:id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the conversation to get."
+              },
+              {
+                "name": "audio_container",
+                "value": "",
+                "type": "query",
+                "description": "Format of the presigned `audio_url` in the response."
+              }
+            ]
+          },
+          "docs": "Returns a conversation by ID."
+        },
+        {
+          "info": {
+            "name": "Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.phonic.ai/v1/conversations/:id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the conversation to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a conversation, scheduling its transcripts and audio recordings for deletion. The conversation must have ended."
+        },
+        {
+          "info": {
+            "name": "Cancel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phonic.ai/v1/conversations/:id/cancel",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the conversation to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels an active conversation."
+        },
+        {
+          "info": {
+            "name": "Get Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phonic.ai/v1/conversations/:id/analysis",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the conversation to analyze."
+              }
+            ]
+          },
+          "docs": "Returns an analysis of the specified conversation."
+        },
+        {
+          "info": {
+            "name": "List Extractions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phonic.ai/v1/conversations/:id/extractions",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the conversation to get extractions for."
+              }
+            ]
+          },
+          "docs": "Returns all extractions for a conversation."
+        },
+        {
+          "info": {
+            "name": "Extract Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phonic.ai/v1/conversations/:id/extractions",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the conversation to extract data from."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Extracts data from a conversation using a schema."
+        },
+        {
+          "info": {
+            "name": "List Evaluations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phonic.ai/v1/conversations/:id/evals",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the conversation to get evaluations for."
+              }
+            ]
+          },
+          "docs": "Returns all evaluations for a conversation."
+        },
+        {
+          "info": {
+            "name": "Evaluate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phonic.ai/v1/conversations/:id/evals",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the conversation to evaluate."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Evaluates a conversation using an evaluation prompt."
+        },
+        {
+          "info": {
+            "name": "Outbound Call",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phonic.ai/v1/conversations/outbound_call",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates a call to a given phone number using Phonic's Twilio account."
+        },
+        {
+          "info": {
+            "name": "Sip Outbound Call",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phonic.ai/v1/conversations/sip/outbound_call",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "X-Sip-Address",
+                "value": ""
+              },
+              {
+                "name": "X-Sip-Auth-Username",
+                "value": ""
+              },
+              {
+                "name": "X-Sip-Auth-Password",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates a SIP outbound call using user-supplied SIP credentials in headers."
+        },
+        {
+          "info": {
+            "name": "Replay",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phonic.ai/v1/conversations/:id/replay",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the conversation to replay."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replays an ended conversation by re-running its recorded audio through an\nagent. Requires API key or access token authentication. The conversation must\nhave audio recordings available and an associated agent (or one specified in\nthe request body).\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

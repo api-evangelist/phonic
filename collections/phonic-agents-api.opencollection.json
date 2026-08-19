@@ -1,0 +1,315 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference agents API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "agents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phonic.ai/v1/agents",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project to list agents for."
+              }
+            ]
+          },
+          "docs": "Returns all agents in a project."
+        },
+        {
+          "info": {
+            "name": "Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phonic.ai/v1/agents",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project to create the agent in."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new agent in a project."
+        },
+        {
+          "info": {
+            "name": "Upsert",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.phonic.ai/v1/agents/upsert",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project containing the agent."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upserts an agent by name. If an agent with the same name already exists, it will be updated. Otherwise, it will be created."
+        },
+        {
+          "info": {
+            "name": "Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phonic.ai/v1/agents/:nameOrId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "nameOrId",
+                "value": "",
+                "type": "path",
+                "description": "The name or the ID of the agent to get."
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project containing the agent. Only used when `nameOrId` is a name."
+              }
+            ]
+          },
+          "docs": "Returns an agent by name or ID."
+        },
+        {
+          "info": {
+            "name": "Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.phonic.ai/v1/agents/:nameOrId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "nameOrId",
+                "value": "",
+                "type": "path",
+                "description": "The name or the ID of the agent to update."
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project containing the agent. Only used when `nameOrId` is a name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an agent by name or ID."
+        },
+        {
+          "info": {
+            "name": "Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.phonic.ai/v1/agents/:nameOrId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "nameOrId",
+                "value": "",
+                "type": "path",
+                "description": "The name or the ID of the agent to delete."
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project containing the agent. Only used when `nameOrId` is a name."
+              }
+            ]
+          },
+          "docs": "Deletes an agent by name or ID."
+        },
+        {
+          "info": {
+            "name": "Add Custom Phone Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phonic.ai/v1/agents/:nameOrId/custom-phone-numbers",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "X-Sip-Address",
+                "value": ""
+              },
+              {
+                "name": "X-Sip-Auth-Username",
+                "value": ""
+              },
+              {
+                "name": "X-Sip-Auth-Password",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "nameOrId",
+                "value": "",
+                "type": "path",
+                "description": "The name or the ID of the agent."
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project containing the agent. Only used when `nameOrId` is a name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a custom phone number to an agent. The user must configure their SIP trunk to point to Phonic's SIP server."
+        },
+        {
+          "info": {
+            "name": "Delete Custom Phone Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.phonic.ai/v1/agents/:nameOrId/custom-phone-numbers",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "nameOrId",
+                "value": "",
+                "type": "path",
+                "description": "The name or the ID of the agent."
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project containing the agent. Only used when `nameOrId` is a name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes a custom phone number from an agent."
+        },
+        {
+          "info": {
+            "name": "Update Phone Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.phonic.ai/v1/agents/:nameOrId/phone-numbers",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "nameOrId",
+                "value": "",
+                "type": "path",
+                "description": "The name or the ID of the agent."
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "The name of the project containing the agent. Only used when `nameOrId` is a name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a phone number on an agent."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

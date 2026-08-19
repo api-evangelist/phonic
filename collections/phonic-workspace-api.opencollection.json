@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference agents workspace API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "workspace",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phonic.ai/v1/workspace",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Returns information about the workspace."
+        },
+        {
+          "info": {
+            "name": "Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.phonic.ai/v1/workspace",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the workspace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

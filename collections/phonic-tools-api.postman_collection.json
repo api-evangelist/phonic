@@ -1,0 +1,1130 @@
+{
+  "item": [
+    {
+      "id": "371a1a71-3398-44c1-b359-e2341e240db5",
+      "name": "tools",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2cface93-5a22-45ae-95be-8ddfdf7f0f96",
+          "name": "List",
+          "request": {
+            "name": "List",
+            "description": {
+              "content": "Returns all custom tools for the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "main",
+                  "description": "The name of the project to list tools for."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90235364-42d6-4a3e-88cc-6034a1c46e9c",
+              "name": "Success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tools\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"project\": {\n        \"id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"type\": \"built_in_keypad_input\",\n      \"parameters\": [\n        {\n          \"type\": \"array\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"is_required\": true,\n          \"item_type\": \"integer\",\n          \"location\": \"query_string\"\n        },\n        {\n          \"type\": \"array\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"is_required\": false,\n          \"item_type\": \"number\",\n          \"location\": \"request_body\"\n        }\n      ],\n      \"execution_mode\": \"async\",\n      \"endpoint_method\": \"GET\",\n      \"endpoint_url\": \"http://BEoPLSPEf.adbcQboJE4SN6BRnft5F\",\n      \"endpoint_headers\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"endpoint_timeout_ms\": 9252,\n      \"tool_call_output_timeout_ms\": 9970,\n      \"phone_number\": \"string\",\n      \"dtmf\": \"string\",\n      \"dynamic_dtmf\": false,\n      \"use_agent_phone_number\": true,\n      \"detect_voicemail\": false,\n      \"agents_to_transfer_to\": [\n        \"string\",\n        \"string\"\n      ],\n      \"require_speech_before_tool_call\": false,\n      \"speech_before_tool_call\": \"required\",\n      \"wait_for_speech_before_tool_call\": false,\n      \"forbid_speech_after_tool_call\": false,\n      \"allow_tool_chaining\": true,\n      \"wait_for_response\": false,\n      \"context\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"project\": {\n        \"id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"type\": \"built_in_transfer_to_phone_number\",\n      \"parameters\": [\n        {\n          \"type\": \"boolean\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"is_required\": true,\n          \"item_type\": \"number\",\n          \"location\": \"query_string\"\n        },\n        {\n          \"type\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"is_required\": true,\n          \"item_type\": \"boolean\",\n          \"location\": \"request_body\"\n        }\n      ],\n      \"execution_mode\": \"async\",\n      \"endpoint_method\": \"POST\",\n      \"endpoint_url\": \"https://fWncxJxFZdNAPV.thzoQtGggqnEOCT4fOCXJtaP++wFFcbaalTcP7Pr-pitvZNuiYrFAzLfufO9UNKr1yv2f\",\n      \"endpoint_headers\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      },\n      \"endpoint_timeout_ms\": 6366,\n      \"tool_call_output_timeout_ms\": 8400,\n      \"phone_number\": \"string\",\n      \"dtmf\": \"string\",\n      \"dynamic_dtmf\": false,\n      \"use_agent_phone_number\": true,\n      \"detect_voicemail\": false,\n      \"agents_to_transfer_to\": [\n        \"string\",\n        \"string\"\n      ],\n      \"require_speech_before_tool_call\": false,\n      \"speech_before_tool_call\": \"suppressed\",\n      \"wait_for_speech_before_tool_call\": false,\n      \"forbid_speech_after_tool_call\": false,\n      \"allow_tool_chaining\": true,\n      \"wait_for_response\": false,\n      \"context\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "572221d5-6213-447e-8d7d-be165ec75900",
+              "name": "Project not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55ba6fa4-115d-4864-a209-c6e891344f9d",
+          "name": "Create",
+          "request": {
+            "name": "Create",
+            "description": {
+              "content": "Creates a new tool in a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "main",
+                  "description": "The name of the project to create the tool in."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"execution_mode\": \"<string>\",\n  \"endpoint_method\": \"<string>\",\n  \"endpoint_url\": \"<uri>\",\n  \"endpoint_headers\": {\n    \"key_0\": \"<string>\"\n  },\n  \"endpoint_timeout_ms\": 5000,\n  \"tool_call_output_timeout_ms\": 5000,\n  \"phone_number\": \"<string,null>\",\n  \"dtmf\": \"<string,null>\",\n  \"dynamic_dtmf\": false,\n  \"use_agent_phone_number\": true,\n  \"detect_voicemail\": false,\n  \"agents_to_transfer_to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"require_speech_before_tool_call\": false,\n  \"speech_before_tool_call\": \"<string>\",\n  \"wait_for_speech_before_tool_call\": false,\n  \"forbid_speech_after_tool_call\": false,\n  \"allow_tool_chaining\": true,\n  \"wait_for_response\": false,\n  \"context\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8eaa95b8-6bbc-44a6-a41d-5c6c479b799b",
+              "name": "Success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"built_in_keypad_input\",\n  \"execution_mode\": \"async\",\n  \"endpoint_method\": \"GET\",\n  \"endpoint_url\": \"<uri>\",\n  \"endpoint_headers\": {\n    \"key_0\": \"<string>\"\n  },\n  \"endpoint_timeout_ms\": 5000,\n  \"tool_call_output_timeout_ms\": 5000,\n  \"phone_number\": \"<string,null>\",\n  \"dtmf\": \"<string,null>\",\n  \"dynamic_dtmf\": false,\n  \"use_agent_phone_number\": true,\n  \"detect_voicemail\": false,\n  \"agents_to_transfer_to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"require_speech_before_tool_call\": false,\n  \"speech_before_tool_call\": \"required\",\n  \"wait_for_speech_before_tool_call\": false,\n  \"forbid_speech_after_tool_call\": false,\n  \"allow_tool_chaining\": true,\n  \"wait_for_response\": false,\n  \"context\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4821c1a8-62d1-4a19-ac51-7ae2b98a12c4",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"built_in_keypad_input\",\n  \"execution_mode\": \"async\",\n  \"endpoint_method\": \"GET\",\n  \"endpoint_url\": \"<uri>\",\n  \"endpoint_headers\": {\n    \"key_0\": \"<string>\"\n  },\n  \"endpoint_timeout_ms\": 5000,\n  \"tool_call_output_timeout_ms\": 5000,\n  \"phone_number\": \"<string,null>\",\n  \"dtmf\": \"<string,null>\",\n  \"dynamic_dtmf\": false,\n  \"use_agent_phone_number\": true,\n  \"detect_voicemail\": false,\n  \"agents_to_transfer_to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"require_speech_before_tool_call\": false,\n  \"speech_before_tool_call\": \"required\",\n  \"wait_for_speech_before_tool_call\": false,\n  \"forbid_speech_after_tool_call\": false,\n  \"allow_tool_chaining\": true,\n  \"wait_for_response\": false,\n  \"context\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77544dbd-bef2-4dfe-803f-91e9cc79e77c",
+              "name": "Agent authentication cannot create tools",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"built_in_keypad_input\",\n  \"execution_mode\": \"async\",\n  \"endpoint_method\": \"GET\",\n  \"endpoint_url\": \"<uri>\",\n  \"endpoint_headers\": {\n    \"key_0\": \"<string>\"\n  },\n  \"endpoint_timeout_ms\": 5000,\n  \"tool_call_output_timeout_ms\": 5000,\n  \"phone_number\": \"<string,null>\",\n  \"dtmf\": \"<string,null>\",\n  \"dynamic_dtmf\": false,\n  \"use_agent_phone_number\": true,\n  \"detect_voicemail\": false,\n  \"agents_to_transfer_to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"require_speech_before_tool_call\": false,\n  \"speech_before_tool_call\": \"required\",\n  \"wait_for_speech_before_tool_call\": false,\n  \"forbid_speech_after_tool_call\": false,\n  \"allow_tool_chaining\": true,\n  \"wait_for_response\": false,\n  \"context\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c65b8e39-1b04-4206-9e1d-e65da796a048",
+              "name": "Tool name already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"built_in_keypad_input\",\n  \"execution_mode\": \"async\",\n  \"endpoint_method\": \"GET\",\n  \"endpoint_url\": \"<uri>\",\n  \"endpoint_headers\": {\n    \"key_0\": \"<string>\"\n  },\n  \"endpoint_timeout_ms\": 5000,\n  \"tool_call_output_timeout_ms\": 5000,\n  \"phone_number\": \"<string,null>\",\n  \"dtmf\": \"<string,null>\",\n  \"dynamic_dtmf\": false,\n  \"use_agent_phone_number\": true,\n  \"detect_voicemail\": false,\n  \"agents_to_transfer_to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"require_speech_before_tool_call\": false,\n  \"speech_before_tool_call\": \"required\",\n  \"wait_for_speech_before_tool_call\": false,\n  \"forbid_speech_after_tool_call\": false,\n  \"allow_tool_chaining\": true,\n  \"wait_for_response\": false,\n  \"context\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "876eee87-c5cf-407e-a090-6e7fe1861341",
+          "name": "Get",
+          "request": {
+            "name": "Get",
+            "description": {
+              "content": "Returns a tool by name or ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tools",
+                ":nameOrId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "main",
+                  "description": "The name of the project containing the tool. Only used when `nameOrId` is a name."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "nameOrId",
+                  "description": "(Required) The name or the ID of the tool to get."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "24fe0d85-083f-429f-a89f-e808e671b5aa",
+              "name": "Success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the tool to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tool\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"project\": {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    },\n    \"type\": \"built_in_choose_not_to_respond\",\n    \"parameters\": [\n      {\n        \"type\": \"integer\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"is_required\": true,\n        \"item_type\": \"string\",\n        \"location\": \"query_string\"\n      },\n      {\n        \"type\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"is_required\": true,\n        \"item_type\": \"string\",\n        \"location\": \"request_body\"\n      }\n    ],\n    \"execution_mode\": \"async\",\n    \"endpoint_method\": \"GET\",\n    \"endpoint_url\": \"http://hfqqVFZZckSaaBSc.qbvIErv8TE7h3TweiqZ\",\n    \"endpoint_headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"endpoint_timeout_ms\": 909,\n    \"tool_call_output_timeout_ms\": 8771,\n    \"phone_number\": \"string\",\n    \"dtmf\": \"string\",\n    \"dynamic_dtmf\": false,\n    \"use_agent_phone_number\": true,\n    \"detect_voicemail\": false,\n    \"agents_to_transfer_to\": [\n      \"string\",\n      \"string\"\n    ],\n    \"require_speech_before_tool_call\": false,\n    \"speech_before_tool_call\": \"required\",\n    \"wait_for_speech_before_tool_call\": false,\n    \"forbid_speech_after_tool_call\": false,\n    \"allow_tool_chaining\": true,\n    \"wait_for_response\": false,\n    \"context\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54bf38c5-7578-4b26-b188-6aaedbb00c74",
+              "name": "Forbidden (resource belongs to a different organization)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the tool to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5cb110b-ec42-493e-b669-d1cf2813575b",
+              "name": "Tool not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the tool to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4d7107f-3a8c-42f2-91b0-7bfe2e0e7213",
+          "name": "Delete",
+          "request": {
+            "name": "Delete",
+            "description": {
+              "content": "Deletes a tool by name or ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tools",
+                ":nameOrId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "main",
+                  "description": "The name of the project containing the tool. Only used when `nameOrId` is a name."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "nameOrId",
+                  "description": "(Required) The name or the ID of the tool to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea5bdfe4-97d9-4955-94d3-8838a590cb06",
+              "name": "Success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the tool to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e4939b4-f652-465b-88fd-55dbf43320f0",
+              "name": "Tool not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the tool to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1f9e1e7-5777-4e83-8249-4655aa8e3cd2",
+          "name": "Update",
+          "request": {
+            "name": "Update",
+            "description": {
+              "content": "Updates a tool by name or ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tools",
+                ":nameOrId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "main",
+                  "description": "The name of the project containing the tool. Only used when `nameOrId` is a name."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "nameOrId",
+                  "description": "(Required) The name or the ID of the tool to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"execution_mode\": \"<string>\",\n  \"context\": \"<string>\",\n  \"parameters\": [\n    {\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"is_required\": \"<boolean>\",\n      \"item_type\": \"<string>\",\n      \"location\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"is_required\": \"<boolean>\",\n      \"item_type\": \"<string>\",\n      \"location\": \"<string>\"\n    }\n  ],\n  \"endpoint_method\": \"<string>\",\n  \"endpoint_url\": \"<uri>\",\n  \"endpoint_headers\": {\n    \"key_0\": \"<string>\"\n  },\n  \"endpoint_timeout_ms\": \"<integer>\",\n  \"tool_call_output_timeout_ms\": \"<integer>\",\n  \"phone_number\": \"<string,null>\",\n  \"dtmf\": \"<string,null>\",\n  \"dynamic_dtmf\": \"<boolean>\",\n  \"use_agent_phone_number\": \"<boolean>\",\n  \"detect_voicemail\": \"<boolean>\",\n  \"agents_to_transfer_to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"require_speech_before_tool_call\": \"<boolean>\",\n  \"speech_before_tool_call\": \"<string>\",\n  \"wait_for_speech_before_tool_call\": \"<boolean>\",\n  \"forbid_speech_after_tool_call\": \"<boolean>\",\n  \"allow_tool_chaining\": \"<boolean>\",\n  \"wait_for_response\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d013806a-b1af-41f5-b176-d9f0d450a0c2",
+              "name": "Success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the tool to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"execution_mode\": \"sync\",\n  \"context\": \"<string>\",\n  \"parameters\": [\n    {\n      \"type\": \"number\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"is_required\": false,\n      \"item_type\": \"number\",\n      \"location\": \"request_body\"\n    },\n    {\n      \"type\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"is_required\": false,\n      \"item_type\": \"integer\",\n      \"location\": \"request_body\"\n    }\n  ],\n  \"endpoint_method\": \"GET\",\n  \"endpoint_url\": \"<uri>\",\n  \"endpoint_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"endpoint_timeout_ms\": \"<integer>\",\n  \"tool_call_output_timeout_ms\": \"<integer>\",\n  \"phone_number\": \"<string,null>\",\n  \"dtmf\": \"<string,null>\",\n  \"dynamic_dtmf\": \"<boolean>\",\n  \"use_agent_phone_number\": \"<boolean>\",\n  \"detect_voicemail\": \"<boolean>\",\n  \"agents_to_transfer_to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"require_speech_before_tool_call\": \"<boolean>\",\n  \"speech_before_tool_call\": \"required\",\n  \"wait_for_speech_before_tool_call\": \"<boolean>\",\n  \"forbid_speech_after_tool_call\": \"<boolean>\",\n  \"allow_tool_chaining\": \"<boolean>\",\n  \"wait_for_response\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "984b9cea-3009-4ad4-b404-a380f0a1f15a",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the tool to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"execution_mode\": \"sync\",\n  \"context\": \"<string>\",\n  \"parameters\": [\n    {\n      \"type\": \"number\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"is_required\": false,\n      \"item_type\": \"number\",\n      \"location\": \"request_body\"\n    },\n    {\n      \"type\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"is_required\": false,\n      \"item_type\": \"integer\",\n      \"location\": \"request_body\"\n    }\n  ],\n  \"endpoint_method\": \"GET\",\n  \"endpoint_url\": \"<uri>\",\n  \"endpoint_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"endpoint_timeout_ms\": \"<integer>\",\n  \"tool_call_output_timeout_ms\": \"<integer>\",\n  \"phone_number\": \"<string,null>\",\n  \"dtmf\": \"<string,null>\",\n  \"dynamic_dtmf\": \"<boolean>\",\n  \"use_agent_phone_number\": \"<boolean>\",\n  \"detect_voicemail\": \"<boolean>\",\n  \"agents_to_transfer_to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"require_speech_before_tool_call\": \"<boolean>\",\n  \"speech_before_tool_call\": \"required\",\n  \"wait_for_speech_before_tool_call\": \"<boolean>\",\n  \"forbid_speech_after_tool_call\": \"<boolean>\",\n  \"allow_tool_chaining\": \"<boolean>\",\n  \"wait_for_response\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d21f921d-ce81-4595-8de4-c07ac4f3898d",
+              "name": "Tool not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the tool to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"execution_mode\": \"sync\",\n  \"context\": \"<string>\",\n  \"parameters\": [\n    {\n      \"type\": \"number\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"is_required\": false,\n      \"item_type\": \"number\",\n      \"location\": \"request_body\"\n    },\n    {\n      \"type\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"is_required\": false,\n      \"item_type\": \"integer\",\n      \"location\": \"request_body\"\n    }\n  ],\n  \"endpoint_method\": \"GET\",\n  \"endpoint_url\": \"<uri>\",\n  \"endpoint_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"endpoint_timeout_ms\": \"<integer>\",\n  \"tool_call_output_timeout_ms\": \"<integer>\",\n  \"phone_number\": \"<string,null>\",\n  \"dtmf\": \"<string,null>\",\n  \"dynamic_dtmf\": \"<boolean>\",\n  \"use_agent_phone_number\": \"<boolean>\",\n  \"detect_voicemail\": \"<boolean>\",\n  \"agents_to_transfer_to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"require_speech_before_tool_call\": \"<boolean>\",\n  \"speech_before_tool_call\": \"required\",\n  \"wait_for_speech_before_tool_call\": \"<boolean>\",\n  \"forbid_speech_after_tool_call\": \"<boolean>\",\n  \"allow_tool_chaining\": \"<boolean>\",\n  \"wait_for_response\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "904ec73f-edab-48c7-a2b6-bb306165e7f3",
+              "name": "Tool name already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools",
+                    ":nameOrId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "main"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nameOrId",
+                      "description": "(Required) The name or the ID of the tool to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication header of the form `Bearer <PHONIC_API_KEY>`. Manage your API keys [here](https://phonic.co/api-keys).",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"execution_mode\": \"sync\",\n  \"context\": \"<string>\",\n  \"parameters\": [\n    {\n      \"type\": \"number\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"is_required\": false,\n      \"item_type\": \"number\",\n      \"location\": \"request_body\"\n    },\n    {\n      \"type\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"is_required\": false,\n      \"item_type\": \"integer\",\n      \"location\": \"request_body\"\n    }\n  ],\n  \"endpoint_method\": \"GET\",\n  \"endpoint_url\": \"<uri>\",\n  \"endpoint_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"endpoint_timeout_ms\": \"<integer>\",\n  \"tool_call_output_timeout_ms\": \"<integer>\",\n  \"phone_number\": \"<string,null>\",\n  \"dtmf\": \"<string,null>\",\n  \"dynamic_dtmf\": \"<boolean>\",\n  \"use_agent_phone_number\": \"<boolean>\",\n  \"detect_voicemail\": \"<boolean>\",\n  \"agents_to_transfer_to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"require_speech_before_tool_call\": \"<boolean>\",\n  \"speech_before_tool_call\": \"required\",\n  \"wait_for_speech_before_tool_call\": \"<boolean>\",\n  \"forbid_speech_after_tool_call\": \"<boolean>\",\n  \"allow_tool_chaining\": \"<boolean>\",\n  \"wait_for_response\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\"\n  },\n  \"param_errors\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.phonic.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1f069dcc-b1ec-4647-ad1b-29f96886382a",
+    "name": "API Reference agents tools API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

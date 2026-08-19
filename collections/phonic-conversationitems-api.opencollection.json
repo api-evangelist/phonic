@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference agents conversationItems API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "conversationItems",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Replay",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phonic.ai/v1/conversation_items/:id/replay",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the conversation item to replay."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the alternative response(s) the assistant would have\nproduced for this conversation turn given changes to the agent system prompt.\n\nOnly assistant items from ended conversations can be replayed. The\nconversation must have an associated agent.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
