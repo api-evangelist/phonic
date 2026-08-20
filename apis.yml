@@ -40,6 +40,15 @@ tags:
 - Speech
 - Voice Agents
 - Telephony
+- Speech to Speech
+tags_raw:
+- Company
+- Artificial Intelligence
+- Voice AI
+- Conversational AI
+- Speech
+- Voice Agents
+- Telephony
 - Speech To Speech
 apis:
 - aid: phonic:phonic-agents-api
@@ -48,6 +57,8 @@ apis:
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
   tags:
+  - Agents
+  tags_raw:
   - agents
   properties:
   - type: OpenAPI
@@ -66,6 +77,8 @@ apis:
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
   tags:
+  - APIKeys
+  tags_raw:
   - apiKeys
   properties:
   - type: OpenAPI
@@ -84,6 +97,8 @@ apis:
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
   tags:
+  - Authentication
+  tags_raw:
   - auth
   properties:
   - type: OpenAPI
@@ -101,7 +116,8 @@ apis:
   description: The conversationItems API from Phonic — 1 operation(s) for conversationitems.
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
-  tags:
+  tags: []
+  tags_raw:
   - conversationItems
   properties:
   - type: OpenAPI
@@ -120,6 +136,8 @@ apis:
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
   tags:
+  - Conversations
+  tags_raw:
   - conversations
   properties:
   - type: OpenAPI
@@ -137,7 +155,8 @@ apis:
   description: The extractionSchemas API from Phonic — 2 operation(s) for extractionschemas.
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
-  tags:
+  tags: []
+  tags_raw:
   - extractionSchemas
   properties:
   - type: OpenAPI
@@ -156,6 +175,8 @@ apis:
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
   tags:
+  - Project
+  tags_raw:
   - projects
   properties:
   - type: OpenAPI
@@ -174,6 +195,8 @@ apis:
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
   tags:
+  - Tools
+  tags_raw:
   - tools
   properties:
   - type: OpenAPI
@@ -192,6 +215,8 @@ apis:
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
   tags:
+  - Voices
+  tags_raw:
   - voices
   properties:
   - type: OpenAPI
@@ -210,6 +235,8 @@ apis:
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
   tags:
+  - Workspace
+  tags_raw:
   - workspace
   properties:
   - type: OpenAPI
