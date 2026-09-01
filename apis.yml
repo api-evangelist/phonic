@@ -52,7 +52,7 @@ tags:
 - Speech
 - Voice Agents
 - Telephony
-- Speech To Speech
+- Speech to Speech
 tags_raw:
 - Company
 - Artificial Intelligence
@@ -227,7 +227,7 @@ apis:
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
   tags:
-  - voices
+  - Voices
   tags_raw:
   - voices
   properties:
