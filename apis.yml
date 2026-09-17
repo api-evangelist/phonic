@@ -85,26 +85,6 @@ apis:
     url: https://docs.phonic.co/api-reference
   - type: GettingStarted
     url: https://docs.phonic.co/docs/get-started/quick-start
-- aid: phonic:phonic-apikeys-api
-  name: Phonic apiKeys API
-  description: The apiKeys API from Phonic — 3 operation(s) for apikeys.
-  humanURL: https://docs.phonic.co/
-  baseURL: https://api.phonic.ai/v1
-  tags:
-  - APIKeys
-  tags_raw:
-  - apiKeys
-  properties:
-  - type: OpenAPI
-    url: openapi/phonic-apikeys-api-openapi.yml
-  - type: AsyncAPI
-    url: asyncapi/phonic-sts-asyncapi-original.yaml
-  - type: Documentation
-    url: https://docs.phonic.co/
-  - type: APIReference
-    url: https://docs.phonic.co/api-reference
-  - type: GettingStarted
-    url: https://docs.phonic.co/docs/get-started/quick-start
 - aid: phonic:phonic-auth-api
   name: Phonic auth API
   description: The auth API from Phonic — 2 operation(s) for auth.
@@ -255,6 +235,24 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/phonic-workspace-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/phonic-sts-asyncapi-original.yaml
+  - type: Documentation
+    url: https://docs.phonic.co/
+  - type: APIReference
+    url: https://docs.phonic.co/api-reference
+  - type: GettingStarted
+    url: https://docs.phonic.co/docs/get-started/quick-start
+- aid: phonic:phonic-api-keys-api
+  name: Phonic API Keys API
+  description: The API Keys API from Phonic — 3 operation(s) for api keys.
+  humanURL: https://docs.phonic.co/
+  baseURL: https://api.phonic.ai/v1
+  tags:
+  - API Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/phonic-api-keys-api-openapi.yml
   - type: AsyncAPI
     url: asyncapi/phonic-sts-asyncapi-original.yaml
   - type: Documentation
