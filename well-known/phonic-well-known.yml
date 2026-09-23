@@ -1,9 +1,14 @@
-generated: '2026-07-20'
+generated: '2026-09-19'
 method: searched
-note: >-
-  Probed the API host (api.phonic.ai) and the marketing/app host (phonic.co ->
-  redirects to phonic.ai). No /.well-known discovery documents are published; all probes
-  returned 404 (or 308 redirect to phonic.ai which then 404s). Recorded as valid absence.
+note: 'Probed the API host (api.phonic.ai) and the marketing/app host (phonic.co -> redirects to phonic.ai).
+  No /.well-known discovery documents are published; all probes returned 404 (or 308 redirect to phonic.ai
+  which then 404s). Recorded as valid absence.
+
+
+  MCP-host OAuth discovery added 2026-09-19 (roadmap#321/#337): the harvest visits a provider''s primary
+  hosts, and RFC 9728 protected-resource metadata lives on the MCP host, so these documents existed and
+  were invisible to the scorer. Fetched live and validated on `resource`/`issuer`; one negative control
+  per host.'
 hosts:
 - host: https://api.phonic.ai
   documents:
@@ -23,3 +28,29 @@ hosts:
     status: 404
   - path: /.well-known/openid-configuration
     status: 404
+- host: https://mcp.phonic.ai
+  documents:
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: phonic-mcp-oauth-protected-resource.json
+    bytes: 91
+  path_echo_control: passed
+- host: https://auth.phonic.ai
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: phonic-auth-oauth-authorization-server.json
+    bytes: 855
+  path_echo_control: passed
+x-mcp-probe:
+  probed: '2026-09-19'
+  issue: roadmap#321, roadmap#337
+  documents:
+  - host: https://mcp.phonic.ai
+    path: /.well-known/oauth-protected-resource
+    file: phonic-mcp-oauth-protected-resource.json
+  - host: https://auth.phonic.ai
+    path: /.well-known/oauth-authorization-server
+    file: phonic-auth-oauth-authorization-server.json
+  validated_on: resource (RFC 9728) / issuer (RFC 8414, OIDC)
+  negative_control: one per host; a 2xx JSON object at an impossible path discards the host

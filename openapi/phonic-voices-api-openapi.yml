@@ -1,12 +1,12 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference agents voices API
+  title: Reference Voices API
   version: 1.0.0
 servers:
 - url: https://api.phonic.ai/v1
   description: https://api.phonic.ai/v1
 tags:
-- name: voices
+- name: Voices
 paths:
   /voices:
     get:
@@ -14,7 +14,7 @@ paths:
       summary: List
       description: Returns all available voices for a model.
       tags:
-      - voices
+      - Voices
       parameters:
       - name: model
         in: query
@@ -59,7 +59,7 @@ paths:
       summary: Get
       description: Returns a voice by ID.
       tags:
-      - voices
+      - Voices
       parameters:
       - name: id
         in: path
@@ -94,38 +94,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    voices_get_Response_200:
-      type: object
-      properties:
-        voice:
-          $ref: '#/components/schemas/Voice'
-      required:
-      - voice
-      title: voices_get_Response_200
-    VoicesGetParametersModel:
-      type: string
-      enum:
-      - merritt
-      title: VoicesGetParametersModel
-    ValidationError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/ValidationErrorError'
-        param_errors:
-          type: object
-          additionalProperties:
-            type: string
-          description: Parameter-specific validation errors
-      required:
-      - error
-      - param_errors
-      title: ValidationError
-    Error:
-      oneOf:
-      - $ref: '#/components/schemas/BasicError'
-      - $ref: '#/components/schemas/ValidationError'
-      title: Error
     BasicErrorError:
       type: object
       properties:
@@ -138,21 +106,6 @@ components:
       required:
       - message
       title: BasicErrorError
-    BasicError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/BasicErrorError'
-      title: BasicError
-    ValidationErrorError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message
-      required:
-      - message
-      title: ValidationErrorError
     Voice:
       type: object
       properties:
@@ -177,6 +130,21 @@ components:
       - description
       - audio_url
       title: Voice
+    ValidationErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+      required:
+      - message
+      title: ValidationErrorError
+    BasicError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
     voices_list_Response_200:
       type: object
       properties:
@@ -187,6 +155,38 @@ components:
       required:
       - voices
       title: voices_list_Response_200
+    VoicesGetParametersModel:
+      type: string
+      enum:
+      - merritt
+      title: VoicesGetParametersModel
+    Error:
+      oneOf:
+      - $ref: '#/components/schemas/BasicError'
+      - $ref: '#/components/schemas/ValidationError'
+      title: Error
+    voices_get_Response_200:
+      type: object
+      properties:
+        voice:
+          $ref: '#/components/schemas/Voice'
+      required:
+      - voice
+      title: voices_get_Response_200
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
   securitySchemes:
     bearerAuth:
       type: http

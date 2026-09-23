@@ -1,16 +1,7 @@
 {
   "provider": "phonic",
   "sources": [
-    "phonic-agents-api-openapi.yml",
-    "phonic-apikeys-api-openapi.yml",
-    "phonic-auth-api-openapi.yml",
-    "phonic-conversationitems-api-openapi.yml",
-    "phonic-conversations-api-openapi.yml",
-    "phonic-extractionschemas-api-openapi.yml",
-    "phonic-projects-api-openapi.yml",
-    "phonic-tools-api-openapi.yml",
-    "phonic-voices-api-openapi.yml",
-    "phonic-workspace-api-openapi.yml"
+    "_original/phonic-openapi-original.yaml"
   ],
   "outputs": [
     "phonic-agents-api-openapi.yml",
@@ -24,9 +15,37 @@
     "phonic-voices-api-openapi.yml",
     "phonic-workspace-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "phonic-openapi-original.yaml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "phonic-openapi-original.yaml: declared missing tag: agents",
+    "phonic-openapi-original.yaml: declared missing tag: apiKeys",
+    "phonic-openapi-original.yaml: declared missing tag: auth",
+    "phonic-openapi-original.yaml: declared missing tag: conversationItems",
+    "phonic-openapi-original.yaml: declared missing tag: conversations",
+    "phonic-openapi-original.yaml: declared missing tag: extractionSchemas",
+    "phonic-openapi-original.yaml: declared missing tag: projects",
+    "phonic-openapi-original.yaml: declared missing tag: tools",
+    "phonic-openapi-original.yaml: declared missing tag: voices",
+    "phonic-openapi-original.yaml: declared missing tag: workspace",
+    "superseded outputs removed: phonic-api-keys-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 10 total)"
+  ],
+  "skipped": [
+    "phonic-agents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "phonic-api-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "phonic-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "phonic-conversationitems-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "phonic-conversations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "phonic-extractionschemas-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "phonic-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "phonic-tools-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "phonic-voices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "phonic-workspace-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

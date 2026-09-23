@@ -1,12 +1,12 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference agents conversations API
+  title: Reference Conversations API
   version: 1.0.0
 servers:
 - url: https://api.phonic.ai/v1
   description: https://api.phonic.ai/v1
 tags:
-- name: conversations
+- name: Conversations
 paths:
   /conversations:
     get:
@@ -14,7 +14,7 @@ paths:
       summary: List
       description: Returns conversations with optional filtering.
       tags:
-      - conversations
+      - Conversations
       parameters:
       - name: project
         in: query
@@ -130,7 +130,7 @@ paths:
       summary: Get
       description: Returns a conversation by ID.
       tags:
-      - conversations
+      - Conversations
       parameters:
       - name: id
         in: path
@@ -187,7 +187,7 @@ paths:
       summary: Delete
       description: Deletes a conversation, scheduling its transcripts and audio recordings for deletion. The conversation must have ended.
       tags:
-      - conversations
+      - Conversations
       parameters:
       - name: id
         in: path
@@ -244,7 +244,7 @@ paths:
       summary: Cancel
       description: Cancels an active conversation.
       tags:
-      - conversations
+      - Conversations
       parameters:
       - name: id
         in: path
@@ -307,7 +307,7 @@ paths:
       summary: Get Analysis
       description: Returns an analysis of the specified conversation.
       tags:
-      - conversations
+      - Conversations
       parameters:
       - name: id
         in: path
@@ -358,7 +358,7 @@ paths:
       summary: List Extractions
       description: Returns all extractions for a conversation.
       tags:
-      - conversations
+      - Conversations
       parameters:
       - name: id
         in: path
@@ -408,7 +408,7 @@ paths:
       summary: Extract Data
       description: Extracts data from a conversation using a schema.
       tags:
-      - conversations
+      - Conversations
       parameters:
       - name: id
         in: path
@@ -470,7 +470,7 @@ paths:
       summary: List Evaluations
       description: Returns all evaluations for a conversation.
       tags:
-      - conversations
+      - Conversations
       parameters:
       - name: id
         in: path
@@ -520,7 +520,7 @@ paths:
       summary: Evaluate
       description: Evaluates a conversation using an evaluation prompt.
       tags:
-      - conversations
+      - Conversations
       parameters:
       - name: id
         in: path
@@ -582,7 +582,7 @@ paths:
       summary: Outbound Call
       description: Initiates a call to a given phone number using Phonic's Twilio account.
       tags:
-      - conversations
+      - Conversations
       parameters:
       - name: Authorization
         in: header
@@ -632,7 +632,7 @@ paths:
       summary: Sip Outbound Call
       description: Initiates a SIP outbound call using user-supplied SIP credentials in headers.
       tags:
-      - conversations
+      - Conversations
       parameters:
       - name: Authorization
         in: header
@@ -720,11 +720,9 @@ paths:
 
         have audio recordings available and an associated agent (or one specified in
 
-        the request body).
-
-        '
+        the request body).'
       tags:
-      - conversations
+      - Conversations
       parameters:
       - name: id
         in: path
@@ -806,6 +804,191 @@ paths:
               $ref: '#/components/schemas/ReplayConversationRequest'
 components:
   schemas:
+    BasicErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - message
+      title: BasicErrorError
+    BasicError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
+    OutboundCallConfigToolsItems:
+      oneOf:
+      - $ref: '#/components/schemas/OutboundCallConfigToolsItems0'
+      - type: string
+      title: OutboundCallConfigToolsItems
+    ConversationEvaluationResultResult:
+      type: string
+      enum:
+      - successful
+      - unsuccessful
+      - undecided
+      - error
+      description: The evaluation result.
+      title: ConversationEvaluationResultResult
+    conversations_list_extractions_Response_200:
+      type: object
+      properties:
+        extractions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationExtraction'
+      required:
+      - extractions
+      title: conversations_list_extractions_Response_200
+    conversations_delete_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the conversation was deleted successfully.
+      required:
+      - success
+      title: conversations_delete_Response_200
+    ConversationsIdEvalsPostResponsesContentApplicationJsonSchemaEvaluationResult:
+      type: string
+      enum:
+      - successful
+      - unsuccessful
+      - undecided
+      - error
+      description: The evaluation result.
+      title: ConversationsIdEvalsPostResponsesContentApplicationJsonSchemaEvaluationResult
+    DataRetentionPolicy:
+      oneOf:
+      - $ref: '#/components/schemas/DataRetentionPolicy0'
+      - $ref: '#/components/schemas/DataRetentionPolicy1'
+      description: 'Controls how long transcripts and audio recordings are retained before deletion.
+
+        When `zero_data_retention` is `true`, nothing is retained and `transcripts`/`audio_recordings` are omitted.
+
+        '
+      title: DataRetentionPolicy
+    OutboundCallConfigPronunciationDictionaryItems:
+      type: object
+      properties:
+        word:
+          type: string
+        pronunciation:
+          type: string
+      required:
+      - word
+      - pronunciation
+      title: OutboundCallConfigPronunciationDictionaryItems
+    ConversationItemToolCallsItems:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The tool call ID.
+        tool:
+          $ref: '#/components/schemas/ConversationItemToolCallsItemsTool'
+        integration:
+          type:
+          - string
+          - 'null'
+          description: The integration associated with the tool, if any.
+        endpoint_method:
+          type:
+          - string
+          - 'null'
+          description: HTTP method for webhook tool calls.
+        endpoint_url:
+          type:
+          - string
+          - 'null'
+          description: URL for webhook tool calls.
+        endpoint_headers:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: Headers for webhook tool calls.
+        endpoint_timeout_ms:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: Timeout in milliseconds for webhook tool calls.
+        endpoint_called_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the webhook endpoint was called (null on error).
+        query_params:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            description: Any type
+          description: Query parameters for webhook tool calls (null on error or when no params).
+        response_status_code:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: HTTP response status code for webhook tool calls (null on error).
+        tool_call_output_timeout_ms:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: Timeout in milliseconds for websocket tool calls.
+        request_body:
+          oneOf:
+          - $ref: '#/components/schemas/ConversationItemToolCallsItemsRequestBody'
+          - type: 'null'
+          description: The request body sent to the tool. Can be any JSON-serializable value.
+        response_body:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            description: Any type
+          description: The response body received from the tool.
+        timed_out:
+          type:
+          - boolean
+          - 'null'
+          description: Whether the tool call timed out.
+        error_message:
+          type:
+          - string
+          - 'null'
+          description: Error message if the tool call failed.
+      required:
+      - id
+      - tool
+      - request_body
+      - response_body
+      - timed_out
+      - error_message
+      title: ConversationItemToolCallsItems
+    conversations_list_Response_200:
+      oneOf:
+      - $ref: '#/components/schemas/ListConversationsResponse'
+      - $ref: '#/components/schemas/GetConversationByExternalIdResponse'
+      title: conversations_list_Response_200
+    SipCallErrorErrorCode:
+      type: string
+      enum:
+      - sip_call_failed
+      - sip_auth_failed
+      - invalid_phone_number
+      description: Machine-readable error code.
+      title: SipCallErrorErrorCode
     ConversationItem:
       type: object
       properties:
@@ -865,16 +1048,357 @@ components:
       - duration_ms
       - started_at
       title: ConversationItem
-    DataRetentionPolicy0:
+    LanguageCode:
+      type: string
+      enum:
+      - ar
+      - az
+      - bg
+      - bn
+      - cs
+      - da
+      - de
+      - el
+      - en
+      - es
+      - fa
+      - fi
+      - fil
+      - fr
+      - gu
+      - he
+      - hi
+      - hu
+      - id
+      - it
+      - ja
+      - ka
+      - km
+      - kn
+      - ko
+      - lt
+      - lv
+      - ml
+      - mr
+      - ms
+      - ne
+      - nl
+      - 'no'
+      - pa
+      - pl
+      - pt
+      - ro
+      - ru
+      - si
+      - sk
+      - sq
+      - sv
+      - sw
+      - ta
+      - te
+      - th
+      - tr
+      - uk
+      - ur
+      - vi
+      - yue
+      - zh
+      description: ISO 639-1 language codes supported by the agent
+      title: LanguageCode
+    conversations_sip_outbound_call_Response_200:
+      oneOf:
+      - $ref: '#/components/schemas/SipOutboundDryRunResponse'
+      - $ref: '#/components/schemas/SipOutboundCallInitiatedResponse'
+      title: conversations_sip_outbound_call_Response_200
+    DataRetentionPolicyOneOf1AudioRecordings:
       type: object
       properties:
-        zero_data_retention:
-          type: boolean
-          description: When `true`, no transcripts or audio recordings are retained.
+        delete_after_hours:
+          type:
+          - integer
+          - 'null'
+          description: Number of hours after which audio recordings are deleted. Null means audio recordings are retained indefinitely.
       required:
-      - zero_data_retention
-      description: Zero data retention mode. No transcripts or audio recordings are retained.
-      title: DataRetentionPolicy0
+      - delete_after_hours
+      title: DataRetentionPolicyOneOf1AudioRecordings
+    OutboundCallConfigBackgroundNoise:
+      type: string
+      enum:
+      - office
+      - call-center
+      - coffee-shop
+      description: The background noise type. Can be "office", "call-center", "coffee-shop", or null.
+      title: OutboundCallConfigBackgroundNoise
+    ConversationEvaluationResult:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The evaluation ID.
+        result:
+          $ref: '#/components/schemas/ConversationEvaluationResultResult'
+          description: The evaluation result.
+        prompt:
+          $ref: '#/components/schemas/ConversationEvaluationResultPrompt'
+          description: The evaluation prompt information.
+        created_at:
+          type: string
+          format: date-time
+          description: When the evaluation was created.
+      required:
+      - id
+      - result
+      - prompt
+      - created_at
+      title: ConversationEvaluationResult
+    EvaluateConversationRequest:
+      type: object
+      properties:
+        prompt_id:
+          type: string
+          description: ID of the evaluation prompt to use.
+      required:
+      - prompt_id
+      title: EvaluateConversationRequest
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
+    OutboundCallConfigConfigurationEndpoint:
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL to call
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: Object of key-value pairs.
+        timeout_ms:
+          type: integer
+          default: 3000
+          description: Timeout in milliseconds for the endpoint call.
+      required:
+      - url
+      description: When not `null`, at the beginning of the conversation the agent will make a POST request to this endpoint to get configuration options.
+      title: OutboundCallConfigConfigurationEndpoint
+    ConversationExtractionSchema:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        isDeleted:
+          type: boolean
+          description: Whether the extraction schema has been deleted.
+      required:
+      - id
+      - name
+      - isDeleted
+      title: ConversationExtractionSchema
+    ConversationProject:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the project.
+        name:
+          type: string
+          description: The name of the project.
+      required:
+      - id
+      - name
+      description: The project associated with the conversation.
+      title: ConversationProject
+    ConversationAgent:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the agent.
+        name:
+          type: string
+          description: The name of the agent.
+        is_deleted:
+          type: boolean
+          description: Whether the agent has been deleted.
+      required:
+      - id
+      - name
+      - is_deleted
+      description: The agent associated with the conversation.
+      title: ConversationAgent
+    ValidationErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+      required:
+      - message
+      title: ValidationErrorError
+    conversations_replay_Response_200:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Confirmation that the replay has started.
+      required:
+      - message
+      title: conversations_replay_Response_200
+    OutboundCallRequest:
+      type: object
+      properties:
+        to_phone_number:
+          type: string
+          description: The phone number to call in E.164 format.
+        config:
+          $ref: '#/components/schemas/OutboundCallConfig'
+        dry_run:
+          type: boolean
+          default: false
+          description: If true, validates the outbound call setup without placing a call. Returns HTTP 200 with `conversation_id` set to null.
+      required:
+      - to_phone_number
+      title: OutboundCallRequest
+    conversations_outbound_call_Response_200:
+      oneOf:
+      - $ref: '#/components/schemas/OutboundDryRunResponse'
+      - $ref: '#/components/schemas/OutboundCallInitiatedResponse'
+      title: conversations_outbound_call_Response_200
+    ConversationPronunciationDictionaryItems:
+      type: object
+      properties:
+        word:
+          type: string
+        pronunciation:
+          type: string
+      required:
+      - word
+      - pronunciation
+      title: ConversationPronunciationDictionaryItems
+    ConversationItemToolCallsItemsRequestBody:
+      oneOf:
+      - type: object
+        additionalProperties:
+          description: Any type
+      - type: array
+        items:
+          description: Any type
+      - type: string
+      - type: number
+        format: double
+      - type: boolean
+      description: The request body sent to the tool. Can be any JSON-serializable value.
+      title: ConversationItemToolCallsItemsRequestBody
+    OutboundCallConfigModel:
+      type: string
+      enum:
+      - merritt
+      default: merritt
+      description: The speech-to-speech model to use.
+      title: OutboundCallConfigModel
+    conversations_list_evaluations_Response_200:
+      type: object
+      properties:
+        evals:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationEvaluationResult'
+      required:
+      - evals
+      title: conversations_list_evaluations_Response_200
+    Error:
+      oneOf:
+      - $ref: '#/components/schemas/BasicError'
+      - $ref: '#/components/schemas/ValidationError'
+      title: Error
+    Task:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the task.
+        description:
+          type: string
+          description: The description of the task.
+      required:
+      - name
+      - description
+      title: Task
+    ListConversationsResponse:
+      type: object
+      properties:
+        conversations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Conversation'
+        pagination:
+          $ref: '#/components/schemas/ConversationsListResponseConversationsPagination'
+      required:
+      - conversations
+      - pagination
+      title: ListConversationsResponse
+    ConversationAnalysis:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the conversation analysis.
+        latencies_ms:
+          type: array
+          items:
+            type: number
+            format: double
+          description: Latencies between turns in milliseconds.
+        interruptions_count:
+          type: integer
+          description: Number of interruptions in the conversation.
+      required:
+      - id
+      - latencies_ms
+      - interruptions_count
+      title: ConversationAnalysis
+    ReplayConversationRequest:
+      type: object
+      properties:
+        agent:
+          type: string
+          description: Name of the agent to replay the conversation with. Defaults to the agent originally associated with the conversation.
+      title: ReplayConversationRequest
+    OutboundCallInitiatedResponse:
+      type: object
+      properties:
+        conversation_id:
+          type: string
+          description: The ID of the created conversation.
+        dry_run:
+          type: boolean
+          description: Always false when a call was placed.
+      required:
+      - conversation_id
+      - dry_run
+      title: OutboundCallInitiatedResponse
+    GetConversationByExternalIdResponse:
+      type: object
+      properties:
+        conversation:
+          $ref: '#/components/schemas/Conversation'
+      required:
+      - conversation
+      title: GetConversationByExternalIdResponse
     OutboundCallConfig:
       type: object
       properties:
@@ -1035,88 +1559,54 @@ components:
           description: Controls how long transcripts and audio recordings are retained before deletion.
       description: When an `agent` is provided, these `config` options override the agent settings.
       title: OutboundCallConfig
-    ConversationsGetParametersAudioContainer:
-      type: string
-      enum:
-      - wav.gz
-      - wav
-      default: wav.gz
-      title: ConversationsGetParametersAudioContainer
-    Task:
+    conversations_cancel_Response_200:
       type: object
       properties:
-        name:
-          type: string
-          description: The name of the task.
-        description:
-          type: string
-          description: The description of the task.
-      required:
-      - name
-      - description
-      title: Task
-    ConversationEvaluationResultPrompt:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-      required:
-      - id
-      - name
-      description: The evaluation prompt information.
-      title: ConversationEvaluationResultPrompt
-    ConversationBackgroundNoise:
-      type: string
-      enum:
-      - office
-      - call-center
-      - coffee-shop
-      description: The background noise type used in the conversation.
-      title: ConversationBackgroundNoise
-    DataRetentionPolicy1:
-      type: object
-      properties:
-        zero_data_retention:
+        success:
           type: boolean
-          description: Must be `false` for standard data retention.
-        transcripts:
-          $ref: '#/components/schemas/DataRetentionPolicyOneOf1Transcripts'
-        audio_recordings:
-          $ref: '#/components/schemas/DataRetentionPolicyOneOf1AudioRecordings'
+          description: Whether the conversation was cancelled successfully.
       required:
-      - zero_data_retention
-      - transcripts
-      - audio_recordings
-      description: Standard data retention with configurable deletion windows.
-      title: DataRetentionPolicy1
-    DataRetentionPolicyOneOf1AudioRecordings:
+      - success
+      title: conversations_cancel_Response_200
+    SipCallErrorError:
       type: object
       properties:
-        delete_after_hours:
-          type:
-          - integer
-          - 'null'
-          description: Number of hours after which audio recordings are deleted. Null means audio recordings are retained indefinitely.
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          $ref: '#/components/schemas/SipCallErrorErrorCode'
+          description: Machine-readable error code.
+        sip_status_code:
+          type: integer
+          description: The SIP response status code from the carrier (e.g. 403, 486, 603).
+        sip_status:
+          type: string
+          description: The SIP response reason phrase from the carrier (e.g. "Network Blocked", "Trunk CPS limit exceeded").
       required:
-      - delete_after_hours
-      title: DataRetentionPolicyOneOf1AudioRecordings
-    SipOutboundDryRunResponse:
+      - message
+      - code
+      - sip_status_code
+      - sip_status
+      title: SipCallErrorError
+    OutboundNumberPool:
       type: object
       properties:
-        conversation_id:
-          description: Always null when `dry_run` is true.
-        twilio_call_sid:
-          description: Always null when `dry_run` is true.
-        dry_run:
-          type: boolean
-          description: Always true for this response.
+        active:
+          type: array
+          items:
+            type: string
+          description: E.164 formatted phone numbers available for outbound calls.
+        blocked:
+          type: array
+          items:
+            type: string
+          description: E.164 formatted phone numbers that are blocked from being used.
       required:
-      - conversation_id
-      - twilio_call_sid
-      - dry_run
-      title: SipOutboundDryRunResponse
+      - active
+      - blocked
+      description: Pool of phone numbers used for outbound calls.
+      title: OutboundNumberPool
     Conversation:
       type: object
       properties:
@@ -1383,34 +1873,27 @@ components:
       - call_info
       - analysis
       title: Conversation
-    OutboundCallConfigBackgroundNoise:
+    PostConversationsSipOutboundCallRequestBadRequestError:
+      oneOf:
+      - $ref: '#/components/schemas/ValidationError'
+      - $ref: '#/components/schemas/BasicError'
+      - $ref: '#/components/schemas/SipCallError'
+      title: PostConversationsSipOutboundCallRequestBadRequestError
+    ConversationsGetParametersAudioContainer:
       type: string
       enum:
-      - office
-      - call-center
-      - coffee-shop
-      description: The background noise type. Can be "office", "call-center", "coffee-shop", or null.
-      title: OutboundCallConfigBackgroundNoise
-    ConversationAnalysis:
+      - wav.gz
+      - wav
+      default: wav.gz
+      title: ConversationsGetParametersAudioContainer
+    SipCallError:
       type: object
       properties:
-        id:
-          type: string
-          description: The ID of the conversation analysis.
-        latencies_ms:
-          type: array
-          items:
-            type: number
-            format: double
-          description: Latencies between turns in milliseconds.
-        interruptions_count:
-          type: integer
-          description: Number of interruptions in the conversation.
+        error:
+          $ref: '#/components/schemas/SipCallErrorError'
       required:
-      - id
-      - latencies_ms
-      - interruptions_count
-      title: ConversationAnalysis
+      - error
+      title: SipCallError
     DataRetentionPolicyOneOf1Transcripts:
       type: object
       properties:
@@ -1422,212 +1905,14 @@ components:
       required:
       - delete_after_hours
       title: DataRetentionPolicyOneOf1Transcripts
-    ConversationEndedBy:
-      type: string
-      enum:
-      - user
-      - user_canceled
-      - user_validation_failed
-      - assistant
-      - assistant_silence_limit_reached
-      - configuration_endpoint_timed_out
-      - configuration_endpoint_error
-      - configuration_endpoint_invalid_response
-      - error
-      description: Who or what ended the conversation.
-      title: ConversationEndedBy
-    conversations_list_Response_200:
-      oneOf:
-      - $ref: '#/components/schemas/ListConversationsResponse'
-      - $ref: '#/components/schemas/GetConversationByExternalIdResponse'
-      title: conversations_list_Response_200
-    GetConversationByExternalIdResponse:
+    conversations_evaluate_Response_201:
       type: object
       properties:
-        conversation:
-          $ref: '#/components/schemas/Conversation'
+        evaluation:
+          $ref: '#/components/schemas/ConversationsIdEvalsPostResponsesContentApplicationJsonSchemaEvaluation'
       required:
-      - conversation
-      title: GetConversationByExternalIdResponse
-    BasicErrorError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message
-        code:
-          type: string
-          description: Error code
-      required:
-      - message
-      title: BasicErrorError
-    OutboundCallInitiatedResponse:
-      type: object
-      properties:
-        conversation_id:
-          type: string
-          description: The ID of the created conversation.
-        dry_run:
-          type: boolean
-          description: Always false when a call was placed.
-      required:
-      - conversation_id
-      - dry_run
-      title: OutboundCallInitiatedResponse
-    ConversationCallInfo:
-      type: object
-      properties:
-        from_phone_number:
-          type: string
-          description: Caller phone number in E.164 format.
-        to_phone_number:
-          type: string
-          description: Callee phone number in E.164 format.
-        twilio_call_sid:
-          type: string
-          description: Twilio Call SID. Only present for user SIP trunking calls.
-      required:
-      - from_phone_number
-      - to_phone_number
-      description: Phone call metadata. `null` for non-phone call conversations.
-      title: ConversationCallInfo
-    OutboundCallRequest:
-      type: object
-      properties:
-        to_phone_number:
-          type: string
-          description: The phone number to call in E.164 format.
-        config:
-          $ref: '#/components/schemas/OutboundCallConfig'
-        dry_run:
-          type: boolean
-          default: false
-          description: If true, validates the outbound call setup without placing a call. Returns HTTP 200 with `conversation_id` set to null.
-      required:
-      - to_phone_number
-      title: OutboundCallRequest
-    ConversationItemToolCallsItemsRequestBody:
-      oneOf:
-      - type: object
-        additionalProperties:
-          description: Any type
-      - type: array
-        items:
-          description: Any type
-      - type: string
-      - type: number
-        format: double
-      - type: boolean
-      description: The request body sent to the tool. Can be any JSON-serializable value.
-      title: ConversationItemToolCallsItemsRequestBody
-    ConversationsIdGetParametersAudioContainer:
-      type: string
-      enum:
-      - wav.gz
-      - wav
-      default: wav.gz
-      title: ConversationsIdGetParametersAudioContainer
-    ListConversationsResponse:
-      type: object
-      properties:
-        conversations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Conversation'
-        pagination:
-          $ref: '#/components/schemas/ConversationsListResponseConversationsPagination'
-      required:
-      - conversations
-      - pagination
-      title: ListConversationsResponse
-    SipCallError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/SipCallErrorError'
-      required:
-      - error
-      title: SipCallError
-    ConversationEvaluationResultResult:
-      type: string
-      enum:
-      - successful
-      - unsuccessful
-      - undecided
-      - error
-      description: The evaluation result.
-      title: ConversationEvaluationResultResult
-    conversations_sip_outbound_call_Response_200:
-      oneOf:
-      - $ref: '#/components/schemas/SipOutboundDryRunResponse'
-      - $ref: '#/components/schemas/SipOutboundCallInitiatedResponse'
-      title: conversations_sip_outbound_call_Response_200
-    LanguageCode:
-      type: string
-      enum:
-      - ar
-      - az
-      - bg
-      - bn
-      - cs
-      - da
-      - de
-      - el
-      - en
-      - es
-      - fa
-      - fi
-      - fil
-      - fr
-      - gu
-      - he
-      - hi
-      - hu
-      - id
-      - it
-      - ja
-      - ka
-      - km
-      - kn
-      - ko
-      - lt
-      - lv
-      - ml
-      - mr
-      - ms
-      - ne
-      - nl
-      - 'no'
-      - pa
-      - pl
-      - pt
-      - ro
-      - ru
-      - si
-      - sk
-      - sq
-      - sv
-      - sw
-      - ta
-      - te
-      - th
-      - tr
-      - uk
-      - ur
-      - vi
-      - yue
-      - zh
-      description: ISO 639-1 language codes supported by the agent
-      title: LanguageCode
-    EvaluateConversationRequest:
-      type: object
-      properties:
-        prompt_id:
-          type: string
-          description: ID of the evaluation prompt to use.
-      required:
-      - prompt_id
-      title: EvaluateConversationRequest
+      - evaluation
+      title: conversations_evaluate_Response_201
     OutboundDryRunResponse:
       type: object
       properties:
@@ -1640,47 +1925,41 @@ components:
       - conversation_id
       - dry_run
       title: OutboundDryRunResponse
-    SipCallErrorErrorCode:
+    ConversationMultilingualMode:
       type: string
       enum:
-      - sip_call_failed
-      - sip_auth_failed
-      - invalid_phone_number
-      description: Machine-readable error code.
-      title: SipCallErrorErrorCode
-    conversations_evaluate_Response_201:
+      - auto
+      - request
+      - initial
+      default: request
+      description: If `"auto"`, each user audio is automatically identified for the language to respond in. If `"request"`, user must request to change language (recommended). If `"initial"` the first turn user audio determines the language for the rest of the conversation.
+      title: ConversationMultilingualMode
+    OutboundCallConfigMultilingualMode:
+      type: string
+      enum:
+      - auto
+      - request
+      - initial
+      default: request
+      description: If `"auto"`, each user audio is automatically identified for the language to respond in. If `"request"`, user must request to change language (recommended). If `"initial"` the first turn user audio determines the language for the rest of the conversation.
+      title: OutboundCallConfigMultilingualMode
+    ConversationsListResponseConversationsPagination:
       type: object
       properties:
-        evaluation:
-          $ref: '#/components/schemas/ConversationsIdEvalsPostResponsesContentApplicationJsonSchemaEvaluation'
+        prev_cursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor to fetch the previous page of conversations (newer). Use this value in the `before` query parameter. `null` if there is no previous page.
+        next_cursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor to fetch the next page of conversations (older). Use this value in the `after` query parameter. `null` if there is no next page.
       required:
-      - evaluation
-      title: conversations_evaluate_Response_201
-    conversations_outbound_call_Response_200:
-      oneOf:
-      - $ref: '#/components/schemas/OutboundDryRunResponse'
-      - $ref: '#/components/schemas/OutboundCallInitiatedResponse'
-      title: conversations_outbound_call_Response_200
-    conversations_cancel_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the conversation was cancelled successfully.
-      required:
-      - success
-      title: conversations_cancel_Response_200
-    ConversationPronunciationDictionaryItems:
-      type: object
-      properties:
-        word:
-          type: string
-        pronunciation:
-          type: string
-      required:
-      - word
-      - pronunciation
-      title: ConversationPronunciationDictionaryItems
+      - prev_cursor
+      - next_cursor
+      title: ConversationsListResponseConversationsPagination
     SipOutboundCallInitiatedResponse:
       type: object
       properties:
@@ -1698,12 +1977,6 @@ components:
       - twilio_call_sid
       - dry_run
       title: SipOutboundCallInitiatedResponse
-    BasicError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/BasicErrorError'
-      title: BasicError
     conversations_get_analysis_Response_200:
       type: object
       properties:
@@ -1712,21 +1985,80 @@ components:
       required:
       - analysis
       title: conversations_get_analysis_Response_200
-    ConversationExtractionSchema:
+    ConversationCallInfo:
+      type: object
+      properties:
+        from_phone_number:
+          type: string
+          description: Caller phone number in E.164 format.
+        to_phone_number:
+          type: string
+          description: Callee phone number in E.164 format.
+        twilio_call_sid:
+          type: string
+          description: Twilio Call SID. Only present for user SIP trunking calls.
+      required:
+      - from_phone_number
+      - to_phone_number
+      description: Phone call metadata. `null` for non-phone call conversations.
+      title: ConversationCallInfo
+    ConversationEvaluationResultPrompt:
       type: object
       properties:
         id:
           type: string
         name:
           type: string
-        isDeleted:
-          type: boolean
-          description: Whether the extraction schema has been deleted.
       required:
       - id
       - name
-      - isDeleted
-      title: ConversationExtractionSchema
+      description: The evaluation prompt information.
+      title: ConversationEvaluationResultPrompt
+    ConversationBackgroundNoise:
+      type: string
+      enum:
+      - office
+      - call-center
+      - coffee-shop
+      description: The background noise type used in the conversation.
+      title: ConversationBackgroundNoise
+    OutboundCallConfigToolsItems0:
+      type: string
+      enum:
+      - keypad_input
+      - natural_conversation_ending
+      description: Built-in tool
+      title: OutboundCallConfigToolsItems0
+    ConversationEndedBy:
+      type: string
+      enum:
+      - user
+      - user_canceled
+      - user_validation_failed
+      - assistant
+      - assistant_silence_limit_reached
+      - configuration_endpoint_timed_out
+      - configuration_endpoint_error
+      - configuration_endpoint_invalid_response
+      - error
+      description: Who or what ended the conversation.
+      title: ConversationEndedBy
+    OutboundCallConfigIntelligenceLevel:
+      type: string
+      enum:
+      - standard
+      - high
+      default: standard
+      description: The intelligence level of the agent. `high` uses a more capable model for more complex reasoning, while `standard` is optimized for lower latency.
+      title: OutboundCallConfigIntelligenceLevel
+    conversations_get_Response_200:
+      type: object
+      properties:
+        conversation:
+          $ref: '#/components/schemas/Conversation'
+      required:
+      - conversation
+      title: conversations_get_Response_200
     conversations_extract_data_Response_201:
       type: object
       properties:
@@ -1738,126 +2070,6 @@ components:
       required:
       - result
       title: conversations_extract_data_Response_201
-    Error:
-      oneOf:
-      - $ref: '#/components/schemas/BasicError'
-      - $ref: '#/components/schemas/ValidationError'
-      title: Error
-    OutboundCallConfigConfigurationEndpoint:
-      type: object
-      properties:
-        url:
-          type: string
-          description: URL to call
-        headers:
-          type: object
-          additionalProperties:
-            type: string
-          description: Object of key-value pairs.
-        timeout_ms:
-          type: integer
-          default: 3000
-          description: Timeout in milliseconds for the endpoint call.
-      required:
-      - url
-      description: When not `null`, at the beginning of the conversation the agent will make a POST request to this endpoint to get configuration options.
-      title: OutboundCallConfigConfigurationEndpoint
-    OutboundCallConfigMultilingualMode:
-      type: string
-      enum:
-      - auto
-      - request
-      - initial
-      default: request
-      description: If `"auto"`, each user audio is automatically identified for the language to respond in. If `"request"`, user must request to change language (recommended). If `"initial"` the first turn user audio determines the language for the rest of the conversation.
-      title: OutboundCallConfigMultilingualMode
-    ConversationsIdEvalsPostResponsesContentApplicationJsonSchemaEvaluationResult:
-      type: string
-      enum:
-      - successful
-      - unsuccessful
-      - undecided
-      - error
-      description: The evaluation result.
-      title: ConversationsIdEvalsPostResponsesContentApplicationJsonSchemaEvaluationResult
-    SipCallErrorError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          $ref: '#/components/schemas/SipCallErrorErrorCode'
-          description: Machine-readable error code.
-        sip_status_code:
-          type: integer
-          description: The SIP response status code from the carrier (e.g. 403, 486, 603).
-        sip_status:
-          type: string
-          description: The SIP response reason phrase from the carrier (e.g. "Network Blocked", "Trunk CPS limit exceeded").
-      required:
-      - message
-      - code
-      - sip_status_code
-      - sip_status
-      title: SipCallErrorError
-    conversations_list_evaluations_Response_200:
-      type: object
-      properties:
-        evals:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConversationEvaluationResult'
-      required:
-      - evals
-      title: conversations_list_evaluations_Response_200
-    OutboundCallConfigIntelligenceLevel:
-      type: string
-      enum:
-      - standard
-      - high
-      default: standard
-      description: The intelligence level of the agent. `high` uses a more capable model for more complex reasoning, while `standard` is optimized for lower latency.
-      title: OutboundCallConfigIntelligenceLevel
-    conversations_replay_Response_200:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Confirmation that the replay has started.
-      required:
-      - message
-      title: conversations_replay_Response_200
-    conversations_delete_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the conversation was deleted successfully.
-      required:
-      - success
-      title: conversations_delete_Response_200
-    ValidationError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/ValidationErrorError'
-        param_errors:
-          type: object
-          additionalProperties:
-            type: string
-          description: Parameter-specific validation errors
-      required:
-      - error
-      - param_errors
-      title: ValidationError
-    ReplayConversationRequest:
-      type: object
-      properties:
-        agent:
-          type: string
-          description: Name of the agent to replay the conversation with. Defaults to the agent originally associated with the conversation.
-      title: ReplayConversationRequest
     ConversationDeletionInfo:
       type: object
       properties:
@@ -1878,237 +2090,6 @@ components:
       - audio_recordings_deleted_at
       description: Information about when transcripts and audio recordings are or were scheduled to be deleted.
       title: ConversationDeletionInfo
-    ConversationAgent:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the agent.
-        name:
-          type: string
-          description: The name of the agent.
-        is_deleted:
-          type: boolean
-          description: Whether the agent has been deleted.
-      required:
-      - id
-      - name
-      - is_deleted
-      description: The agent associated with the conversation.
-      title: ConversationAgent
-    ConversationProject:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the project.
-        name:
-          type: string
-          description: The name of the project.
-      required:
-      - id
-      - name
-      description: The project associated with the conversation.
-      title: ConversationProject
-    ConversationItemRole:
-      type: string
-      enum:
-      - user
-      - assistant
-      description: Who spoke in this turn.
-      title: ConversationItemRole
-    ValidationErrorError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message
-      required:
-      - message
-      title: ValidationErrorError
-    ConversationOrigin:
-      type: string
-      enum:
-      - web
-      - web-playground
-      - web-demo
-      - direct
-      - livekit-agents-py
-      - livekit-agents-js
-      - sdk-py
-      - sdk-js
-      - inbound
-      - telephony-inbound
-      - outbound
-      - telephony-outbound
-      - replay
-      description: The origin of the conversation.
-      title: ConversationOrigin
-    conversations_get_Response_200:
-      type: object
-      properties:
-        conversation:
-          $ref: '#/components/schemas/Conversation'
-      required:
-      - conversation
-      title: conversations_get_Response_200
-    ConversationItemToolCallsItemsTool:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The tool ID.
-        name:
-          type: string
-          description: The tool name.
-      required:
-      - id
-      - name
-      title: ConversationItemToolCallsItemsTool
-    OutboundNumberPool:
-      type: object
-      properties:
-        active:
-          type: array
-          items:
-            type: string
-          description: E.164 formatted phone numbers available for outbound calls.
-        blocked:
-          type: array
-          items:
-            type: string
-          description: E.164 formatted phone numbers that are blocked from being used.
-      required:
-      - active
-      - blocked
-      description: Pool of phone numbers used for outbound calls.
-      title: OutboundNumberPool
-    ConversationItemToolCallsItems:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The tool call ID.
-        tool:
-          $ref: '#/components/schemas/ConversationItemToolCallsItemsTool'
-        integration:
-          type:
-          - string
-          - 'null'
-          description: The integration associated with the tool, if any.
-        endpoint_method:
-          type:
-          - string
-          - 'null'
-          description: HTTP method for webhook tool calls.
-        endpoint_url:
-          type:
-          - string
-          - 'null'
-          description: URL for webhook tool calls.
-        endpoint_headers:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
-          description: Headers for webhook tool calls.
-        endpoint_timeout_ms:
-          type:
-          - number
-          - 'null'
-          format: double
-          description: Timeout in milliseconds for webhook tool calls.
-        endpoint_called_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: When the webhook endpoint was called (null on error).
-        query_params:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            description: Any type
-          description: Query parameters for webhook tool calls (null on error or when no params).
-        response_status_code:
-          type:
-          - number
-          - 'null'
-          format: double
-          description: HTTP response status code for webhook tool calls (null on error).
-        tool_call_output_timeout_ms:
-          type:
-          - number
-          - 'null'
-          format: double
-          description: Timeout in milliseconds for websocket tool calls.
-        request_body:
-          oneOf:
-          - $ref: '#/components/schemas/ConversationItemToolCallsItemsRequestBody'
-          - type: 'null'
-          description: The request body sent to the tool. Can be any JSON-serializable value.
-        response_body:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            description: Any type
-          description: The response body received from the tool.
-        timed_out:
-          type:
-          - boolean
-          - 'null'
-          description: Whether the tool call timed out.
-        error_message:
-          type:
-          - string
-          - 'null'
-          description: Error message if the tool call failed.
-      required:
-      - id
-      - tool
-      - request_body
-      - response_body
-      - timed_out
-      - error_message
-      title: ConversationItemToolCallsItems
-    conversations_list_extractions_Response_200:
-      type: object
-      properties:
-        extractions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConversationExtraction'
-      required:
-      - extractions
-      title: conversations_list_extractions_Response_200
-    OutboundCallConfigToolsItems:
-      oneOf:
-      - $ref: '#/components/schemas/OutboundCallConfigToolsItems0'
-      - type: string
-      title: OutboundCallConfigToolsItems
-    ConversationMultilingualMode:
-      type: string
-      enum:
-      - auto
-      - request
-      - initial
-      default: request
-      description: If `"auto"`, each user audio is automatically identified for the language to respond in. If `"request"`, user must request to change language (recommended). If `"initial"` the first turn user audio determines the language for the rest of the conversation.
-      title: ConversationMultilingualMode
-    OutboundCallConfigPronunciationDictionaryItems:
-      type: object
-      properties:
-        word:
-          type: string
-        pronunciation:
-          type: string
-      required:
-      - word
-      - pronunciation
-      title: OutboundCallConfigPronunciationDictionaryItems
     ConversationExtraction:
       type: object
       properties:
@@ -2132,28 +2113,6 @@ components:
       - result
       - created_at
       title: ConversationExtraction
-    ConversationEvaluationResult:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The evaluation ID.
-        result:
-          $ref: '#/components/schemas/ConversationEvaluationResultResult'
-          description: The evaluation result.
-        prompt:
-          $ref: '#/components/schemas/ConversationEvaluationResultPrompt'
-          description: The evaluation prompt information.
-        created_at:
-          type: string
-          format: date-time
-          description: When the evaluation was created.
-      required:
-      - id
-      - result
-      - prompt
-      - created_at
-      title: ConversationEvaluationResult
     ConversationsIdEvalsPostResponsesContentApplicationJsonSchemaEvaluation:
       type: object
       properties:
@@ -2163,36 +2122,67 @@ components:
       required:
       - result
       title: ConversationsIdEvalsPostResponsesContentApplicationJsonSchemaEvaluation
-    OutboundCallConfigToolsItems0:
-      type: string
-      enum:
-      - keypad_input
-      - natural_conversation_ending
-      description: Built-in tool
-      title: OutboundCallConfigToolsItems0
-    ConversationsListResponseConversationsPagination:
+    DataRetentionPolicy1:
       type: object
       properties:
-        prev_cursor:
-          type:
-          - string
-          - 'null'
-          description: Cursor to fetch the previous page of conversations (newer). Use this value in the `before` query parameter. `null` if there is no previous page.
-        next_cursor:
-          type:
-          - string
-          - 'null'
-          description: Cursor to fetch the next page of conversations (older). Use this value in the `after` query parameter. `null` if there is no next page.
+        zero_data_retention:
+          type: boolean
+          description: Must be `false` for standard data retention.
+        transcripts:
+          $ref: '#/components/schemas/DataRetentionPolicyOneOf1Transcripts'
+        audio_recordings:
+          $ref: '#/components/schemas/DataRetentionPolicyOneOf1AudioRecordings'
       required:
-      - prev_cursor
-      - next_cursor
-      title: ConversationsListResponseConversationsPagination
-    PostConversationsSipOutboundCallRequestBadRequestError:
-      oneOf:
-      - $ref: '#/components/schemas/ValidationError'
-      - $ref: '#/components/schemas/BasicError'
-      - $ref: '#/components/schemas/SipCallError'
-      title: PostConversationsSipOutboundCallRequestBadRequestError
+      - zero_data_retention
+      - transcripts
+      - audio_recordings
+      description: Standard data retention with configurable deletion windows.
+      title: DataRetentionPolicy1
+    ConversationItemToolCallsItemsTool:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The tool ID.
+        name:
+          type: string
+          description: The tool name.
+      required:
+      - id
+      - name
+      title: ConversationItemToolCallsItemsTool
+    ConversationItemRole:
+      type: string
+      enum:
+      - user
+      - assistant
+      description: Who spoke in this turn.
+      title: ConversationItemRole
+    ConversationOrigin:
+      type: string
+      enum:
+      - web
+      - web-playground
+      - web-demo
+      - direct
+      - livekit-agents-py
+      - livekit-agents-js
+      - sdk-py
+      - sdk-js
+      - inbound
+      - telephony-inbound
+      - outbound
+      - telephony-outbound
+      - replay
+      description: The origin of the conversation.
+      title: ConversationOrigin
+    ConversationsIdGetParametersAudioContainer:
+      type: string
+      enum:
+      - wav.gz
+      - wav
+      default: wav.gz
+      title: ConversationsIdGetParametersAudioContainer
     ExtractDataRequest:
       type: object
       properties:
@@ -2202,23 +2192,31 @@ components:
       required:
       - schema_id
       title: ExtractDataRequest
-    DataRetentionPolicy:
-      oneOf:
-      - $ref: '#/components/schemas/DataRetentionPolicy0'
-      - $ref: '#/components/schemas/DataRetentionPolicy1'
-      description: 'Controls how long transcripts and audio recordings are retained before deletion.
-
-        When `zero_data_retention` is `true`, nothing is retained and `transcripts`/`audio_recordings` are omitted.
-
-        '
-      title: DataRetentionPolicy
-    OutboundCallConfigModel:
-      type: string
-      enum:
-      - merritt
-      default: merritt
-      description: The speech-to-speech model to use.
-      title: OutboundCallConfigModel
+    SipOutboundDryRunResponse:
+      type: object
+      properties:
+        conversation_id:
+          description: Always null when `dry_run` is true.
+        twilio_call_sid:
+          description: Always null when `dry_run` is true.
+        dry_run:
+          type: boolean
+          description: Always true for this response.
+      required:
+      - conversation_id
+      - twilio_call_sid
+      - dry_run
+      title: SipOutboundDryRunResponse
+    DataRetentionPolicy0:
+      type: object
+      properties:
+        zero_data_retention:
+          type: boolean
+          description: When `true`, no transcripts or audio recordings are retained.
+      required:
+      - zero_data_retention
+      description: Zero data retention mode. No transcripts or audio recordings are retained.
+      title: DataRetentionPolicy0
   securitySchemes:
     bearerAuth:
       type: http
