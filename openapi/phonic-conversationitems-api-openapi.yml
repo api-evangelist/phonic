@@ -91,6 +91,20 @@ paths:
               $ref: '#/components/schemas/ReplayConversationItemRequest'
 components:
   schemas:
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
     BasicErrorError:
       type: object
       properties:
@@ -103,21 +117,6 @@ components:
       required:
       - message
       title: BasicErrorError
-    BasicError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/BasicErrorError'
-      title: BasicError
-    ValidationErrorError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message
-      required:
-      - message
-      title: ValidationErrorError
     ReplayConversationItemResponseResponsesItems:
       type: object
       properties:
@@ -133,13 +132,6 @@ components:
       - text
       - tool_calls
       title: ReplayConversationItemResponseResponsesItems
-    ReplayToolCallEndpointMethod:
-      type: string
-      enum:
-      - GET
-      - POST
-      description: HTTP method for webhook tool calls.
-      title: ReplayToolCallEndpointMethod
     ReplayToolCall:
       type: object
       properties:
@@ -179,19 +171,19 @@ components:
       - tool
       - request_body
       title: ReplayToolCall
-    ReplayToolCallTool:
+    BasicError:
       type: object
       properties:
-        id:
-          type: string
-          description: The tool ID.
-        name:
-          type: string
-          description: The tool name.
-      required:
-      - id
-      - name
-      title: ReplayToolCallTool
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
+    ReplayToolCallEndpointMethod:
+      type: string
+      enum:
+      - GET
+      - POST
+      description: HTTP method for webhook tool calls.
+      title: ReplayToolCallEndpointMethod
     Error:
       oneOf:
       - $ref: '#/components/schemas/BasicError'
@@ -210,20 +202,28 @@ components:
       required:
       - system_prompt
       title: ReplayConversationItemRequest
-    ValidationError:
+    ValidationErrorError:
       type: object
       properties:
-        error:
-          $ref: '#/components/schemas/ValidationErrorError'
-        param_errors:
-          type: object
-          additionalProperties:
-            type: string
-          description: Parameter-specific validation errors
+        message:
+          type: string
+          description: Error message
       required:
-      - error
-      - param_errors
-      title: ValidationError
+      - message
+      title: ValidationErrorError
+    ReplayToolCallTool:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The tool ID.
+        name:
+          type: string
+          description: The tool name.
+      required:
+      - id
+      - name
+      title: ReplayToolCallTool
     ReplayConversationItemResponse:
       type: object
       properties:

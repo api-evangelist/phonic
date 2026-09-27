@@ -199,6 +199,20 @@ paths:
                 $ref: '#/components/schemas/BasicError'
 components:
   schemas:
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
     BasicErrorError:
       type: object
       properties:
@@ -211,15 +225,6 @@ components:
       required:
       - message
       title: BasicErrorError
-    ValidationErrorError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message
-      required:
-      - message
-      title: ValidationErrorError
     CreateApiKeyRequest:
       type: object
       properties:
@@ -229,6 +234,14 @@ components:
       required:
       - name
       title: CreateApiKeyRequest
+    api_keys_update_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      required:
+      - success
+      title: api_keys_update_Response_200
     BasicError:
       type: object
       properties:
@@ -244,14 +257,6 @@ components:
       required:
       - name
       title: UpdateApiKeyRequest
-    api_keys_delete_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-      required:
-      - success
-      title: api_keys_delete_Response_200
     ApiKeyWithSecret:
       type: object
       properties:
@@ -269,28 +274,23 @@ components:
       - name
       - api_key
       title: ApiKeyWithSecret
-    api_keys_update_Response_200:
+    ValidationErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+      required:
+      - message
+      title: ValidationErrorError
+    api_keys_delete_Response_200:
       type: object
       properties:
         success:
           type: boolean
       required:
       - success
-      title: api_keys_update_Response_200
-    ValidationError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/ValidationErrorError'
-        param_errors:
-          type: object
-          additionalProperties:
-            type: string
-          description: Parameter-specific validation errors
-      required:
-      - error
-      - param_errors
-      title: ValidationError
+      title: api_keys_delete_Response_200
   securitySchemes:
     bearerAuth:
       type: http

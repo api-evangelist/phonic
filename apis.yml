@@ -55,6 +55,7 @@ tags:
 - Voice Agents
 - Telephony
 - Speech to Speech
+- Real-Time
 tags_raw:
 - Company
 - Artificial Intelligence
@@ -64,9 +65,10 @@ tags_raw:
 - Voice Agents
 - Telephony
 - Speech To Speech
+- Real-Time
 apis:
 - aid: phonic:phonic-agents-api
-  name: Phonic agents API
+  name: Phonic Agents API
   description: The agents API from Phonic — 5 operation(s) for agents.
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
@@ -86,7 +88,7 @@ apis:
   - type: GettingStarted
     url: https://docs.phonic.co/docs/get-started/quick-start
 - aid: phonic:phonic-auth-api
-  name: Phonic auth API
+  name: Phonic Auth API
   description: The auth API from Phonic — 2 operation(s) for auth.
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
@@ -106,7 +108,7 @@ apis:
   - type: GettingStarted
     url: https://docs.phonic.co/docs/get-started/quick-start
 - aid: phonic:phonic-conversationitems-api
-  name: Phonic conversationItems API
+  name: Phonic Conversation Items API
   description: The conversationItems API from Phonic — 1 operation(s) for conversationitems.
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
@@ -125,7 +127,7 @@ apis:
   - type: GettingStarted
     url: https://docs.phonic.co/docs/get-started/quick-start
 - aid: phonic:phonic-conversations-api
-  name: Phonic conversations API
+  name: Phonic Conversations API
   description: The conversations API from Phonic — 9 operation(s) for conversations.
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
@@ -145,7 +147,7 @@ apis:
   - type: GettingStarted
     url: https://docs.phonic.co/docs/get-started/quick-start
 - aid: phonic:phonic-extractionschemas-api
-  name: Phonic extractionSchemas API
+  name: Phonic Extraction Schemas API
   description: The extractionSchemas API from Phonic — 2 operation(s) for extractionschemas.
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
@@ -164,7 +166,7 @@ apis:
   - type: GettingStarted
     url: https://docs.phonic.co/docs/get-started/quick-start
 - aid: phonic:phonic-projects-api
-  name: Phonic projects API
+  name: Phonic Projects API
   description: The projects API from Phonic — 4 operation(s) for projects.
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
@@ -184,7 +186,7 @@ apis:
   - type: GettingStarted
     url: https://docs.phonic.co/docs/get-started/quick-start
 - aid: phonic:phonic-tools-api
-  name: Phonic tools API
+  name: Phonic Tools API
   description: The tools API from Phonic — 2 operation(s) for tools.
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
@@ -204,7 +206,7 @@ apis:
   - type: GettingStarted
     url: https://docs.phonic.co/docs/get-started/quick-start
 - aid: phonic:phonic-voices-api
-  name: Phonic voices API
+  name: Phonic Voices API
   description: The voices API from Phonic — 2 operation(s) for voices.
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
@@ -224,7 +226,7 @@ apis:
   - type: GettingStarted
     url: https://docs.phonic.co/docs/get-started/quick-start
 - aid: phonic:phonic-workspace-api
-  name: Phonic workspace API
+  name: Phonic Workspace API
   description: The workspace API from Phonic — 1 operation(s) for workspace.
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
@@ -249,8 +251,6 @@ apis:
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
   tags:
-  - APIKeys
-  tags_raw:
   - API Keys
   properties:
   - type: OpenAPI

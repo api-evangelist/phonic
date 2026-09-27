@@ -229,6 +229,33 @@ paths:
               $ref: '#/components/schemas/UpdateExtractionSchemaRequest'
 components:
   schemas:
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
+    extraction_schemas_create_Response_201:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the created extraction schema.
+        name:
+          type: string
+          description: The name of the created extraction schema.
+      required:
+      - id
+      - name
+      title: extraction_schemas_create_Response_201
     BasicErrorError:
       type: object
       properties:
@@ -241,24 +268,6 @@ components:
       required:
       - message
       title: BasicErrorError
-    extraction_schemas_delete_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the extraction schema was deleted successfully.
-      required:
-      - success
-      title: extraction_schemas_delete_Response_200
-    ValidationErrorError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message
-      required:
-      - message
-      title: ValidationErrorError
     ExtractionSchema:
       type: object
       properties:
@@ -282,12 +291,34 @@ components:
       - prompt
       - fields
       title: ExtractionSchema
-    BasicError:
+    extraction_schemas_list_Response_200:
       type: object
       properties:
-        error:
-          $ref: '#/components/schemas/BasicErrorError'
-      title: BasicError
+        extraction_schemas:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractionSchema'
+      required:
+      - extraction_schemas
+      title: extraction_schemas_list_Response_200
+    extraction_schemas_delete_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the extraction schema was deleted successfully.
+      required:
+      - success
+      title: extraction_schemas_delete_Response_200
+    extraction_schemas_update_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the extraction schema was updated successfully.
+      required:
+      - success
+      title: extraction_schemas_update_Response_200
     extraction_schemas_get_Response_200:
       type: object
       properties:
@@ -296,11 +327,6 @@ components:
       required:
       - extraction_schema
       title: extraction_schemas_get_Response_200
-    Error:
-      oneOf:
-      - $ref: '#/components/schemas/BasicError'
-      - $ref: '#/components/schemas/ValidationError'
-      title: Error
     UpdateExtractionSchemaRequest:
       type: object
       properties:
@@ -316,33 +342,12 @@ components:
             $ref: '#/components/schemas/ExtractionField'
           description: Array of field definitions.
       title: UpdateExtractionSchemaRequest
-    extraction_schemas_create_Response_201:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the created extraction schema.
-        name:
-          type: string
-          description: The name of the created extraction schema.
-      required:
-      - id
-      - name
-      title: extraction_schemas_create_Response_201
-    ValidationError:
+    BasicError:
       type: object
       properties:
         error:
-          $ref: '#/components/schemas/ValidationErrorError'
-        param_errors:
-          type: object
-          additionalProperties:
-            type: string
-          description: Parameter-specific validation errors
-      required:
-      - error
-      - param_errors
-      title: ValidationError
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
     ExtractionFieldType:
       type: string
       enum:
@@ -356,35 +361,11 @@ components:
       - bool[]
       description: The field type.
       title: ExtractionFieldType
-    CreateExtractionSchemaRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: A name for the extraction schema.
-        prompt:
-          type: string
-          description: Instructions for how to extract data from conversations.
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExtractionField'
-          description: Array of field definitions.
-      required:
-      - name
-      - prompt
-      - fields
-      title: CreateExtractionSchemaRequest
-    extraction_schemas_list_Response_200:
-      type: object
-      properties:
-        extraction_schemas:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExtractionSchema'
-      required:
-      - extraction_schemas
-      title: extraction_schemas_list_Response_200
+    Error:
+      oneOf:
+      - $ref: '#/components/schemas/BasicError'
+      - $ref: '#/components/schemas/ValidationError'
+      title: Error
     ExtractionField:
       type: object
       properties:
@@ -404,15 +385,34 @@ components:
       - type
       - description
       title: ExtractionField
-    extraction_schemas_update_Response_200:
+    ValidationErrorError:
       type: object
       properties:
-        success:
-          type: boolean
-          description: Whether the extraction schema was updated successfully.
+        message:
+          type: string
+          description: Error message
       required:
-      - success
-      title: extraction_schemas_update_Response_200
+      - message
+      title: ValidationErrorError
+    CreateExtractionSchemaRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: A name for the extraction schema.
+        prompt:
+          type: string
+          description: Instructions for how to extract data from conversations.
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractionField'
+          description: Array of field definitions.
+      required:
+      - name
+      - prompt
+      - fields
+      title: CreateExtractionSchemaRequest
   securitySchemes:
     bearerAuth:
       type: http

@@ -92,6 +92,20 @@ paths:
               $ref: '#/components/schemas/UpdateWorkspaceRequest'
 components:
   schemas:
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
     BasicErrorError:
       type: object
       properties:
@@ -104,21 +118,6 @@ components:
       required:
       - message
       title: BasicErrorError
-    ValidationErrorError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message
-      required:
-      - message
-      title: ValidationErrorError
-    BasicError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/BasicErrorError'
-      title: BasicError
     workspace_update_Response_200:
       type: object
       properties:
@@ -127,6 +126,12 @@ components:
       required:
       - success
       title: workspace_update_Response_200
+    BasicError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
     workspace_get_Response_200:
       type: object
       properties:
@@ -177,20 +182,15 @@ components:
             type: string
           description: IP addresses or CIDR ranges allowed to access the workspace.
       title: UpdateWorkspaceRequest
-    ValidationError:
+    ValidationErrorError:
       type: object
       properties:
-        error:
-          $ref: '#/components/schemas/ValidationErrorError'
-        param_errors:
-          type: object
-          additionalProperties:
-            type: string
-          description: Parameter-specific validation errors
+        message:
+          type: string
+          description: Error message
       required:
-      - error
-      - param_errors
-      title: ValidationError
+      - message
+      title: ValidationErrorError
   securitySchemes:
     bearerAuth:
       type: http
