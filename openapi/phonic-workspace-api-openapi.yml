@@ -92,20 +92,15 @@ paths:
               $ref: '#/components/schemas/UpdateWorkspaceRequest'
 components:
   schemas:
-    ValidationError:
+    ValidationErrorError:
       type: object
       properties:
-        error:
-          $ref: '#/components/schemas/ValidationErrorError'
-        param_errors:
-          type: object
-          additionalProperties:
-            type: string
-          description: Parameter-specific validation errors
+        message:
+          type: string
+          description: Error message
       required:
-      - error
-      - param_errors
-      title: ValidationError
+      - message
+      title: ValidationErrorError
     BasicErrorError:
       type: object
       properties:
@@ -118,20 +113,25 @@ components:
       required:
       - message
       title: BasicErrorError
-    workspace_update_Response_200:
+    UpdateWorkspaceRequest:
       type: object
       properties:
-        success:
-          type: boolean
-      required:
-      - success
-      title: workspace_update_Response_200
-    BasicError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/BasicErrorError'
-      title: BasicError
+        logo_url:
+          type:
+          - string
+          - 'null'
+          description: URL of the workspace logo. Must be an https URL ending in .png or .svg, or null to clear it.
+        invite_link_allowed_domains:
+          type: array
+          items:
+            type: string
+          description: Email domains allowed to join the workspace via invite link.
+        ip_allowlist:
+          type: array
+          items:
+            type: string
+          description: IP addresses or CIDR ranges allowed to access the workspace.
+      title: UpdateWorkspaceRequest
     workspace_get_Response_200:
       type: object
       properties:
@@ -163,34 +163,34 @@ components:
       - invite_link_allowed_domains
       - ip_allowlist
       title: workspace_get_Response_200
-    UpdateWorkspaceRequest:
+    BasicError:
       type: object
       properties:
-        logo_url:
-          type:
-          - string
-          - 'null'
-          description: URL of the workspace logo. Must be an https URL ending in .png or .svg, or null to clear it.
-        invite_link_allowed_domains:
-          type: array
-          items:
-            type: string
-          description: Email domains allowed to join the workspace via invite link.
-        ip_allowlist:
-          type: array
-          items:
-            type: string
-          description: IP addresses or CIDR ranges allowed to access the workspace.
-      title: UpdateWorkspaceRequest
-    ValidationErrorError:
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
+    workspace_update_Response_200:
       type: object
       properties:
-        message:
-          type: string
-          description: Error message
+        success:
+          type: boolean
       required:
-      - message
-      title: ValidationErrorError
+      - success
+      title: workspace_update_Response_200
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
   securitySchemes:
     bearerAuth:
       type: http

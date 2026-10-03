@@ -235,52 +235,13 @@ paths:
               $ref: '#/components/schemas/UpdateToolRequest'
 components:
   schemas:
-    ToolParameterType:
-      type: string
-      enum:
-      - string
-      - integer
-      - number
-      - boolean
-      - array
-      description: The parameter type.
-      title: ToolParameterType
-    ValidationError:
+    BasicError:
       type: object
       properties:
         error:
-          $ref: '#/components/schemas/ValidationErrorError'
-        param_errors:
-          type: object
-          additionalProperties:
-            type: string
-          description: Parameter-specific validation errors
-      required:
-      - error
-      - param_errors
-      title: ValidationError
-    tools_list_Response_200:
-      type: object
-      properties:
-        tools:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tool'
-      required:
-      - tools
-      title: tools_list_Response_200
-    ToolProject:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-      required:
-      - id
-      - name
-      title: ToolProject
-    ToolType:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
+    CreateToolRequestType:
       type: string
       enum:
       - custom_context
@@ -292,155 +253,33 @@ components:
       - built_in_keypad_input
       - built_in_choose_not_to_respond
       description: The type of tool.
-      title: ToolType
-    UpdateToolRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the tool. Must be snake_case and unique within the organization.
-        description:
-          type: string
-          description: A description of what the tool does.
-        execution_mode:
-          $ref: '#/components/schemas/UpdateToolRequestExecutionMode'
-          description: Mode of operation.
-        context:
-          type: string
-          description: The static context returned to the agent. Only applicable to custom_context tools.
-        parameters:
-          type: array
-          items:
-            $ref: '#/components/schemas/ToolParameter'
-          description: 'Array of parameter definitions.
-
-            When updating `endpoint_method`, all parameters must include explicit `location` values.
-
-            For `custom_webhook` tools: `location` is required for POST, defaults to `"query_string"` for GET.
-
-            For `custom_websocket`, `built_in_transfer_to_phone_number`, and `built_in_transfer_to_agent` tools: `location` must not be specified.
-
-            '
-        endpoint_method:
-          $ref: '#/components/schemas/UpdateToolRequestEndpointMethod'
-          description: HTTP method for webhook tools. When changing this value, all parameters must include explicit `location` values.
-        endpoint_url:
-          type: string
-          format: uri
-        endpoint_headers:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
-          description: Headers for webhook tools. Set to null to clear existing headers.
-        endpoint_timeout_ms:
-          type: integer
-        tool_call_output_timeout_ms:
-          type: integer
-        phone_number:
-          type:
-          - string
-          - 'null'
-          description: The E.164 formatted phone number to transfer calls to. Set to null if the agent should determine the phone number.
-        dtmf:
-          type:
-          - string
-          - 'null'
-          description: DTMF digits to send after the transfer connects (e.g., "1234"). Can be set to null to remove DTMF. Ignored when dynamic_dtmf is true.
-        dynamic_dtmf:
-          type: boolean
-          description: When true, the agent determines the DTMF digits at call time (and may choose to send none); the static dtmf is ignored. Only sent when use_agent_phone_number is true (not on a SIP REFER transfer).
-        use_agent_phone_number:
-          type: boolean
-          description: When true, Phonic will transfer the call using the agent's phone number. When false, Phonic will transfer the call using the phone number of the party to whom the agent is connected. This is only available for built_in_transfer_to_phone_number tools.
-        detect_voicemail:
-          type: boolean
-          description: When true, Phonic will listen in and tell the user if the transfer hits voicemail. This is only available for built_in_transfer_to_phone_number tools when use_agent_phone_number is true.
-        agents_to_transfer_to:
-          type: array
-          items:
-            type: string
-          description: Array of agent names that the LLM can choose from when transferring. All agents must exist in the same project as the tool.
-        require_speech_before_tool_call:
-          type: boolean
-          description: When true, forces the agent to speak before executing the tool.
-        speech_before_tool_call:
-          $ref: '#/components/schemas/UpdateToolRequestSpeechBeforeToolCall'
-          description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
-        wait_for_speech_before_tool_call:
-          type: boolean
-          description: If true, the agent will wait to finish speaking before executing the tool. This is only available for custom_webhook and custom_websocket tools.
-        forbid_speech_after_tool_call:
-          type: boolean
-          description: When true, forbids the agent from speaking after executing the tool. Available for custom_context, custom_webhook and custom_websocket tools.
-        allow_tool_chaining:
-          type: boolean
-          description: When true, allows the agent to chain and execute other tools after executing the tool. Available for custom_context, custom_webhook and custom_websocket tools.
-        wait_for_response:
-          type: boolean
-          description: The agent doesn't typically wait for the response of async custom_websocket tools. When true, makes the agent wait for a response, not call other tools and inform the user of the result. Only available for async custom_websocket tools.
-      description: 'Fields to update on the tool. All fields are optional; omitted fields are left unchanged.
-
-        A tool''s `type` cannot be changed after creation.
-
-        '
-      title: UpdateToolRequest
-    UpdateToolRequestSpeechBeforeToolCall:
+      title: CreateToolRequestType
+    ToolSpeechBeforeToolCall:
       type: string
       enum:
       - required
       - optional
       - suppressed
       description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
-      title: UpdateToolRequestSpeechBeforeToolCall
-    tools_create_Response_201:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the created tool.
-        name:
-          type: string
-          description: The name of the created tool.
-      required:
-      - id
-      - name
-      title: tools_create_Response_201
-    CreateToolRequestExecutionMode:
-      type: string
-      enum:
-      - sync
-      - async
-      description: Mode of operation.
-      title: CreateToolRequestExecutionMode
-    tools_update_Response_200:
+      title: ToolSpeechBeforeToolCall
+    tools_delete_Response_200:
       type: object
       properties:
         success:
           type: boolean
-          description: Whether the tool was updated successfully.
+          description: Whether the tool was deleted successfully.
       required:
       - success
-      title: tools_update_Response_200
-    BasicError:
+      title: tools_delete_Response_200
+    ValidationErrorError:
       type: object
       properties:
-        error:
-          $ref: '#/components/schemas/BasicErrorError'
-      title: BasicError
-    ToolEndpointMethod:
-      type: string
-      enum:
-      - GET
-      - POST
-      description: HTTP method for webhook tools.
-      title: ToolEndpointMethod
-    Error:
-      oneOf:
-      - $ref: '#/components/schemas/BasicError'
-      - $ref: '#/components/schemas/ValidationError'
-      title: Error
+        message:
+          type: string
+          description: Error message
+      required:
+      - message
+      title: ValidationErrorError
     CreateToolRequest:
       type: object
       properties:
@@ -549,38 +388,6 @@ components:
       - type
       - execution_mode
       title: CreateToolRequest
-    ToolParameterItemType:
-      type: string
-      enum:
-      - string
-      - integer
-      - number
-      - boolean
-      description: Required only when type is "array". The type of items in the array.
-      title: ToolParameterItemType
-    ToolExecutionMode:
-      type: string
-      enum:
-      - sync
-      - async
-      description: Mode of operation - sync waits for response, async continues without waiting.
-      title: ToolExecutionMode
-    UpdateToolRequestExecutionMode:
-      type: string
-      enum:
-      - sync
-      - async
-      description: Mode of operation.
-      title: UpdateToolRequestExecutionMode
-    tools_delete_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the tool was deleted successfully.
-      required:
-      - success
-      title: tools_delete_Response_200
     BasicErrorError:
       type: object
       properties:
@@ -593,7 +400,44 @@ components:
       required:
       - message
       title: BasicErrorError
-    CreateToolRequestType:
+    Error:
+      oneOf:
+      - $ref: '#/components/schemas/BasicError'
+      - $ref: '#/components/schemas/ValidationError'
+      title: Error
+    UpdateToolRequestEndpointMethod:
+      type: string
+      enum:
+      - GET
+      - POST
+      description: HTTP method for webhook tools. When changing this value, all parameters must include explicit `location` values.
+      title: UpdateToolRequestEndpointMethod
+    ToolParameterType:
+      type: string
+      enum:
+      - string
+      - integer
+      - number
+      - boolean
+      - array
+      description: The parameter type.
+      title: ToolParameterType
+    CreateToolRequestSpeechBeforeToolCall:
+      type: string
+      enum:
+      - required
+      - optional
+      - suppressed
+      description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
+      title: CreateToolRequestSpeechBeforeToolCall
+    ToolExecutionMode:
+      type: string
+      enum:
+      - sync
+      - async
+      description: Mode of operation - sync waits for response, async continues without waiting.
+      title: ToolExecutionMode
+    ToolType:
       type: string
       enum:
       - custom_context
@@ -605,32 +449,153 @@ components:
       - built_in_keypad_input
       - built_in_choose_not_to_respond
       description: The type of tool.
-      title: CreateToolRequestType
-    ToolSpeechBeforeToolCall:
+      title: ToolType
+    CreateToolRequestExecutionMode:
       type: string
       enum:
-      - required
-      - optional
-      - suppressed
-      description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
-      title: ToolSpeechBeforeToolCall
-    CreateToolRequestSpeechBeforeToolCall:
+      - sync
+      - async
+      description: Mode of operation.
+      title: CreateToolRequestExecutionMode
+    ToolEndpointMethod:
       type: string
       enum:
-      - required
-      - optional
-      - suppressed
-      description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
-      title: CreateToolRequestSpeechBeforeToolCall
-    ValidationErrorError:
+      - GET
+      - POST
+      description: HTTP method for webhook tools.
+      title: ToolEndpointMethod
+    UpdateToolRequest:
       type: object
       properties:
-        message:
+        name:
           type: string
-          description: Error message
+          description: The name of the tool. Must be snake_case and unique within the organization.
+        description:
+          type: string
+          description: A description of what the tool does.
+        execution_mode:
+          $ref: '#/components/schemas/UpdateToolRequestExecutionMode'
+          description: Mode of operation.
+        context:
+          type: string
+          description: The static context returned to the agent. Only applicable to custom_context tools.
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ToolParameter'
+          description: 'Array of parameter definitions.
+
+            When updating `endpoint_method`, all parameters must include explicit `location` values.
+
+            For `custom_webhook` tools: `location` is required for POST, defaults to `"query_string"` for GET.
+
+            For `custom_websocket`, `built_in_transfer_to_phone_number`, and `built_in_transfer_to_agent` tools: `location` must not be specified.
+
+            '
+        endpoint_method:
+          $ref: '#/components/schemas/UpdateToolRequestEndpointMethod'
+          description: HTTP method for webhook tools. When changing this value, all parameters must include explicit `location` values.
+        endpoint_url:
+          type: string
+          format: uri
+        endpoint_headers:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: Headers for webhook tools. Set to null to clear existing headers.
+        endpoint_timeout_ms:
+          type: integer
+        tool_call_output_timeout_ms:
+          type: integer
+        phone_number:
+          type:
+          - string
+          - 'null'
+          description: The E.164 formatted phone number to transfer calls to. Set to null if the agent should determine the phone number.
+        dtmf:
+          type:
+          - string
+          - 'null'
+          description: DTMF digits to send after the transfer connects (e.g., "1234"). Can be set to null to remove DTMF. Ignored when dynamic_dtmf is true.
+        dynamic_dtmf:
+          type: boolean
+          description: When true, the agent determines the DTMF digits at call time (and may choose to send none); the static dtmf is ignored. Only sent when use_agent_phone_number is true (not on a SIP REFER transfer).
+        use_agent_phone_number:
+          type: boolean
+          description: When true, Phonic will transfer the call using the agent's phone number. When false, Phonic will transfer the call using the phone number of the party to whom the agent is connected. This is only available for built_in_transfer_to_phone_number tools.
+        detect_voicemail:
+          type: boolean
+          description: When true, Phonic will listen in and tell the user if the transfer hits voicemail. This is only available for built_in_transfer_to_phone_number tools when use_agent_phone_number is true.
+        agents_to_transfer_to:
+          type: array
+          items:
+            type: string
+          description: Array of agent names that the LLM can choose from when transferring. All agents must exist in the same project as the tool.
+        require_speech_before_tool_call:
+          type: boolean
+          description: When true, forces the agent to speak before executing the tool.
+        speech_before_tool_call:
+          $ref: '#/components/schemas/UpdateToolRequestSpeechBeforeToolCall'
+          description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
+        wait_for_speech_before_tool_call:
+          type: boolean
+          description: If true, the agent will wait to finish speaking before executing the tool. This is only available for custom_webhook and custom_websocket tools.
+        forbid_speech_after_tool_call:
+          type: boolean
+          description: When true, forbids the agent from speaking after executing the tool. Available for custom_context, custom_webhook and custom_websocket tools.
+        allow_tool_chaining:
+          type: boolean
+          description: When true, allows the agent to chain and execute other tools after executing the tool. Available for custom_context, custom_webhook and custom_websocket tools.
+        wait_for_response:
+          type: boolean
+          description: The agent doesn't typically wait for the response of async custom_websocket tools. When true, makes the agent wait for a response, not call other tools and inform the user of the result. Only available for async custom_websocket tools.
+      description: 'Fields to update on the tool. All fields are optional; omitted fields are left unchanged.
+
+        A tool''s `type` cannot be changed after creation.
+
+        '
+      title: UpdateToolRequest
+    tools_get_Response_200:
+      type: object
+      properties:
+        tool:
+          $ref: '#/components/schemas/Tool'
       required:
-      - message
-      title: ValidationErrorError
+      - tool
+      title: tools_get_Response_200
+    CreateToolRequestEndpointMethod:
+      type: string
+      enum:
+      - GET
+      - POST
+      description: Required for webhook tools. HTTP method for the webhook endpoint.
+      title: CreateToolRequestEndpointMethod
+    tools_create_Response_201:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the created tool.
+        name:
+          type: string
+          description: The name of the created tool.
+      required:
+      - id
+      - name
+      title: tools_create_Response_201
+    ToolProject:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      - name
+      title: ToolProject
     Tool:
       type: object
       properties:
@@ -735,21 +700,42 @@ components:
       - type
       - parameters
       title: Tool
-    CreateToolRequestEndpointMethod:
+    UpdateToolRequestSpeechBeforeToolCall:
       type: string
       enum:
-      - GET
-      - POST
-      description: Required for webhook tools. HTTP method for the webhook endpoint.
-      title: CreateToolRequestEndpointMethod
-    tools_get_Response_200:
+      - required
+      - optional
+      - suppressed
+      description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
+      title: UpdateToolRequestSpeechBeforeToolCall
+    ToolParameterItemType:
+      type: string
+      enum:
+      - string
+      - integer
+      - number
+      - boolean
+      description: Required only when type is "array". The type of items in the array.
+      title: ToolParameterItemType
+    tools_update_Response_200:
       type: object
       properties:
-        tool:
-          $ref: '#/components/schemas/Tool'
+        success:
+          type: boolean
+          description: Whether the tool was updated successfully.
       required:
-      - tool
-      title: tools_get_Response_200
+      - success
+      title: tools_update_Response_200
+    tools_list_Response_200:
+      type: object
+      properties:
+        tools:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tool'
+      required:
+      - tools
+      title: tools_list_Response_200
     ToolParameter:
       type: object
       properties:
@@ -787,6 +773,13 @@ components:
       - description
       - is_required
       title: ToolParameter
+    UpdateToolRequestExecutionMode:
+      type: string
+      enum:
+      - sync
+      - async
+      description: Mode of operation.
+      title: UpdateToolRequestExecutionMode
     ToolParameterLocation:
       type: string
       enum:
@@ -804,13 +797,20 @@ components:
 
         '
       title: ToolParameterLocation
-    UpdateToolRequestEndpointMethod:
-      type: string
-      enum:
-      - GET
-      - POST
-      description: HTTP method for webhook tools. When changing this value, all parameters must include explicit `location` values.
-      title: UpdateToolRequestEndpointMethod
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
   securitySchemes:
     bearerAuth:
       type: http

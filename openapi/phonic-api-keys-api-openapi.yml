@@ -199,20 +199,15 @@ paths:
                 $ref: '#/components/schemas/BasicError'
 components:
   schemas:
-    ValidationError:
+    ValidationErrorError:
       type: object
       properties:
-        error:
-          $ref: '#/components/schemas/ValidationErrorError'
-        param_errors:
-          type: object
-          additionalProperties:
-            type: string
-          description: Parameter-specific validation errors
+        message:
+          type: string
+          description: Error message
       required:
-      - error
-      - param_errors
-      title: ValidationError
+      - message
+      title: ValidationErrorError
     BasicErrorError:
       type: object
       properties:
@@ -225,15 +220,6 @@ components:
       required:
       - message
       title: BasicErrorError
-    CreateApiKeyRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: A name to identify the API key.
-      required:
-      - name
-      title: CreateApiKeyRequest
     api_keys_update_Response_200:
       type: object
       properties:
@@ -242,21 +228,6 @@ components:
       required:
       - success
       title: api_keys_update_Response_200
-    BasicError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/BasicErrorError'
-      title: BasicError
-    UpdateApiKeyRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The new name for the API key.
-      required:
-      - name
-      title: UpdateApiKeyRequest
     ApiKeyWithSecret:
       type: object
       properties:
@@ -274,15 +245,15 @@ components:
       - name
       - api_key
       title: ApiKeyWithSecret
-    ValidationErrorError:
+    CreateApiKeyRequest:
       type: object
       properties:
-        message:
+        name:
           type: string
-          description: Error message
+          description: A name to identify the API key.
       required:
-      - message
-      title: ValidationErrorError
+      - name
+      title: CreateApiKeyRequest
     api_keys_delete_Response_200:
       type: object
       properties:
@@ -291,6 +262,35 @@ components:
       required:
       - success
       title: api_keys_delete_Response_200
+    BasicError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
+    UpdateApiKeyRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The new name for the API key.
+      required:
+      - name
+      title: UpdateApiKeyRequest
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
   securitySchemes:
     bearerAuth:
       type: http

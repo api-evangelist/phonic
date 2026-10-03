@@ -91,32 +91,28 @@ paths:
               $ref: '#/components/schemas/ReplayConversationItemRequest'
 components:
   schemas:
-    ValidationError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/ValidationErrorError'
-        param_errors:
-          type: object
-          additionalProperties:
-            type: string
-          description: Parameter-specific validation errors
-      required:
-      - error
-      - param_errors
-      title: ValidationError
-    BasicErrorError:
+    ValidationErrorError:
       type: object
       properties:
         message:
           type: string
           description: Error message
-        code:
-          type: string
-          description: Error code
       required:
       - message
-      title: BasicErrorError
+      title: ValidationErrorError
+    ReplayToolCallTool:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The tool ID.
+        name:
+          type: string
+          description: The tool name.
+      required:
+      - id
+      - name
+      title: ReplayToolCallTool
     ReplayConversationItemResponseResponsesItems:
       type: object
       properties:
@@ -132,6 +128,43 @@ components:
       - text
       - tool_calls
       title: ReplayConversationItemResponseResponsesItems
+    ReplayConversationItemRequest:
+      type: object
+      properties:
+        system_prompt:
+          type: string
+          description: The system prompt to use when generating replay responses. Use this to test prompt changes against this conversation turn.
+        num_responses:
+          type: integer
+          default: 1
+          description: Number of alternative responses to generate.
+      required:
+      - system_prompt
+      title: ReplayConversationItemRequest
+    BasicErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - message
+      title: BasicErrorError
+    Error:
+      oneOf:
+      - $ref: '#/components/schemas/BasicError'
+      - $ref: '#/components/schemas/ValidationError'
+      title: Error
+    ReplayToolCallEndpointMethod:
+      type: string
+      enum:
+      - GET
+      - POST
+      description: HTTP method for webhook tool calls.
+      title: ReplayToolCallEndpointMethod
     ReplayToolCall:
       type: object
       properties:
@@ -171,59 +204,6 @@ components:
       - tool
       - request_body
       title: ReplayToolCall
-    BasicError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/BasicErrorError'
-      title: BasicError
-    ReplayToolCallEndpointMethod:
-      type: string
-      enum:
-      - GET
-      - POST
-      description: HTTP method for webhook tool calls.
-      title: ReplayToolCallEndpointMethod
-    Error:
-      oneOf:
-      - $ref: '#/components/schemas/BasicError'
-      - $ref: '#/components/schemas/ValidationError'
-      title: Error
-    ReplayConversationItemRequest:
-      type: object
-      properties:
-        system_prompt:
-          type: string
-          description: The system prompt to use when generating replay responses. Use this to test prompt changes against this conversation turn.
-        num_responses:
-          type: integer
-          default: 1
-          description: Number of alternative responses to generate.
-      required:
-      - system_prompt
-      title: ReplayConversationItemRequest
-    ValidationErrorError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message
-      required:
-      - message
-      title: ValidationErrorError
-    ReplayToolCallTool:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The tool ID.
-        name:
-          type: string
-          description: The tool name.
-      required:
-      - id
-      - name
-      title: ReplayToolCallTool
     ReplayConversationItemResponse:
       type: object
       properties:
@@ -235,6 +215,26 @@ components:
       required:
       - responses
       title: ReplayConversationItemResponse
+    BasicError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
   securitySchemes:
     bearerAuth:
       type: http

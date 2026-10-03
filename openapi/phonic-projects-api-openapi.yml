@@ -417,20 +417,27 @@ paths:
                 $ref: '#/components/schemas/BasicError'
 components:
   schemas:
-    ValidationError:
+    ConversationEvalResult:
+      type: string
+      enum:
+      - successful
+      - unsuccessful
+      - undecided
+      - error
+      description: The evaluation result.
+      title: ConversationEvalResult
+    ConversationEvalPromptInfo:
       type: object
       properties:
-        error:
-          $ref: '#/components/schemas/ValidationErrorError'
-        param_errors:
-          type: object
-          additionalProperties:
-            type: string
-          description: Parameter-specific validation errors
+        id:
+          type: string
+        name:
+          type: string
       required:
-      - error
-      - param_errors
-      title: ValidationError
+      - id
+      - name
+      description: The evaluation prompt information.
+      title: ConversationEvalPromptInfo
     ProjectDefaultAgent:
       type: object
       properties:
@@ -445,116 +452,6 @@ components:
       - name
       description: The project's default agent.
       title: ProjectDefaultAgent
-    ConversationEvalPromptInfo:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-      required:
-      - id
-      - name
-      description: The evaluation prompt information.
-      title: ConversationEvalPromptInfo
-    UpdateProjectRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the project. Can only contain lowercase letters, numbers and hyphens. Must be unique within the workspace.
-        default_agent:
-          type:
-          - string
-          - 'null'
-          description: The name of the new project's default agent. Set to `null` to remove the default agent.
-        max_active_conversations:
-          type:
-          - integer
-          - 'null'
-          description: Maximum number of concurrent conversations allowed for this project. When `null`, the workspace `max_active_conversations` limit is used.
-      title: UpdateProjectRequest
-    BasicError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/BasicErrorError'
-      title: BasicError
-    Error:
-      oneOf:
-      - $ref: '#/components/schemas/BasicError'
-      - $ref: '#/components/schemas/ValidationError'
-      title: Error
-    ConversationEvalPrompt:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The evaluation prompt ID.
-        name:
-          type: string
-          description: The evaluation prompt name.
-        prompt:
-          type: string
-          description: The evaluation prompt text.
-      required:
-      - id
-      - name
-      - prompt
-      title: ConversationEvalPrompt
-    projects_delete_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the project was deleted successfully.
-      required:
-      - success
-      title: projects_delete_Response_200
-    CreateProjectRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the project. Can only contain lowercase letters, numbers and hyphens. Must be unique within the workspace.
-      required:
-      - name
-      title: CreateProjectRequest
-    projects_create_Response_201:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the created project.
-        name:
-          type: string
-          description: The name of the created project.
-      required:
-      - id
-      - name
-      title: projects_create_Response_201
-    BasicErrorError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message
-        code:
-          type: string
-          description: Error code
-      required:
-      - message
-      title: BasicErrorError
-    projects_list_evals_Response_200:
-      type: object
-      properties:
-        evals:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConversationEval'
-      required:
-      - evals
-      title: projects_list_evals_Response_200
     projects_list_Response_200:
       type: object
       properties:
@@ -565,15 +462,6 @@ components:
       required:
       - projects
       title: projects_list_Response_200
-    projects_create_eval_prompt_Response_201:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the created evaluation prompt.
-      required:
-      - id
-      title: projects_create_eval_prompt_Response_201
     ValidationErrorError:
       type: object
       properties:
@@ -583,6 +471,16 @@ components:
       required:
       - message
       title: ValidationErrorError
+    projects_list_eval_prompts_Response_200:
+      type: object
+      properties:
+        conversation_eval_prompts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationEvalPrompt'
+      required:
+      - conversation_eval_prompts
+      title: projects_list_eval_prompts_Response_200
     ConversationEval:
       type: object
       properties:
@@ -608,6 +506,85 @@ components:
       - result
       - created_at
       title: ConversationEval
+    BasicErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - message
+      title: BasicErrorError
+    projects_create_eval_prompt_Response_201:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the created evaluation prompt.
+      required:
+      - id
+      title: projects_create_eval_prompt_Response_201
+    Error:
+      oneOf:
+      - $ref: '#/components/schemas/BasicError'
+      - $ref: '#/components/schemas/ValidationError'
+      title: Error
+    ConversationEvalPrompt:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The evaluation prompt ID.
+        name:
+          type: string
+          description: The evaluation prompt name.
+        prompt:
+          type: string
+          description: The evaluation prompt text.
+      required:
+      - id
+      - name
+      - prompt
+      title: ConversationEvalPrompt
+    projects_update_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the project was updated successfully.
+      required:
+      - success
+      title: projects_update_Response_200
+    projects_get_Response_200:
+      type: object
+      properties:
+        project:
+          $ref: '#/components/schemas/Project'
+      required:
+      - project
+      title: projects_get_Response_200
+    projects_list_evals_Response_200:
+      type: object
+      properties:
+        evals:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationEval'
+      required:
+      - evals
+      title: projects_list_evals_Response_200
+    CreateProjectRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the project. Can only contain lowercase letters, numbers and hyphens. Must be unique within the workspace.
+      required:
+      - name
+      title: CreateProjectRequest
     CreateConversationEvalPromptRequest:
       type: object
       properties:
@@ -621,33 +598,6 @@ components:
       - name
       - prompt
       title: CreateConversationEvalPromptRequest
-    projects_get_Response_200:
-      type: object
-      properties:
-        project:
-          $ref: '#/components/schemas/Project'
-      required:
-      - project
-      title: projects_get_Response_200
-    projects_update_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the project was updated successfully.
-      required:
-      - success
-      title: projects_update_Response_200
-    projects_list_eval_prompts_Response_200:
-      type: object
-      properties:
-        conversation_eval_prompts:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConversationEvalPrompt'
-      required:
-      - conversation_eval_prompts
-      title: projects_list_eval_prompts_Response_200
     Project:
       type: object
       properties:
@@ -677,15 +627,65 @@ components:
       - active_conversations
       - max_active_conversations
       title: Project
-    ConversationEvalResult:
-      type: string
-      enum:
-      - successful
-      - unsuccessful
-      - undecided
+    projects_create_Response_201:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the created project.
+        name:
+          type: string
+          description: The name of the created project.
+      required:
+      - id
+      - name
+      title: projects_create_Response_201
+    UpdateProjectRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the project. Can only contain lowercase letters, numbers and hyphens. Must be unique within the workspace.
+        default_agent:
+          type:
+          - string
+          - 'null'
+          description: The name of the new project's default agent. Set to `null` to remove the default agent.
+        max_active_conversations:
+          type:
+          - integer
+          - 'null'
+          description: Maximum number of concurrent conversations allowed for this project. When `null`, the workspace `max_active_conversations` limit is used.
+      title: UpdateProjectRequest
+    projects_delete_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the project was deleted successfully.
+      required:
+      - success
+      title: projects_delete_Response_200
+    BasicError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
       - error
-      description: The evaluation result.
-      title: ConversationEvalResult
+      - param_errors
+      title: ValidationError
   securitySchemes:
     bearerAuth:
       type: http
