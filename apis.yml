@@ -251,6 +251,8 @@ apis:
   humanURL: https://docs.phonic.co/
   baseURL: https://api.phonic.ai/v1
   tags:
+  - APIKeys
+  tags_raw:
   - API Keys
   properties:
   - type: OpenAPI
