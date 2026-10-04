@@ -92,27 +92,6 @@ paths:
               $ref: '#/components/schemas/UpdateWorkspaceRequest'
 components:
   schemas:
-    ValidationErrorError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message
-      required:
-      - message
-      title: ValidationErrorError
-    BasicErrorError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message
-        code:
-          type: string
-          description: Error code
-      required:
-      - message
-      title: BasicErrorError
     UpdateWorkspaceRequest:
       type: object
       properties:
@@ -132,6 +111,38 @@ components:
             type: string
           description: IP addresses or CIDR ranges allowed to access the workspace.
       title: UpdateWorkspaceRequest
+    BasicError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
+    BasicErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - message
+      title: BasicErrorError
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
     workspace_get_Response_200:
       type: object
       properties:
@@ -163,12 +174,15 @@ components:
       - invite_link_allowed_domains
       - ip_allowlist
       title: workspace_get_Response_200
-    BasicError:
+    ValidationErrorError:
       type: object
       properties:
-        error:
-          $ref: '#/components/schemas/BasicErrorError'
-      title: BasicError
+        message:
+          type: string
+          description: Error message
+      required:
+      - message
+      title: ValidationErrorError
     workspace_update_Response_200:
       type: object
       properties:
@@ -177,20 +191,6 @@ components:
       required:
       - success
       title: workspace_update_Response_200
-    ValidationError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/ValidationErrorError'
-        param_errors:
-          type: object
-          additionalProperties:
-            type: string
-          description: Parameter-specific validation errors
-      required:
-      - error
-      - param_errors
-      title: ValidationError
   securitySchemes:
     bearerAuth:
       type: http

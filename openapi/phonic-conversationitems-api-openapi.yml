@@ -91,43 +91,12 @@ paths:
               $ref: '#/components/schemas/ReplayConversationItemRequest'
 components:
   schemas:
-    ValidationErrorError:
+    BasicError:
       type: object
       properties:
-        message:
-          type: string
-          description: Error message
-      required:
-      - message
-      title: ValidationErrorError
-    ReplayToolCallTool:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The tool ID.
-        name:
-          type: string
-          description: The tool name.
-      required:
-      - id
-      - name
-      title: ReplayToolCallTool
-    ReplayConversationItemResponseResponsesItems:
-      type: object
-      properties:
-        text:
-          type: string
-          description: The text the LLM produced for this replay response.
-        tool_calls:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReplayToolCall'
-          description: Tool calls the LLM would invoke for this replay response - note that the tools will not actually be called during replay.
-      required:
-      - text
-      - tool_calls
-      title: ReplayConversationItemResponseResponsesItems
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
     ReplayConversationItemRequest:
       type: object
       properties:
@@ -153,11 +122,32 @@ components:
       required:
       - message
       title: BasicErrorError
-    Error:
-      oneOf:
-      - $ref: '#/components/schemas/BasicError'
-      - $ref: '#/components/schemas/ValidationError'
-      title: Error
+    ReplayConversationItemResponseResponsesItems:
+      type: object
+      properties:
+        text:
+          type: string
+          description: The text the LLM produced for this replay response.
+        tool_calls:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReplayToolCall'
+          description: Tool calls the LLM would invoke for this replay response - note that the tools will not actually be called during replay.
+      required:
+      - text
+      - tool_calls
+      title: ReplayConversationItemResponseResponsesItems
+    ReplayConversationItemResponse:
+      type: object
+      properties:
+        responses:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReplayConversationItemResponseResponsesItems'
+          description: Alternative responses generated for the conversation item.
+      required:
+      - responses
+      title: ReplayConversationItemResponse
     ReplayToolCallEndpointMethod:
       type: string
       enum:
@@ -165,6 +155,20 @@ components:
       - POST
       description: HTTP method for webhook tool calls.
       title: ReplayToolCallEndpointMethod
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
     ReplayToolCall:
       type: object
       properties:
@@ -204,37 +208,33 @@ components:
       - tool
       - request_body
       title: ReplayToolCall
-    ReplayConversationItemResponse:
+    ReplayToolCallTool:
       type: object
       properties:
-        responses:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReplayConversationItemResponseResponsesItems'
-          description: Alternative responses generated for the conversation item.
+        id:
+          type: string
+          description: The tool ID.
+        name:
+          type: string
+          description: The tool name.
       required:
-      - responses
-      title: ReplayConversationItemResponse
-    BasicError:
+      - id
+      - name
+      title: ReplayToolCallTool
+    ValidationErrorError:
       type: object
       properties:
-        error:
-          $ref: '#/components/schemas/BasicErrorError'
-      title: BasicError
-    ValidationError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/ValidationErrorError'
-        param_errors:
-          type: object
-          additionalProperties:
-            type: string
-          description: Parameter-specific validation errors
+        message:
+          type: string
+          description: Error message
       required:
-      - error
-      - param_errors
-      title: ValidationError
+      - message
+      title: ValidationErrorError
+    Error:
+      oneOf:
+      - $ref: '#/components/schemas/BasicError'
+      - $ref: '#/components/schemas/ValidationError'
+      title: Error
   securitySchemes:
     bearerAuth:
       type: http

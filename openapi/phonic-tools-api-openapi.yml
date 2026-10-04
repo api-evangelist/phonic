@@ -235,51 +235,17 @@ paths:
               $ref: '#/components/schemas/UpdateToolRequest'
 components:
   schemas:
-    BasicError:
+    ToolProject:
       type: object
       properties:
-        error:
-          $ref: '#/components/schemas/BasicErrorError'
-      title: BasicError
-    CreateToolRequestType:
-      type: string
-      enum:
-      - custom_context
-      - custom_webhook
-      - custom_websocket
-      - built_in_transfer_to_phone_number
-      - built_in_transfer_to_agent
-      - built_in_natural_conversation_ending
-      - built_in_keypad_input
-      - built_in_choose_not_to_respond
-      description: The type of tool.
-      title: CreateToolRequestType
-    ToolSpeechBeforeToolCall:
-      type: string
-      enum:
-      - required
-      - optional
-      - suppressed
-      description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
-      title: ToolSpeechBeforeToolCall
-    tools_delete_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the tool was deleted successfully.
-      required:
-      - success
-      title: tools_delete_Response_200
-    ValidationErrorError:
-      type: object
-      properties:
-        message:
+        id:
           type: string
-          description: Error message
+        name:
+          type: string
       required:
-      - message
-      title: ValidationErrorError
+      - id
+      - name
+      title: ToolProject
     CreateToolRequest:
       type: object
       properties:
@@ -388,30 +354,6 @@ components:
       - type
       - execution_mode
       title: CreateToolRequest
-    BasicErrorError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message
-        code:
-          type: string
-          description: Error code
-      required:
-      - message
-      title: BasicErrorError
-    Error:
-      oneOf:
-      - $ref: '#/components/schemas/BasicError'
-      - $ref: '#/components/schemas/ValidationError'
-      title: Error
-    UpdateToolRequestEndpointMethod:
-      type: string
-      enum:
-      - GET
-      - POST
-      description: HTTP method for webhook tools. When changing this value, all parameters must include explicit `location` values.
-      title: UpdateToolRequestEndpointMethod
     ToolParameterType:
       type: string
       enum:
@@ -422,14 +364,6 @@ components:
       - array
       description: The parameter type.
       title: ToolParameterType
-    CreateToolRequestSpeechBeforeToolCall:
-      type: string
-      enum:
-      - required
-      - optional
-      - suppressed
-      description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
-      title: CreateToolRequestSpeechBeforeToolCall
     ToolExecutionMode:
       type: string
       enum:
@@ -437,33 +371,6 @@ components:
       - async
       description: Mode of operation - sync waits for response, async continues without waiting.
       title: ToolExecutionMode
-    ToolType:
-      type: string
-      enum:
-      - custom_context
-      - custom_webhook
-      - custom_websocket
-      - built_in_transfer_to_phone_number
-      - built_in_transfer_to_agent
-      - built_in_natural_conversation_ending
-      - built_in_keypad_input
-      - built_in_choose_not_to_respond
-      description: The type of tool.
-      title: ToolType
-    CreateToolRequestExecutionMode:
-      type: string
-      enum:
-      - sync
-      - async
-      description: Mode of operation.
-      title: CreateToolRequestExecutionMode
-    ToolEndpointMethod:
-      type: string
-      enum:
-      - GET
-      - POST
-      description: HTTP method for webhook tools.
-      title: ToolEndpointMethod
     UpdateToolRequest:
       type: object
       properties:
@@ -557,14 +464,6 @@ components:
 
         '
       title: UpdateToolRequest
-    tools_get_Response_200:
-      type: object
-      properties:
-        tool:
-          $ref: '#/components/schemas/Tool'
-      required:
-      - tool
-      title: tools_get_Response_200
     CreateToolRequestEndpointMethod:
       type: string
       enum:
@@ -572,30 +471,47 @@ components:
       - POST
       description: Required for webhook tools. HTTP method for the webhook endpoint.
       title: CreateToolRequestEndpointMethod
-    tools_create_Response_201:
+    tools_delete_Response_200:
       type: object
       properties:
-        id:
-          type: string
-          description: The ID of the created tool.
-        name:
-          type: string
-          description: The name of the created tool.
+        success:
+          type: boolean
+          description: Whether the tool was deleted successfully.
       required:
-      - id
-      - name
-      title: tools_create_Response_201
-    ToolProject:
+      - success
+      title: tools_delete_Response_200
+    ToolParameterItemType:
+      type: string
+      enum:
+      - string
+      - integer
+      - number
+      - boolean
+      description: Required only when type is "array". The type of items in the array.
+      title: ToolParameterItemType
+    CreateToolRequestSpeechBeforeToolCall:
+      type: string
+      enum:
+      - required
+      - optional
+      - suppressed
+      description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
+      title: CreateToolRequestSpeechBeforeToolCall
+    ValidationErrorError:
       type: object
       properties:
-        id:
+        message:
           type: string
-        name:
-          type: string
+          description: Error message
       required:
-      - id
-      - name
-      title: ToolProject
+      - message
+      title: ValidationErrorError
+    BasicError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
     Tool:
       type: object
       properties:
@@ -700,42 +616,28 @@ components:
       - type
       - parameters
       title: Tool
-    UpdateToolRequestSpeechBeforeToolCall:
-      type: string
-      enum:
-      - required
-      - optional
-      - suppressed
-      description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
-      title: UpdateToolRequestSpeechBeforeToolCall
-    ToolParameterItemType:
-      type: string
-      enum:
-      - string
-      - integer
-      - number
-      - boolean
-      description: Required only when type is "array". The type of items in the array.
-      title: ToolParameterItemType
-    tools_update_Response_200:
+    tools_get_Response_200:
       type: object
       properties:
-        success:
-          type: boolean
-          description: Whether the tool was updated successfully.
+        tool:
+          $ref: '#/components/schemas/Tool'
       required:
-      - success
-      title: tools_update_Response_200
-    tools_list_Response_200:
+      - tool
+      title: tools_get_Response_200
+    ValidationError:
       type: object
       properties:
-        tools:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tool'
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
       required:
-      - tools
-      title: tools_list_Response_200
+      - error
+      - param_errors
+      title: ValidationError
     ToolParameter:
       type: object
       properties:
@@ -773,6 +675,55 @@ components:
       - description
       - is_required
       title: ToolParameter
+    ToolEndpointMethod:
+      type: string
+      enum:
+      - GET
+      - POST
+      description: HTTP method for webhook tools.
+      title: ToolEndpointMethod
+    CreateToolRequestType:
+      type: string
+      enum:
+      - custom_context
+      - custom_webhook
+      - custom_websocket
+      - built_in_transfer_to_phone_number
+      - built_in_transfer_to_agent
+      - built_in_natural_conversation_ending
+      - built_in_keypad_input
+      - built_in_choose_not_to_respond
+      description: The type of tool.
+      title: CreateToolRequestType
+    UpdateToolRequestEndpointMethod:
+      type: string
+      enum:
+      - GET
+      - POST
+      description: HTTP method for webhook tools. When changing this value, all parameters must include explicit `location` values.
+      title: UpdateToolRequestEndpointMethod
+    tools_update_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the tool was updated successfully.
+      required:
+      - success
+      title: tools_update_Response_200
+    ToolType:
+      type: string
+      enum:
+      - custom_context
+      - custom_webhook
+      - custom_websocket
+      - built_in_transfer_to_phone_number
+      - built_in_transfer_to_agent
+      - built_in_natural_conversation_ending
+      - built_in_keypad_input
+      - built_in_choose_not_to_respond
+      description: The type of tool.
+      title: ToolType
     UpdateToolRequestExecutionMode:
       type: string
       enum:
@@ -780,6 +731,61 @@ components:
       - async
       description: Mode of operation.
       title: UpdateToolRequestExecutionMode
+    Error:
+      oneOf:
+      - $ref: '#/components/schemas/BasicError'
+      - $ref: '#/components/schemas/ValidationError'
+      title: Error
+    ToolSpeechBeforeToolCall:
+      type: string
+      enum:
+      - required
+      - optional
+      - suppressed
+      description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
+      title: ToolSpeechBeforeToolCall
+    BasicErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - message
+      title: BasicErrorError
+    CreateToolRequestExecutionMode:
+      type: string
+      enum:
+      - sync
+      - async
+      description: Mode of operation.
+      title: CreateToolRequestExecutionMode
+    tools_list_Response_200:
+      type: object
+      properties:
+        tools:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tool'
+      required:
+      - tools
+      title: tools_list_Response_200
+    tools_create_Response_201:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the created tool.
+        name:
+          type: string
+          description: The name of the created tool.
+      required:
+      - id
+      - name
+      title: tools_create_Response_201
     ToolParameterLocation:
       type: string
       enum:
@@ -797,20 +803,14 @@ components:
 
         '
       title: ToolParameterLocation
-    ValidationError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/ValidationErrorError'
-        param_errors:
-          type: object
-          additionalProperties:
-            type: string
-          description: Parameter-specific validation errors
-      required:
-      - error
-      - param_errors
-      title: ValidationError
+    UpdateToolRequestSpeechBeforeToolCall:
+      type: string
+      enum:
+      - required
+      - optional
+      - suppressed
+      description: For built_in_natural_conversation_ending and built_in_keypad_input tools. Whether the agent must speak before calling the tool ("required"), the model decides ("optional"), or the agent must stay silent ("suppressed"). Not used by other tool types.
+      title: UpdateToolRequestSpeechBeforeToolCall
   securitySchemes:
     bearerAuth:
       type: http

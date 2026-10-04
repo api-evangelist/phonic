@@ -229,6 +229,162 @@ paths:
               $ref: '#/components/schemas/UpdateExtractionSchemaRequest'
 components:
   schemas:
+    BasicError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
+    ExtractionField:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The field name.
+        type:
+          $ref: '#/components/schemas/ExtractionFieldType'
+          description: The field type.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description of the field. May be null, but the property must be present.
+      required:
+      - name
+      - type
+      - description
+      title: ExtractionField
+    BasicErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - message
+      title: BasicErrorError
+    extraction_schemas_delete_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the extraction schema was deleted successfully.
+      required:
+      - success
+      title: extraction_schemas_delete_Response_200
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
+    extraction_schemas_update_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the extraction schema was updated successfully.
+      required:
+      - success
+      title: extraction_schemas_update_Response_200
+    ExtractionFieldType:
+      type: string
+      enum:
+      - string
+      - int
+      - float
+      - bool
+      - string[]
+      - int[]
+      - float[]
+      - bool[]
+      description: The field type.
+      title: ExtractionFieldType
+    extraction_schemas_get_Response_200:
+      type: object
+      properties:
+        extraction_schema:
+          $ref: '#/components/schemas/ExtractionSchema'
+      required:
+      - extraction_schema
+      title: extraction_schemas_get_Response_200
+    extraction_schemas_list_Response_200:
+      type: object
+      properties:
+        extraction_schemas:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractionSchema'
+      required:
+      - extraction_schemas
+      title: extraction_schemas_list_Response_200
+    UpdateExtractionSchemaRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: A name for the extraction schema.
+        prompt:
+          type: string
+          description: Instructions for how to extract data from conversations.
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractionField'
+          description: Array of field definitions.
+      title: UpdateExtractionSchemaRequest
+    CreateExtractionSchemaRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: A name for the extraction schema.
+        prompt:
+          type: string
+          description: Instructions for how to extract data from conversations.
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractionField'
+          description: Array of field definitions.
+      required:
+      - name
+      - prompt
+      - fields
+      title: CreateExtractionSchemaRequest
+    extraction_schemas_create_Response_201:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the created extraction schema.
+        name:
+          type: string
+          description: The name of the created extraction schema.
+      required:
+      - id
+      - name
+      title: extraction_schemas_create_Response_201
+    ValidationErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+      required:
+      - message
+      title: ValidationErrorError
     ExtractionSchema:
       type: object
       properties:
@@ -252,167 +408,11 @@ components:
       - prompt
       - fields
       title: ExtractionSchema
-    ValidationErrorError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message
-      required:
-      - message
-      title: ValidationErrorError
-    extraction_schemas_get_Response_200:
-      type: object
-      properties:
-        extraction_schema:
-          $ref: '#/components/schemas/ExtractionSchema'
-      required:
-      - extraction_schema
-      title: extraction_schemas_get_Response_200
-    BasicErrorError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message
-        code:
-          type: string
-          description: Error code
-      required:
-      - message
-      title: BasicErrorError
-    ExtractionFieldType:
-      type: string
-      enum:
-      - string
-      - int
-      - float
-      - bool
-      - string[]
-      - int[]
-      - float[]
-      - bool[]
-      description: The field type.
-      title: ExtractionFieldType
     Error:
       oneOf:
       - $ref: '#/components/schemas/BasicError'
       - $ref: '#/components/schemas/ValidationError'
       title: Error
-    extraction_schemas_delete_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the extraction schema was deleted successfully.
-      required:
-      - success
-      title: extraction_schemas_delete_Response_200
-    CreateExtractionSchemaRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: A name for the extraction schema.
-        prompt:
-          type: string
-          description: Instructions for how to extract data from conversations.
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExtractionField'
-          description: Array of field definitions.
-      required:
-      - name
-      - prompt
-      - fields
-      title: CreateExtractionSchemaRequest
-    ValidationError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/ValidationErrorError'
-        param_errors:
-          type: object
-          additionalProperties:
-            type: string
-          description: Parameter-specific validation errors
-      required:
-      - error
-      - param_errors
-      title: ValidationError
-    extraction_schemas_list_Response_200:
-      type: object
-      properties:
-        extraction_schemas:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExtractionSchema'
-      required:
-      - extraction_schemas
-      title: extraction_schemas_list_Response_200
-    extraction_schemas_create_Response_201:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the created extraction schema.
-        name:
-          type: string
-          description: The name of the created extraction schema.
-      required:
-      - id
-      - name
-      title: extraction_schemas_create_Response_201
-    BasicError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/BasicErrorError'
-      title: BasicError
-    UpdateExtractionSchemaRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: A name for the extraction schema.
-        prompt:
-          type: string
-          description: Instructions for how to extract data from conversations.
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExtractionField'
-          description: Array of field definitions.
-      title: UpdateExtractionSchemaRequest
-    extraction_schemas_update_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the extraction schema was updated successfully.
-      required:
-      - success
-      title: extraction_schemas_update_Response_200
-    ExtractionField:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The field name.
-        type:
-          $ref: '#/components/schemas/ExtractionFieldType'
-          description: The field type.
-        description:
-          type:
-          - string
-          - 'null'
-          description: Description of the field. May be null, but the property must be present.
-      required:
-      - name
-      - type
-      - description
-      title: ExtractionField
   securitySchemes:
     bearerAuth:
       type: http
