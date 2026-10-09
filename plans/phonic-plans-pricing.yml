@@ -1,0 +1,77 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://phonic.ai/pricing
+sources:
+- https://phonic.ai/pricing
+- https://phonic.co/pricing
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed+licensed
+  method: page
+  read: '2026-10-07'
+  evidence: On-prem / VPC deployment
+  managed_tier: Pro
+published: true
+note: Tiered plans with per-minute conversation rates; enterprise offers on-prem/VPC deployment.
+plan_count: 3
+currency: USD
+plans:
+- name: Starter
+  price_text: $0 /mo
+  price: 0
+  currency: USD
+  period: month
+  included_quota: $30/month in free credits; 3 Workspace seats; Unlimited voices; 10 agents; 10 concurrent
+    calls
+  overage: $0.14 / min per conversation
+- name: Pro
+  price_text: $240 /mo
+  price: 240
+  currency: USD
+  period: month
+  included_quota: $240/month in free credits; 30 Workspace seats; 50 concurrent calls; 50 agents; Support
+    via private Slack Connect
+  overage: $0.12 / min per conversation
+- name: enterprise
+  price_text: Custom Pricing
+  period: none
+  included_quota: Custom seats, agents, concurrency; On-prem / VPC deployment; BAAs for HIPAA; volume
+    discounts
+rate_limit_statements:
+- 10 concurrent calls
+- 50 concurrent calls
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  units: []
+  plans:
+  - name: Starter
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Pro
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: enterprise
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
