@@ -116,60 +116,6 @@ paths:
               $ref: '#/components/schemas/CreateConversationTokenRequest'
 components:
   schemas:
-    BasicError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/BasicErrorError'
-      title: BasicError
-    BasicErrorError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message
-        code:
-          type: string
-          description: Error code
-      required:
-      - message
-      title: BasicErrorError
-    CreateSessionTokenRequest:
-      type: object
-      properties:
-        ttl_seconds:
-          type: integer
-          default: 300
-          description: Time-to-live for the session token in seconds.
-      title: CreateSessionTokenRequest
-    ValidationError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/ValidationErrorError'
-        param_errors:
-          type: object
-          additionalProperties:
-            type: string
-          description: Parameter-specific validation errors
-      required:
-      - error
-      - param_errors
-      title: ValidationError
-    auth_create_conversation_token_Response_200:
-      type: object
-      properties:
-        conversation_token:
-          type: string
-          description: The conversation token to use for authentication.
-        expires_at:
-          type: string
-          format: date-time
-          description: When the conversation token expires.
-      required:
-      - conversation_token
-      - expires_at
-      title: auth_create_conversation_token_Response_200
     auth_create_session_token_Response_200:
       type: object
       properties:
@@ -184,6 +130,15 @@ components:
       - session_token
       - expires_at
       title: auth_create_session_token_Response_200
+    ValidationErrorError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+      required:
+      - message
+      title: ValidationErrorError
     CreateConversationTokenRequest:
       type: object
       properties:
@@ -197,15 +152,60 @@ components:
       required:
       - agent_id
       title: CreateConversationTokenRequest
-    ValidationErrorError:
+    ValidationError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ValidationErrorError'
+        param_errors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter-specific validation errors
+      required:
+      - error
+      - param_errors
+      title: ValidationError
+    CreateSessionTokenRequest:
+      type: object
+      properties:
+        ttl_seconds:
+          type: integer
+          default: 300
+          description: Time-to-live for the session token in seconds.
+      title: CreateSessionTokenRequest
+    BasicError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
+    auth_create_conversation_token_Response_200:
+      type: object
+      properties:
+        conversation_token:
+          type: string
+          description: The conversation token to use for authentication.
+        expires_at:
+          type: string
+          format: date-time
+          description: When the conversation token expires.
+      required:
+      - conversation_token
+      - expires_at
+      title: auth_create_conversation_token_Response_200
+    BasicErrorError:
       type: object
       properties:
         message:
           type: string
           description: Error message
+        code:
+          type: string
+          description: Error code
       required:
       - message
-      title: ValidationErrorError
+      title: BasicErrorError
   securitySchemes:
     bearerAuth:
       type: http

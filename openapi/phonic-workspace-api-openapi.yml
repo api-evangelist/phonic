@@ -111,24 +111,15 @@ components:
             type: string
           description: IP addresses or CIDR ranges allowed to access the workspace.
       title: UpdateWorkspaceRequest
-    BasicError:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/BasicErrorError'
-      title: BasicError
-    BasicErrorError:
+    ValidationErrorError:
       type: object
       properties:
         message:
           type: string
           description: Error message
-        code:
-          type: string
-          description: Error code
       required:
       - message
-      title: BasicErrorError
+      title: ValidationErrorError
     ValidationError:
       type: object
       properties:
@@ -143,6 +134,20 @@ components:
       - error
       - param_errors
       title: ValidationError
+    BasicError:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/BasicErrorError'
+      title: BasicError
+    workspace_update_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      required:
+      - success
+      title: workspace_update_Response_200
     workspace_get_Response_200:
       type: object
       properties:
@@ -174,23 +179,18 @@ components:
       - invite_link_allowed_domains
       - ip_allowlist
       title: workspace_get_Response_200
-    ValidationErrorError:
+    BasicErrorError:
       type: object
       properties:
         message:
           type: string
           description: Error message
+        code:
+          type: string
+          description: Error code
       required:
       - message
-      title: ValidationErrorError
-    workspace_update_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-      required:
-      - success
-      title: workspace_update_Response_200
+      title: BasicErrorError
   securitySchemes:
     bearerAuth:
       type: http
